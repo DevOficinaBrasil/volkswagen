@@ -1,6 +1,5 @@
 "use client";
 
-
 import {
   Box,
   Button,
@@ -16,6 +15,7 @@ import Hero from "./components/hero";
 import Title from "./components/title";
 import Pieces from "./components/pieces";
 import Cover from "./components/cover";
+import VideosHome from "./components/VideosHome";
 import CoverBox from "./components/coverBox";
 import SubBanner from "./components/subBanner";
 import Videos from "./components/videos";
@@ -40,20 +40,19 @@ import partsCover1 from "@/images/parts-cover-1.png";
 import partsCover2 from "@/images/parts-cover-2.png";
 import partsCover3 from "@/images/parts-cover-3.png";
 import partsCover4 from "@/images/parts-cover-4.png";
+import PdfComponent from "./components/pdfCompnent";
+import PdfTextEditor from "./components/pdfCompnent";
 import Link from "next/link";
 import Agenda from "./components/agenda";
 import { East } from "@mui/icons-material";
 import MateriasSection from "./components/materiasSection";
 import UltimasEdicoes from "./components/ultimasEdicoes";
-import VideosHome from "./components/VideosHome";
-import Image from "next/image";
-
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   const windowSize = useWindowSize();
 
-
+  // const pdfUrl = "/documents/CATALOGO_ECONOMY.pdf";
 
   useEffect(() => {
     if (windowSize.width <= 1080) {
@@ -74,8 +73,7 @@ export default function Home() {
           subtitle="3º Treinamento"
           dateTime="Dia 04 de Julho  | às 19:30"
           background={banner}
-        >
-        </Hero>
+        ></Hero>
       )}
 
       {mobile && (
@@ -99,18 +97,12 @@ export default function Home() {
           <Title title="Agenda 2024" />
         </Box>
         <Agenda></Agenda>
-
-
-
-
         {/* 
         <Videos>
-          <Video redirect='' url="https://placehold.co/1360x768" />
-          <Video redirect='' url="https://placehold.co/1360x768" />
-          <Video redirect='' url="https://placehold.co/1360x768" />
-        </Videos> */}
-        {/*         
-
+          <Video url="https://placehold.co/1360x768" />
+          <Video url="https://placehold.co/1360x768" />
+          <Video url="https://placehold.co/1360x768" />
+        </Videos>
 
         <Box>
           <Title title="Últimas edições" />
@@ -129,11 +121,8 @@ export default function Home() {
             <CoverBox image={partsBanner1} />
             <CoverBox image={partsBanner1} />
           </Cover>
-        )}  */}
-
-
-
-
+        )} 
+        */}
 
         <Box>
           <Title title="Videos Técnicos" />
@@ -143,6 +132,7 @@ export default function Home() {
         <Box>
           <Title title="Notícias" />
         </Box>
+
         <div className="mt-0 xl:p-12 md:p-12 p-5">
           <div className=" grid grid-cols-12 gap-y-10 lg:gap-x-10 w-full mb-1">
             <div
@@ -151,13 +141,12 @@ export default function Home() {
             >
               <MateriasSection />
             </div>
+
             <div className="lg:col-span-12 xl:col-span-4 2xl:col-span-4 col-span-12 flex flex-col gap-5 justify-between ">
               <UltimasEdicoes />
             </div>
           </div>
         </div>
-
-
 
         {mobile ? (
           <SubBannerMobile title="Economy" subtitle="Catálogo" image={economy}>
@@ -178,9 +167,6 @@ export default function Home() {
         <Box>
           <Title title="Peças VW" />
         </Box>
-
-
-
 
         {mobile ? (
           <PiecesMobile>
@@ -286,8 +272,4 @@ export default function Home() {
       </main>
     </div>
   );
-
-
-
-
 }

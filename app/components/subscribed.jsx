@@ -22,6 +22,7 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubscribeModal from "./subscribe";
 import VolksButton from "./defaultButton";
+import PdfTextEditor from "./pdfCompnent";
 
 export default function SubscribedCard(props) {
   const date = format(new Date(props.content.date), "dd/MM/yyyy");
@@ -30,7 +31,7 @@ export default function SubscribedCard(props) {
   const [trainingFormat, setTrainingFormat] = React.useState("");
   const [trainingLocal, setTrainingLocal] = React.useState("");
   const [verifyLocal, setVerifyLocal] = React.useState(false);
-  
+
   React.useEffect(() => {
     if (props.content.concessionaire_id != 0) {
       setTrainingFormat("Presencial");
@@ -49,7 +50,7 @@ export default function SubscribedCard(props) {
       setTrainingFormat("Online");
     }
   }, [props.content]);
-  
+
   return (
     <Card className="flex flex-col" sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -108,7 +109,7 @@ export default function SubscribedCard(props) {
             disableSpacing
             className="flex justify-between px-5 pb-5"
           >
-            <VolksButton spacing={{ m: 0 }}>Gerar certificado</VolksButton>
+            <PdfTextEditor training={props.content} />
           </CardActions>
         )}
       </Box>
