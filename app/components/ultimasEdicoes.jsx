@@ -46,8 +46,7 @@ export default function UltimasEdicoes() {
       <div className="lg:p-5 p-1">
         <Slider arrows={true} {...settings} className="">
           {edicoes?.map((edicao, key) => (
-            <a href={"/edicao/" + edicao.EdicaoID}>
-              {console.log(edicao)}
+            <a key={key} href={"/edicao/" + edicao.EdicaoID}>
               <Image key={key} src={`https://oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`} width={398} height={444} />
             </a>
           ))}
