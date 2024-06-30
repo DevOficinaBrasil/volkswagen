@@ -9,6 +9,7 @@ export default async function Page(url) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache:'no-store',
       body: JSON.stringify(params),
     }
   );
