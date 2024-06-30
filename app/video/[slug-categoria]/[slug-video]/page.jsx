@@ -20,7 +20,7 @@ export default async function Page(url) {
         <div className="lg:col-span-8 col-span-12 flex flex-col gap-5">
           <div className="font-bold text-2xl">TV NOTÍCIAS DA OFICINA VW</div>
 
-          {video.TipoVideo == "y" ? (
+          {video.TipoVideo == "Y" && (
             <div className="h-[32.5rem] w-full">
 
               <iframe
@@ -38,11 +38,15 @@ export default async function Page(url) {
                 allowfullscreen=""
               ></iframe>
             </div>
-          ) : (
-            <div className="h-[32.5rem] w-full">
-              {video.Descricao}
-            </div>
           )}
+
+          {video.TipoVideo == 'V' &&
+            (<div className="h-[34.5rem] w-full">
+              <div
+                dangerouslySetInnerHTML={{ __html: video.Descricao }}
+              />
+            </div>)}
+
 
 
           <div className="flex gap-3">
