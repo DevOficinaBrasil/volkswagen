@@ -18,6 +18,7 @@ const AtualizarMenu = () => {
     <div className="w-full flex flex-col border-r-[1px] border-slate-300 h-full">
       {menus.map((menu, key) => (
         <button
+          key={menu.value}
           // href={`/atualizar/${menu.value}`}
           onClick={() => {
             userData && router.push(`/atualizar/${menu.value}`);
