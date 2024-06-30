@@ -20,7 +20,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "@/app/components/mask/inputMask";
 import Swal from "sweetalert2";
@@ -34,9 +34,7 @@ export default function Page() {
   const [disabled, setDisabled] = React.useState(true);
   const [isChecked, setIsChecked] = React.useState(true);
   const [autoRepairInfo, setautoRepairInfo] = React.useState(null);
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const user = searchParams.get("user");
   const { verify } = useContext(UserContext);
   const { register, handleSubmit, setValue, control } = useForm({
     // defaultValues: user && user.data.user,
