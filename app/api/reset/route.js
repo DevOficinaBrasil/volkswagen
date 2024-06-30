@@ -19,7 +19,7 @@ export async function POST(req) {
     const response = await request.json()
 
     if( request.status != 200 ){
-        return new Response('Erro ao atualizar a senha', {
+        return new Response(response, {
             status: 401,
         })
     }

@@ -22,7 +22,7 @@ const Page = async (url) => {
   var noticias = result.data;
 
   return (
-    < div className="container mx-auto">
+    <div className="container mx-auto">
       <div className="pb-10">
         <div className="font-bold text-4xl uppercase text-blue-900 text-shadow-sm mt-2">
           Notícias

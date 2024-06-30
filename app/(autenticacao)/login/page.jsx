@@ -16,6 +16,9 @@ import { Alert } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import VolksButton from '@/app/components/defaultButton';
+import redirectPage from '@/src/redirects/redirect/redirect';
+import generalRedirectPage from '@/src/redirects/generalRedirect/redirect';
+import { deleteTokens } from '../handler';
 
 const defaultTheme = createTheme();
 
@@ -23,23 +26,43 @@ export default function SignIn(){
   const [alert, setAlert] = React.useState(null)
   const router = useRouter()
 
+  React.useEffect(() => {
+    const deleteOldTokens = async () => {
+      deleteTokens()
+    }
+
+    deleteOldTokens()
+  }, [])
+
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
+    setAlert(null)
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget)
 
-    const request = await fetch('/api/auth',{
-      method: 'POST',
-      body: formData,
-    })
+    try{
+      const request = await fetch('/api/auth',{
+        method: 'POST',
+        body: formData,
+      })
 
-    const response = await request.text()
+      const response = await request.text()
 
-    if( ! request.ok ){
-      setAlert(response)
-    }else{
-      setAlert(null)
-      router.push('/redirect')
+      if(!request.ok){
+        throw new Error(response)
+      }
+
+      if(response.role == 'common'){
+        setAlert(null)
+        redirectPage()
+      }else if(response.role == 'manager'){
+        setAlert(null)
+        generalRedirectPage()
+      }else{
+        router.push('/')
+      }
+    }catch(error){
+      setAlert(error.message)
     }
   }
 

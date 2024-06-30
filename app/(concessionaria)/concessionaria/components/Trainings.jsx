@@ -8,6 +8,7 @@ import { Box, Button, Container, Grid, Paper, Typography } from '@mui/material';
 import UserContext from '@/src/contexts/UserContext';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';
+import DownloadButton from '@/app/components/downloadButton';
 
 export default function Trainings(){
     const { userData } = React.useContext(UserContext);
@@ -35,7 +36,7 @@ export default function Trainings(){
     const handleInfos = (id) => {
         router.push(`/concessionaria/training/${id}`)
     }
-
+    
     return(
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
@@ -54,6 +55,7 @@ export default function Trainings(){
                                         <TableCell>Título</TableCell>
                                         <TableCell>Data</TableCell>
                                         <TableCell>Status</TableCell>
+                                        <TableCell>Material Técnico</TableCell>
                                         <TableCell align="right">Ver inscritos</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -64,6 +66,7 @@ export default function Trainings(){
                                         <TableCell>{row.name}</TableCell>
                                         <TableCell>{moment(row.date).format("DD/MM/YYYY")}</TableCell>
                                         <TableCell>{row.active == 0 ? 'Inativo' : 'Ativo'}</TableCell>
+                                        <TableCell>{row.material ? <DownloadButton url={row.material} filename={row.name}>Baixar material</DownloadButton> : 'Material indisponível'}</TableCell>
                                         <TableCell align="right">
                                             <Button variant="text" onClick={() => handleInfos(row.id)}>Ver</Button>
                                         </TableCell>
