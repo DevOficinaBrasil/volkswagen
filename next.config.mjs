@@ -22,6 +22,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'www.noticiasdaoficinavw.com.br',
+      },
+
+      {
+        protocol: 'https',
+        hostname: 'oficinabrasil.com.br',
       }
 
     ],
