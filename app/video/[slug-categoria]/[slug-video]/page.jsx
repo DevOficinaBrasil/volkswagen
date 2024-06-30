@@ -20,22 +20,30 @@ export default async function Page(url) {
         <div className="lg:col-span-8 col-span-12 flex flex-col gap-5">
           <div className="font-bold text-2xl">TV NOTÍCIAS DA OFICINA VW</div>
 
-          <div className="h-[32.5rem] w-full">
-            <iframe
-              class="iFrameVideo"
-              className="rounded-lg shadow-lg"
-              width="100%"
-              height="100%"
-              src={
-                "//www.youtube.com/embed/" +
-                video?.Codigo +
-                // 'MK6Kx0ED_KM' +
-                "?autoplay=1;wmode=transparent"
-              }
-              frameborder="0"
-              allowfullscreen=""
-            ></iframe>
-          </div>
+          {video.TipoVideo == "y" ? (
+            <div className="h-[32.5rem] w-full">
+
+              <iframe
+                class="iFrameVideo"
+                className="rounded-lg shadow-lg"
+                width="100%"
+                height="100%"
+                src={
+                  "//www.youtube.com/embed/" +
+                  video?.Codigo +
+                  // 'MK6Kx0ED_KM' +
+                  "?autoplay=1;wmode=transparent"
+                }
+                frameborder="0"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+          ) : (
+            <div className="h-[32.5rem] w-full">
+              {video.Descricao}
+            </div>
+          )}
+
 
           <div className="flex gap-3">
             {/* <img

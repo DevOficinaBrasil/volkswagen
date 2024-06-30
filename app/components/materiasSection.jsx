@@ -33,7 +33,6 @@ export default function MateriasSection() {
           >
             <a
               href={`/noticia/${(item.SlugCategoria)}/${(item.SlugNoticia)}`} // Supondo que o item.Link contenha o link da notícia
-              target="_blank"
               rel="noopener noreferrer"
               className="flex"
             >
