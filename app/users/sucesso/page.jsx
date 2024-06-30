@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import SubscribeModal from "../components/subscribe";
+import SubscribeModal from "../../components/subscribe";
 import moment from "moment";
 import { ToastContainer } from "react-toastify";
 
