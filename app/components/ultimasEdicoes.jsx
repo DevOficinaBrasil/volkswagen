@@ -41,7 +41,7 @@ export default function UltimasEdicoes() {
   return (
     <div className="bg-gray-100 rounded-sm w-full pb-10 pt-5 px-10 flex flex-col gap-4 shadow-xl shadow-slate-300">
       <div className="flex items-center pt-10 gap-3">
-        <div className="text-xl font-bold">ÚLTIMOS EDIÇÕES</div>
+        <div className="text-xl font-bold">ÚLTIMAS EDIÇÕES</div>
       </div>
       <div className="lg:p-5 p-1">
         <Slider arrows={true} {...settings} className="">

@@ -45,7 +45,7 @@ import Agenda from "./components/agenda";
 import { East } from "@mui/icons-material";
 import MateriasSection from "./components/materiasSection";
 import UltimasEdicoes from "./components/ultimasEdicoes";
-
+import VideosHome from "./components/VideosHome";
 import Image from "next/image";
 
 
@@ -99,12 +99,18 @@ export default function Home() {
           <Title title="Agenda 2024" />
         </Box>
         <Agenda></Agenda>
-        {/*         
+
+
+
+
+        {/* 
         <Videos>
-          <Video url="https://placehold.co/1360x768" />
-          <Video url="https://placehold.co/1360x768" />
-          <Video url="https://placehold.co/1360x768" />
-        </Videos>
+          <Video redirect='' url="https://placehold.co/1360x768" />
+          <Video redirect='' url="https://placehold.co/1360x768" />
+          <Video redirect='' url="https://placehold.co/1360x768" />
+        </Videos> */}
+        {/*         
+
 
         <Box>
           <Title title="Últimas edições" />
@@ -129,20 +135,22 @@ export default function Home() {
 
 
 
+        <Box>
+          <Title title="Videos Técnicos" />
+        </Box>
+        <VideosHome />
 
-
-
+        <Box>
+          <Title title="Notícias" />
+        </Box>
         <div className="mt-0 xl:p-12 md:p-12 p-5">
-
           <div className=" grid grid-cols-12 gap-y-10 lg:gap-x-10 w-full mb-1">
-
             <div
               id="home-videos"
               className="lg:col-span-12 xl:col-span-8 3xl:col-span-8 col-span-12"
             >
               <MateriasSection />
             </div>
-
             <div className="lg:col-span-12 xl:col-span-4 2xl:col-span-4 col-span-12 flex flex-col gap-5 justify-between ">
               <UltimasEdicoes />
             </div>

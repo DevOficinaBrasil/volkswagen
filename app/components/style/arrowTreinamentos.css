@@ -1,0 +1,22 @@
+.slick-prev:before,
+.slick-next:before {
+  color: white;
+  height: 40px;
+  width: 40px;
+}
+.slick-prev {
+  left: 10px;
+
+  z-index: 1;
+}
+.slick-next {
+  right: 30px;
+}
+
+/* .slick-arrow.slick-prev::before {
+  height: 40px !important;
+  width: 40px !important;
+  } */
+  .slick-prev:before, .slick-next:before{
+    font-size: 40px !important;
+  }
