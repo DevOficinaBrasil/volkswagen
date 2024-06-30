@@ -11,7 +11,7 @@ export default function MateriasSection() {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch('http://127.0.0.1:8000/api/noticia/getHomeVolkswagen')
+    fetch('https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/noticia/getHomeVolkswagen')
       .then(response => response.json())
       .then(data => setNews(data))
       .catch(error => console.error('Error fetching news:', error));
@@ -32,7 +32,7 @@ export default function MateriasSection() {
             className="flex justify-start overflow-ellipsis hover:underline hover:scale-105"
           >
             <a
-              href={`https://oficinabrasil.com.br/noticia/${(item.SlugCategoria)}/${(item.SlugNoticia)}`} // Supondo que o item.Link contenha o link da notícia
+              href={`/noticia/${(item.SlugCategoria)}/${(item.SlugNoticia)}`} // Supondo que o item.Link contenha o link da notícia
               target="_blank"
               rel="noopener noreferrer"
               className="flex"

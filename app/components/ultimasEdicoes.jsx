@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import capturMotor from "@/images/files_migration_tb_fotos-2.png";
 import renaultBanner from "@/images/vw_car.png";
 import "slick-carousel/slick/slick.css";
@@ -22,13 +22,20 @@ export default function UltimasEdicoes() {
     slidesToShow: 1,
     slidesToScroll: 1,
     pauseOnHover: false,
-    beforeChange: function (currentSlide, nextSlide) {},
-    afterChange: function (currentSlide) {},
+    beforeChange: function (currentSlide, nextSlide) { },
+    afterChange: function (currentSlide) { },
   };
-  const noticias = [
-    { noticia: renaultBanner, Nome: "Temporada 2024", Titulo: "Motor Captur" },
-    { noticia: renaultBanner, Nome: "Temporada 2024", Titulo: "Motor Captur" },
-  ];
+
+  const [edicoes, setEdicao] = useState([]);
+  useEffect(() => {
+    // Fetch data from the API
+    fetch('https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/edicao/getDefault')
+      .then(response => response.json())
+      .then(data => {
+        setEdicao(data)
+      })
+      .catch(error => console.error('Error fetching news:', error));
+  }, []);
 
 
   return (
@@ -36,10 +43,13 @@ export default function UltimasEdicoes() {
       <div className="flex items-center pt-10 gap-3">
         <div className="text-xl font-bold">ÚLTIMOS EDIÇÕES</div>
       </div>
-      <div className="p-10">
+      <div className="lg:p-5 p-1">
         <Slider arrows={true} {...settings} className="">
-          {noticias?.map(({ noticia, key, Nome, Titulo }) => (
-            <Image key={key} src={noticia.src} width={398} height={444} />
+          {edicoes?.map((edicao, key) => (
+            <a href={"/edicao/" + edicao.EdicaoID}>
+              {console.log(edicao)}
+              <Image key={key} src={`https://oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`} width={398} height={444} />
+            </a>
           ))}
         </Slider>
       </div>
