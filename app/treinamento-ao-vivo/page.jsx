@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Chat from '../components/Chat'
 function page() {
     return (
         <div className='container mx-auto my-5'>
@@ -23,7 +23,7 @@ function page() {
                 </div>
 
                 <div className='col-span-4'>
-                    <iframe src="https://rota.oficinabrasil.com.br/ext-cod/chat/" frameborder="0" className='w-full h-full'></iframe>
+                    <Chat />
                 </div>
             </div>
         </div>
