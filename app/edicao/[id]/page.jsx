@@ -1,6 +1,5 @@
 import React from "react";
 import MoreEditions from "../../components/MoreEditions";
-import Title from "../../components/Title";
 const page = async (url) => {
   const data = await fetch(
     "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/edicao/" +
