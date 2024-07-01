@@ -56,16 +56,15 @@ export default function SignIn() {
       const validate = await response.json()
       if (validate.role == "common") {
         setAlert(null);
-        //redirectPage();
+        redirectPage();
       } else if (validate.role == "manager") {
         setAlert(null);
-        //generalRedirectPage();
+        generalRedirectPage();
       } else {
         verify();
-        //router.push("/");
+        router.push("/");
       }
     } catch (error) {
-      console.log(error)
       setAlert(error.message)
     }
   };

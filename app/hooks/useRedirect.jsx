@@ -13,6 +13,7 @@ export default function useRedirectPage() {
 
     router.push("/users/sucesso");
   };
+  
   const generalRedirect = () => {
     verify();
 
