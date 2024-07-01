@@ -24,7 +24,7 @@ export async function POST(req) {
         encodeURIComponent(user.value) +
         "&training=" +
         encodeURIComponent(formData.get("training"))
-
+        
     const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/registerSheet`, {
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ export async function POST(req) {
 
     const response = await request.json();
 
-    if (request.status != 201) {
+    if (!request.ok) {
         return new Response(response, {
             status: 400,
         });

@@ -45,15 +45,17 @@ export default function GeneralSheet({ params }) {
                 body: formData,
             })
         
-            const response = await request.json()
+            const response = request
             
-            if(!request.ok){
-                throw new Error(response)
+            if(!response.ok){
+                throw new Error(await response.text())
             }
 
             setAlert(null)
 
-            toast.success(response, {
+            const message = await response.json()
+
+            toast.success(message, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -69,7 +71,7 @@ export default function GeneralSheet({ params }) {
                 router.push('/users/dashboard')
             }, 5000)
         }catch(error){
-            setAlert(error)
+            setAlert(error.message)
             setIsLoading(false)
         }
     }
@@ -167,7 +169,7 @@ export default function GeneralSheet({ params }) {
                                         name="suggestion"
                                         control={control}
                                         render={({ field }) => 
-                                            <TextField key="suggestion" id="suggestion" label="Quais temas gostaria de ver nos próximos treinamentos Volkswagen?" fullWidth required
+                                            <TextField key="suggestion" id="suggestion" label="Quais temas gostaria de ver nos próximos treinamentos Volkswagen?" fullWidth
                                                 sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                                 {...field} 
                                             />
