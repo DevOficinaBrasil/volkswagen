@@ -154,7 +154,7 @@ export default function Header() {
         <Grid
           container
           className="flex items-center justify-center py-3 border-b border-black"
-          gap={20}
+          spacing={{ xs: 2, md: 8, lg: 20 }}
         >
           <Grid item>
             <Link
