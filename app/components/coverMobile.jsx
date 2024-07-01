@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 
 export default function CoverMobile(props) {
     return(
-        <Box sx={{ flexWrap: 'wrap', display: 'flex', gap: 4}}>
+        <Box sx={{ flexWrap: 'wrap', display: 'block', gap: 4}}>
             {props.children.map((child, index) => (
         <Box
           key={index}

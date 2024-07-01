@@ -15,8 +15,11 @@ import Hero from "./components/hero";
 import Title from "./components/title";
 import Pieces from "./components/pieces";
 import Cover from "./components/cover";
-import VideosHome from "./components/VideosHome";
 import CoverBox from "./components/coverBox";
+import CoverBoxMobile from "./components/coverBoxMobile";
+
+import VideosHome from "./components/VideosHome";
+
 import SubBanner from "./components/subBanner";
 import Videos from "./components/videos";
 import Video from "./components/video";
@@ -26,7 +29,6 @@ import { useEffect, useState } from "react";
 import HeroMobile from "./components/heroMobile";
 import SubBannerMobile from "./components/subBannerMobile";
 import HeroCardMobile from "./components/heroCardMobile";
-import CoverBoxMobile from "./components/coverBoxMobile";
 import CoverMobile from "./components/coverMobile";
 import PiecesMobile from "./components/piecesMobile";
 
@@ -104,36 +106,24 @@ export default function Home() {
           <Video url="https://placehold.co/1360x768" />
         </Videos>
 
-        <Box>
-          <Title title="Últimas edições" />
-        </Box>
-        {mobile ? (
-          <CoverMobile>
-            <CoverBoxMobile image={partsBanner1} />
-            <CoverBoxMobile image={partsBanner1} />
-            <CoverBoxMobile image={partsBanner1} />
-            <CoverBoxMobile image={partsBanner1} />
-          </CoverMobile>
-        ) : (
-          <Cover>
-            <CoverBox image={partsBanner1} />
-            <CoverBox image={partsBanner1} />
-            <CoverBox image={partsBanner1} />
-            <CoverBox image={partsBanner1} />
-          </Cover>
-        )} 
+
         */}
 
         <Box>
           <Title title="Videos Técnicos" />
         </Box>
-        <VideosHome />
+
+        <div className="flex">
+          <VideosHome />
+
+        </div>
+
 
         <Box>
           <Title title="Notícias" />
         </Box>
 
-        <div className="mt-0 xl:p-12 md:p-12 p-5">
+        <div className="mt-0 xl:p-12 md:p-12 p-5 container mx-auto">
           <div className=" grid grid-cols-12 gap-y-10 lg:gap-x-10 w-full mb-1">
             <div
               id="home-videos"

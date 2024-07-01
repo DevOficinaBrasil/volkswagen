@@ -174,7 +174,7 @@ export default function Header() {
           </Grid>
           <Grid item>
             <Link
-              href="/"
+              href="/noticia/volkswagen"
               className="hover:text-volks-blue-800 ease-in-out duration-200"
             >
               Notícias
