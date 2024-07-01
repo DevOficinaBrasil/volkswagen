@@ -19,7 +19,7 @@ export default async function redirectIfLoggedMiddleware(token, url){
     }
 
     if ( request.status == 200 && response.role == 'manager' ){
-        url.pathname = '/concessionaria/dashboard'
+        url.pathname = '/concessionaria'
 
         return NextResponse.redirect(url)
     }
