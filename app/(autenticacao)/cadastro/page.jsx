@@ -35,6 +35,7 @@ import {
   TextField,
 } from "@mui/material";
 import Title from "@/app/components/title";
+import { escape } from "querystring";
 
 const steps = ["Cadastro básico", "Adicionar endereço", "Informações finais"];
 
@@ -284,6 +285,34 @@ export default function HorizontalLinearStepper() {
     }
   }, [autoRepairInfo]);
 
+  function fixEncoding(text) {
+    return decodeURIComponent(
+      text
+        .replace(/Ã¡/g, "á")
+        .replace(/Ã©/g, "é")
+        .replace(/Ã­/g, "í")
+        .replace(/Ã³/g, "ó")
+        .replace(/Ãº/g, "ú")
+        .replace(/Ã£/g, "ã")
+        .replace(/Ãµ/g, "õ")
+        .replace(/Ã¢/g, "â")
+        .replace(/Ãª/g, "ê")
+        .replace(/Ã®/g, "î")
+        .replace(/Ã´/g, "ô")
+        .replace(/Ã»/g, "û")
+        .replace(/Ã§/g, "ç")
+        .replace(/Ã€/g, "à")
+        .replace(/Ãƒ/g, "Ã")
+        .replace(/Ã€/g, "À")
+        .replace(/Ã‰/g, "É")
+        .replace(/Ã“/g, "Ó")
+        .replace(/Ãš/g, "Ú")
+        .replace(/ÃÃ/g, "Ã")
+        .replace(/Ã‰/g, "É")
+        .replace(/Ãâ€¡/g, "Ç")
+    );
+  }
+
   const onSubmit = async (data) => {
     setIsLoading(true);
 
@@ -292,58 +321,117 @@ export default function HorizontalLinearStepper() {
     for (const key in data) {
       formData.append(key, data[key]);
     }
-
-    try {
-      const request = await fetch("/api/signup", {
-        method: "POST",
-        body: formData,
-      });
-
-      const response = await request.json();
-      console.log(response);
-
-      if (watch("mode") != "online" && concessionaire.vacancies > 0) {
-        registerTraining({
-          concessionaireId: `${concessionaire.id}`,
-          trainingId: `${training.id}`,
-          userId: `${response.idUser}`,
-          token: response.token,
+    if (watch("mode") == "online") {
+      try {
+        const request = await fetch("/api/signup", {
+          method: "POST",
+          body: formData,
         });
-      } else {
-        registerTraining({
-          concessionaireId: "0",
-          trainingId: `${training.id}`,
-          userId: `${response.idUser}`,
-          token: response.token,
+        if (!request.ok) {
+          throw new Error(fixEncoding(request.statusText));
+        }
+
+        console.log(request);
+        const response = await request.json();
+        console.log(response);
+
+        if (watch("mode") != "online" && concessionaire.vacancies > 0) {
+          registerTraining({
+            concessionaireId: `${concessionaire.id}`,
+            trainingId: `${training.id}`,
+            userId: `${response.idUser}`,
+            token: response.token,
+          });
+        } else {
+          registerTraining({
+            concessionaireId: "0",
+            trainingId: `${training.id}`,
+            userId: `${response.idUser}`,
+            token: response.token,
+          });
+        }
+
+        setAlert(null);
+
+        toast.success(response.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
-      }
 
-      if (!request.ok) {
-        throw new Error(response);
-      }
+        setTimeout(() => {
+          setIsLoading(false);
 
-      // setAlert(null);
-
-      toast.success(response.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-
-      setTimeout(() => {
+          router.push("/cadastro/realizado");
+        }, 5000);
+      } catch (error) {
+        setAlert(error.message);
         setIsLoading(false);
+      }
+    } else {
+      if (concessionaire.vacancies > 0) {
+        try {
+          const request = await fetch("/api/signup", {
+            method: "POST",
+            body: formData,
+          });
 
-        router.push("/cadastro/realizado");
-      }, 5000);
-    } catch (error) {
-      // setAlert(error.message);
-      setIsLoading(false);
+          const response = await request.json();
+          console.log(response);
+
+          if (watch("mode") != "online" && concessionaire.vacancies > 0) {
+            registerTraining({
+              concessionaireId: `${concessionaire.id}`,
+              trainingId: `${training.id}`,
+              userId: `${response.idUser}`,
+              token: response.token,
+            });
+          } else {
+            registerTraining({
+              concessionaireId: "0",
+              trainingId: `${training.id}`,
+              userId: `${response.idUser}`,
+              token: response.token,
+            });
+          }
+
+          if (!request.ok) {
+            throw new Error(response);
+          }
+
+          setAlert(null);
+
+          toast.success(response.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+
+          setTimeout(() => {
+            setIsLoading(false);
+
+            router.push("/cadastro/realizado");
+          }, 5000);
+        } catch (error) {
+          // setAlert(error.message);
+          setIsLoading(false);
+        }
+      } else {
+        setAlert("Concessionária selecionada não possui vagas...");
+        setIsLoading(false);
+      }
     }
   };
   const registerTraining = async (data) => {
@@ -391,7 +479,7 @@ export default function HorizontalLinearStepper() {
         router.push("/cadastro/realizado");
       }, 5000);
     } catch (error) {
-      setAlert(error.message);
+      // setAlert(error.message);
       setIsLoading(false);
     }
   };
@@ -465,6 +553,7 @@ export default function HorizontalLinearStepper() {
     // }
   };
   const handleConcessionaireChange = async (event) => {
+    setAlert(null);
     // handleInputChange(event);
     console.log(event.target.value.certify_name);
     setValue("concessionaire", event.target.value.certify_name);
@@ -927,19 +1016,6 @@ export default function HorizontalLinearStepper() {
                             control={<Radio />}
                             label="Online"
                           />
-                          {training && renderForm == false && (
-                            <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
-                              <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
-                                Informações:
-                              </Typography>
-                              <Typography className=" text-slate-500 text-xl mt-2">
-                                {training.name}
-                              </Typography>
-                              <Typography className=" text-slate-500 text-xl mt-2">
-                                {convertDate(training.date)}
-                              </Typography>
-                            </div>
-                          )}
                           <FormControlLabel
                             className="mt-2"
                             value="presencial"
@@ -956,7 +1032,19 @@ export default function HorizontalLinearStepper() {
                     </div>
                   )}
                 </Grid>
-
+                {training && renderForm == false && (
+                  <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
+                    <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
+                      Informações:
+                    </Typography>
+                    <Typography className=" text-slate-500 text-xl mt-2">
+                      {training.name}
+                    </Typography>
+                    <Typography className=" text-slate-500 text-xl mt-2">
+                      {convertDate(training.date)}
+                    </Typography>
+                  </div>
+                )}
                 {renderForm && (
                   <Grid container spacing={2} className="mt-2">
                     <Grid item xs={12} sm={6}>
@@ -1128,11 +1216,13 @@ export default function HorizontalLinearStepper() {
                           ) : null}
                         </div>
                       ) : (
-                        <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
-                          <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
-                            SEM VAGAS
-                          </Typography>
-                        </div>
+                        watch("concessionaire") && (
+                          <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
+                            <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
+                              SEM VAGAS
+                            </Typography>
+                          </div>
+                        )
                       )}
                     </Grid>
                   </Grid>

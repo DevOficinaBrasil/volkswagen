@@ -12,12 +12,9 @@ const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
 
 
-
-
   useEffect(() => {
     getVideos()
   }, [])
-
 
   const getVideos = async () => {
     const responseVideos = await fetch(
@@ -45,7 +42,7 @@ const VideosHome = () => {
     draggable: false,
     infinite: true,
     autoplaySpeed: 4000,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     beforeChange: function (currentSlide, nextSlide) { },
     afterChange: function (currentSlide) { },
@@ -61,7 +58,7 @@ const VideosHome = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-800 to-blue-950 h-full w-full max-w-[900px] rounded-xl flex flex-col justify-between shadow-xl shadow-slate-300">
+    <div className="bg-gradient-to-r from-blue-900 to-blue-950 h-full w-full rounded-xl flex flex-col justify-between shadow-xl shadow-slate-300">
       <div className=" bg-blue-600 text-white w-fit p-3 ml-8 text-lg font-semibold">
         VÍDEOS VW
       </div>
@@ -78,7 +75,7 @@ const VideosHome = () => {
                 href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
               >
                 <div
-                  className="bg-cover bg-center min-h-32 rounded-lg shadow-lg flex justify-center items-center "
+                  className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
                   style={{
                     backgroundImage:
                       `url('https://img.youtube.com/vi/` +
@@ -99,11 +96,11 @@ const VideosHome = () => {
           ))}
         </Slider>
       </div>
-      <div className="w-96 p-5 self-center ">
+      <div className="w-full p-5 self-center ">
         <a href="https://www.youtube.com/watch?v=foo_BrEiBRE">
           <Button
             variant="contained"
-            className="text-white font-bold w-full  bg-from-blue-60 hover:scale-95"
+            className="text-white font-bold w-full bg-from-blue-60 hover:scale-95"
           >
             SE INSCREVA
           </Button>
