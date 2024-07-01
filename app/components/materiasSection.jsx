@@ -33,12 +33,11 @@ export default function MateriasSection() {
   };
 
   useEffect(() => {
-    // Fetch data from the API
     fetch(
       "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/noticia/getHomeVolkswagen"
     )
       .then((response) => response.json())
-      .then((data) => setNews(data))
+      .then((data) => setNews(data.slice(0, 6)))
       .catch((error) => console.error("Error fetching news:", error));
   }, []);
 
@@ -57,7 +56,7 @@ export default function MateriasSection() {
             >
               <img
                 // SSLERRO01
-                src={`https://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
+                src={`http://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
                 className="rounded shadow-lg object-cover w-full h-40"
               />
             </Link>
