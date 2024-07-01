@@ -48,9 +48,8 @@ export default function SignIn() {
       });
 
       const response = request;
-      console.log(response)
-      if (!request.ok) {
-        console.log('debug', request, request.ok)
+      
+      if (!response.ok) {
         throw new Error(await response.text());
       }
       
