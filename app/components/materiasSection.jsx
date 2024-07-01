@@ -2,10 +2,35 @@ import React, { useState, useEffect } from "react";
 import { East } from "@mui/icons-material";
 import { Grid, div } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MateriasSection() {
   const [mobile, setMobile] = useState(false);
   const [news, setNews] = useState([]);
+
+  const formatDate = (inputDate) => {
+    const months = [
+      "janeiro",
+      "fevereiro",
+      "março",
+      "abril",
+      "maio",
+      "junho",
+      "julho",
+      "agosto",
+      "setembro",
+      "outubro",
+      "novembro",
+      "dezembro",
+    ];
+
+    const [datePart, timePart] = inputDate.split(" ");
+    const [year, month, day] = datePart.split("-");
+    const monthIndex = parseInt(month) - 1;
+    const formattedDate = `${day} de ${months[monthIndex]} de ${year}`;
+
+    return formattedDate;
+  };
 
   useEffect(() => {
     // Fetch data from the API
@@ -20,7 +45,54 @@ export default function MateriasSection() {
   return (
     <div className="mt-8">
       <div className="font-bold text-2xl mb-5">MATÉRIAS RELACIONADAS</div>
-      <Grid
+
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 px-2">
+        {news.map((noticia, key) => (
+          <div className="flex gap-5" key={key}>
+            <Link
+              href={
+                "/noticia/" + noticia.SlugCategoria + "/" + noticia.SlugNoticia
+              }
+              className="flex flex-col gap-y-1 hover:underline hover:underline-offset-1 w-1/2"
+            >
+              <img
+                // SSLERRO01
+                src={`https://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
+                className="rounded shadow-lg object-cover w-full h-40"
+              />
+            </Link>
+            <div className="flex flex-col text-ellipsis overflow-hidden gap-y-1 w-1/2">
+              <Link href={"/noticia/" + noticia.SlugCategoria}>
+                <div className="bg-blue-950 w-fit px-2 text-white text-sm font-bold rounded-tl-lg rounded-br-lg hover:underline hover:underline-offset-1">
+                  {noticia.Nome}
+                </div>
+              </Link>
+              <Link
+                href={
+                  "/noticia/" +
+                  noticia.SlugCategoria +
+                  "/" +
+                  noticia.SlugNoticia
+                }
+                className="flex flex-col gap-y-1 hover:underline hover:underline-offset-1"
+              >
+                <div className="leading-5 lg:text-xl text-lg font-semibold text-gray-600 text-ellipsis line-clamp-3">
+                  {noticia.Titulo}
+                </div>
+                <div className="text-xs font-semibold text-gray-400">
+                  {noticia.Autor} -{" "}
+                  {noticia.DataPostagem ? (
+                    formatDate(noticia.DataPostagem)
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* <Grid
         container
         gap={2}
         columnGap={8}
@@ -72,7 +144,7 @@ export default function MateriasSection() {
             </a>
           </Grid>
         ))}
-      </Grid>
+      </Grid> */}
     </div>
   );
 }
