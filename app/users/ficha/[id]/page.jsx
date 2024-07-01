@@ -48,12 +48,12 @@ export default function GeneralSheet({ params }) {
             const response = await request.json()
             
             if(!request.ok){
-                throw new Error(response.message)
+                throw new Error(response)
             }
 
             setAlert(null)
 
-            toast.success(response.message, {
+            toast.success(response, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -64,8 +64,12 @@ export default function GeneralSheet({ params }) {
                 theme: "light",
                 transition: Bounce,
             })
+
+            setTimeout(() => {
+                router.push('/users/dashboard')
+            }, 5000)
         }catch(error){
-            setAlert(error.message)
+            setAlert(error)
             setIsLoading(false)
         }
     }
@@ -130,8 +134,8 @@ export default function GeneralSheet({ params }) {
                                                     aria-labelledby="quest2"
                                                     name="quest2"
                                                 >
-                                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                                    <FormControlLabel value="não" control={<Radio />} label="Não" />
+                                                    <FormControlLabel value="S" control={<Radio />} label="Sim" />
+                                                    <FormControlLabel value="N" control={<Radio />} label="Não" />
                                                 </RadioGroup>
                                             </FormControl>
                                         }
