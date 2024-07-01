@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { userIsLoggedInMiddleware, adminIsLoggedInMiddleware, redirectIfLoggedMiddleware, managerIsLoggedInMiddleware } from '@/middlewares';
-import { NextResponse } from 'next/server';
+import { redirect } from "next/dist/server/api-utils";
 
 export const config = {
     matcher: [
@@ -39,20 +39,19 @@ export async function middleware(req) {
     const cookiesStore = cookies()
 
     let token = cookiesStore.get('token')
-    let id = cookiesStore.get('context')
 
     if(!token){ token = '' }
 
     const url = req.nextUrl.clone()
     
-    // Redirecionamento caso o usuário esteja logado
-    if (req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/cadastro')){
-      return redirectIfLoggedMiddleware(token, url)
-    }
-    
     // Redireciona caso o usuário esteja logado
     if (req.nextUrl.pathname.startsWith('/users')){
-      return userIsLoggedInMiddleware(token, id, url)
+      return userIsLoggedInMiddleware(token, url)
+    }
+
+    // Redireciona caso o usuário não seja um administrador
+    if (req.nextUrl.pathname.startsWith('/admin')){
+      return adminIsLoggedInMiddleware(token, url)
     }
 
     // Redireciona caso o usuário não seja uma concessionária
@@ -60,8 +59,8 @@ export async function middleware(req) {
       return managerIsLoggedInMiddleware(token, url)
     }
 
-    // Redireciona caso o usuário não seja um administrador
-    if (req.nextUrl.pathname.startsWith('/admin')){
-      return adminIsLoggedInMiddleware(token, url)
+    // Redirecionamento caso o usuário esteja logado
+    if (req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/cadastro')){
+      return redirectIfLoggedMiddleware(token, url)
     }
 }
