@@ -14,11 +14,11 @@ export default function useRedirectPage() {
     router.push("/users/sucesso");
   };
   
-  const generalRedirect = () => {
+  const generalRedirectPage = () => {
     verify();
 
     router.push("/concessionaria");
   };
 
-  return { redirectPage, generalRedirect };
+  return { redirectPage, generalRedirectPage };
 }
