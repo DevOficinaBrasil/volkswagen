@@ -56,7 +56,7 @@ export default function MateriasSection() {
             >
               <img
                 // SSLERRO01
-                src={`http://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
+                src={`https://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
                 className="rounded shadow-lg object-cover w-full h-40"
               />
             </Link>
