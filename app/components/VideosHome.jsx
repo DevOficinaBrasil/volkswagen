@@ -11,10 +11,9 @@ import "./style/arrowTreinamentos.css";
 const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
 
-
   useEffect(() => {
-    getVideos()
-  }, [])
+    getVideos();
+  }, []);
 
   const getVideos = async () => {
     const responseVideos = await fetch(
@@ -31,9 +30,8 @@ const VideosHome = () => {
       }
     );
     const videos = await responseVideos.json();
-    setVideosCarrosel(videos)
-
-  }
+    setVideosCarrosel(videos);
+  };
 
   const settings = {
     centerMode: true,
@@ -44,8 +42,8 @@ const VideosHome = () => {
     autoplaySpeed: 4000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    beforeChange: function (currentSlide, nextSlide) { },
-    afterChange: function (currentSlide) { },
+    beforeChange: function (currentSlide, nextSlide) {},
+    afterChange: function (currentSlide) {},
     responsive: [
       {
         breakpoint: 1024,
@@ -70,28 +68,52 @@ const VideosHome = () => {
         >
           {videosCarrosel?.data?.map((video, key) => (
             <div key={key} className="flex flex-col hover:scale-105 px-2">
-              <Link
-                className=""
-                href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
-              >
-                <div
-                  className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
-                  style={{
-                    backgroundImage:
-                      `url('https://img.youtube.com/vi/` +
-                      video.Codigo +
-                      `/sddefault.jpg')`,
-                  }}
+              {video.TipoVideo == "Y" && (
+                <Link
+                  className=""
+                  href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
                 >
-                  {/* <PlayArrowRoundedIcon
-                    className='text-white shadow-lg'
-                    fontSize='large'
-                  /> */}
-                </div>
-                <div className="text-white font-semibold line-clamp-2">
-                  {video.Titulo}
-                </div>
-              </Link>
+                  <div
+                    className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
+                    style={{
+                      backgroundImage:
+                        `url('https://img.youtube.com/vi/` +
+                        video.Codigo +
+                        `/sddefault.jpg')`,
+                    }}
+                  >
+                    {/* <PlayArrowRoundedIcon
+                   className='text-white shadow-lg'
+                   fontSize='large'
+                 /> */}
+                  </div>
+                  <div className="text-white font-semibold line-clamp-2">
+                    {video.Titulo}
+                  </div>
+                </Link>
+              )}
+
+              {video.TipoVideo == "V" && (
+                <Link
+                  className=""
+                  href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
+                >
+                  <div
+                    className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
+                    style={{
+                      backgroundImage: `url(' https://vumbnail.com/${video.Imagem}.jpg')`,
+                    }}
+                  >
+                    {/* <PlayArrowRoundedIcon
+                   className='text-white shadow-lg'
+                   fontSize='large'
+                 /> */}
+                  </div>
+                  <div className="text-white font-semibold line-clamp-2">
+                    {video.Titulo}
+                  </div>
+                </Link>
+              )}
             </div>
           ))}
         </Slider>
