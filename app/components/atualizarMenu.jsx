@@ -10,7 +10,7 @@ const AtualizarMenu = () => {
 
   const menus = [
     { value: "pessoais", label: "Dados Pessoais" },
-    { value: "profissionais", label: "Dados Profissionais" },
+    // { value: "profissionais", label: "Dados Profissionais" },
     { value: "endereco", label: "Endereço Pessoal" },
   ];
 

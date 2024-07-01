@@ -35,6 +35,7 @@ import {
   TextField,
 } from "@mui/material";
 import Title from "@/app/components/title";
+import { escape } from "querystring";
 
 const steps = ["Cadastro básico", "Adicionar endereço", "Informações finais"];
 
@@ -284,6 +285,34 @@ export default function HorizontalLinearStepper() {
     }
   }, [autoRepairInfo]);
 
+  function fixEncoding(text) {
+    return decodeURIComponent(
+      text
+        .replace(/Ã¡/g, "á")
+        .replace(/Ã©/g, "é")
+        .replace(/Ã­/g, "í")
+        .replace(/Ã³/g, "ó")
+        .replace(/Ãº/g, "ú")
+        .replace(/Ã£/g, "ã")
+        .replace(/Ãµ/g, "õ")
+        .replace(/Ã¢/g, "â")
+        .replace(/Ãª/g, "ê")
+        .replace(/Ã®/g, "î")
+        .replace(/Ã´/g, "ô")
+        .replace(/Ã»/g, "û")
+        .replace(/Ã§/g, "ç")
+        .replace(/Ã€/g, "à")
+        .replace(/Ãƒ/g, "Ã")
+        .replace(/Ã€/g, "À")
+        .replace(/Ã‰/g, "É")
+        .replace(/Ã“/g, "Ó")
+        .replace(/Ãš/g, "Ú")
+        .replace(/ÃÃ/g, "Ã")
+        .replace(/Ã‰/g, "É")
+        .replace(/Ãâ€¡/g, "Ç")
+    );
+  }
+
   const onSubmit = async (data) => {
     setIsLoading(true);
 
@@ -298,7 +327,11 @@ export default function HorizontalLinearStepper() {
           method: "POST",
           body: formData,
         });
+        if (!request.ok) {
+          throw new Error(fixEncoding(request.statusText));
+        }
 
+        console.log(request);
         const response = await request.json();
         console.log(response);
 
@@ -316,10 +349,6 @@ export default function HorizontalLinearStepper() {
             userId: `${response.idUser}`,
             token: response.token,
           });
-        }
-
-        if (!request.ok) {
-          throw new Error(response);
         }
 
         setAlert(null);
@@ -342,7 +371,7 @@ export default function HorizontalLinearStepper() {
           router.push("/cadastro/realizado");
         }, 5000);
       } catch (error) {
-        // setAlert(error.message);
+        setAlert(error.message);
         setIsLoading(false);
       }
     } else {
