@@ -54,7 +54,7 @@ export default function SignIn() {
       }
       
       const validate = await response.json()
-      console.log(validate)
+      
       if (validate.role == "common") {
         setAlert(null);
         redirectPage();
