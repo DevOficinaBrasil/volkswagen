@@ -39,7 +39,7 @@ export async function POST(req) {
 
     if (request.status != 201) {
         return new Response(response, {
-        status: 400,
+            status: 400,
         });
     }
 

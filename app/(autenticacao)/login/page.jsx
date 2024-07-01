@@ -47,16 +47,17 @@ export default function SignIn() {
         body: formData,
       });
 
-      const response = await request.json();
-
+      const response = request;
+      
       if (!request.ok) {
-        throw new Error(response);
+        throw new Error(await response.text());
       }
-      console.log(response);
-      if (response.role == "common") {
+      
+      const validate = await response.json()
+      if (validate.role == "common") {
         setAlert(null);
         redirectPage();
-      } else if (response.role == "manager") {
+      } else if (validate.role == "manager") {
         setAlert(null);
         generalRedirectPage();
       } else {
@@ -64,7 +65,7 @@ export default function SignIn() {
         router.push("/");
       }
     } catch (error) {
-      setAlert(error.message);
+      setAlert(error.message)
     }
   };
 
