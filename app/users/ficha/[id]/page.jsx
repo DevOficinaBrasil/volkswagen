@@ -14,26 +14,25 @@ import { Alert, Container, CssBaseline, FormControl, FormControlLabel, FormLabel
 
 const defaultTheme = createTheme();
 
-export default function HorizontalLinearStepper() {
+export default function GeneralSheet({ params }) {
     const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(false)
     
-    const { register, handleSubmit, setValue, control } = useForm({
+    const { handleSubmit, control } = useForm({
         defaultValues: {
-            name: '',
-            email: '',
-            phone: '',
-            gender: '',
-            born_at: '',
-            document: '',
-            password: '',
+            rating: '',
+            quest1: '',
+            quest2: '',
+            quest3: '',
+            suggestion: '',
+            training: params.id,
         },
     })
   
     const onSubmit = async (data) => {
         setIsLoading(true)
-
+        
         const formData = new FormData()
 
         for (const key in data) {
@@ -41,7 +40,7 @@ export default function HorizontalLinearStepper() {
         }
 
         try{
-            const request = await fetch('/api/signup',{
+            const request = await fetch('/api/registerSheet',{
                 method: 'POST',
                 body: formData,
             })
@@ -65,12 +64,6 @@ export default function HorizontalLinearStepper() {
                 theme: "light",
                 transition: Bounce,
             })
-
-            setTimeout(() => {
-                setIsLoading(false)
-
-                router.push('/login')
-            }, 5000)
         }catch(error){
             setAlert(error.message)
             setIsLoading(false)

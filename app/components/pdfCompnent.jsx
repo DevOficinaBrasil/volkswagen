@@ -2,14 +2,34 @@ import React, { useState, useEffect, useContext } from "react";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import VolksButton from "./defaultButton";
 import UserContext from "@/src/contexts/UserContext";
+import { useRouter } from "next/navigation";
 // import pdfUrl from "@/images/mpdf.pdf";
 
 const PdfTextEditor = ({ training }) => {
+  const [existSheet, setExistSheet] = useState(false);
   const [pdfBytes, setPdfBytes] = useState(null);
   const pdfUrl = "/documents/mpdf.pdf";
+  const router = useRouter()
 
   const { userData } = useContext(UserContext);
-  console.log(training);
+
+  useEffect(() => {
+    const verifySheet = async () => {
+        const request = await fetch(`/api/verifySheet?training=${training.id}`, {
+            method: 'GET',
+        })
+
+        const response = await request.json()
+
+        if (request.ok) {
+          setExistSheet(response)
+        } else {
+          setExistSheet(response)
+        }
+    }
+
+    verifySheet()
+}, [])
 
   function convertDate(dateStr) {
     // Divide a string da data pelo caractere '/'
@@ -20,7 +40,6 @@ const PdfTextEditor = ({ training }) => {
   }
 
   const handleAddTextToPdf = async () => {
-    console.log("pdfUrl");
     // const fetchPdf = async () => {
     //   try {
     //     const response = await fetch(pdfUrl);
@@ -169,11 +188,21 @@ const PdfTextEditor = ({ training }) => {
     }
   };
 
+  const handleSheet = (id) => {
+      router.push(`/users/ficha/${id}`)
+  }
+
   return (
     <div>
-      <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
-        Gerar certificado
-      </VolksButton>
+      {existSheet ?
+        <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
+          Gerar certificado
+        </VolksButton>
+        :
+        <VolksButton onClick={() => handleSheet(training.id)} spacing={{ m: 0 }}>
+          Responder questionário
+        </VolksButton>
+      }
       {/* <button onClick={handleAddTextToPdf}>Add Text to PDF and Download</button> */}
     </div>
   );
