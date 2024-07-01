@@ -70,8 +70,10 @@ export const handleSearchCep = async (event, setAlert) => {
 };
 
 export const handleCheckboxChange = (event, setIsChecked, setValue) => {
-  setIsChecked(event.target.checked);
-  setValue("check", event.target.checked);
+  setIsChecked((prevData) => {
+    setValue("check", !prevData);
+    return !prevData;
+  });
 };
 
 export const handleCNPJVerify = async (
