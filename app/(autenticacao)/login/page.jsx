@@ -18,12 +18,13 @@ import Image from "next/image";
 import VolksButton from "@/app/components/defaultButton";
 import { deleteTokens } from "../handler";
 import useRedirectPage from "@/app/hooks/useRedirect";
+import UserContext from "@/src/contexts/UserContext";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
   const [alert, setAlert] = React.useState(null);
   const router = useRouter();
-
+  const { verify, userData } = React.useContext(UserContext);
   const { redirectPage, generalRedirectPage } = useRedirectPage();
 
   React.useEffect(() => {
@@ -46,7 +47,7 @@ export default function SignIn() {
         body: formData,
       });
 
-      const response = await request.text();
+      const response = await request.json();
 
       if (!request.ok) {
         throw new Error(response);
@@ -59,6 +60,7 @@ export default function SignIn() {
         setAlert(null);
         generalRedirectPage();
       } else {
+        verify();
         router.push("/");
       }
     } catch (error) {
