@@ -54,18 +54,17 @@ export default function SignIn() {
       }
       
       const validate = await response.json()
-
-      redirectPage()
-      // if (validate.role == "common") {
-      //   setAlert(null);
-      //   redirectPage();
-      // } else if (validate.role == "manager") {
-      //   setAlert(null);
-      //   generalRedirectPage();
-      // } else {
-      //   verify();
-      //   router.push("/");
-      // }
+      console.log(validate)
+      if (validate.role == "common") {
+        setAlert(null);
+        redirectPage();
+      } else if (validate.role == "manager") {
+        setAlert(null);
+        generalRedirectPage();
+      } else {
+        verify();
+        router.push("/");
+      }
     } catch (error) {
       setAlert(error.message)
     }
