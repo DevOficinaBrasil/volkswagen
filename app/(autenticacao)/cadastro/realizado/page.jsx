@@ -76,9 +76,22 @@ export default function RedirectPage() {
           Seu cadastro foi realizado com sucesso
         </Typography>
         {training && (
-          <Typography variant="subtitle" className="text-blue-900">
-            Te esperamaos no treinamento na data{" "}
-            {moment(training.date).format("DD/MM/YYYY")}
+          <Typography
+            variant="h5"
+            className="text-blue-900 font-bold"
+            gutterBottom
+          >
+            {training && training.name}
+          </Typography>
+        )}
+        {training && (
+          <Typography variant="h6" className="text-blue-900">
+            {moment(training.date).format("DD/MM/YYYY")} - às 19h30
+          </Typography>
+        )}
+        {training && (
+          <Typography variant="h6" className="text-blue-900">
+            Contamos com sua presença.
           </Typography>
         )}
       </Box>
