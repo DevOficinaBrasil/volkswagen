@@ -382,6 +382,10 @@ export default function HorizontalLinearStepper() {
             body: formData,
           });
 
+          if (!request.ok) {
+            throw new Error(fixEncoding(request.statusText));
+          }
+          console.log(request);
           const response = await request.json();
           console.log(response);
 
@@ -399,10 +403,6 @@ export default function HorizontalLinearStepper() {
               userId: `${response.idUser}`,
               token: response.token,
             });
-          }
-
-          if (!request.ok) {
-            throw new Error(response);
           }
 
           setAlert(null);
@@ -425,7 +425,7 @@ export default function HorizontalLinearStepper() {
             router.push("/cadastro/realizado");
           }, 5000);
         } catch (error) {
-          // setAlert(error.message);
+          setAlert(error.message);
           setIsLoading(false);
         }
       } else {
