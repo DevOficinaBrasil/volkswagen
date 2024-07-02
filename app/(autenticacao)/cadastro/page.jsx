@@ -555,8 +555,7 @@ export default function HorizontalLinearStepper() {
   const handleConcessionaireChange = async (event) => {
     setAlert(null);
     // handleInputChange(event);
-    console.log(event.target.value.certify_name);
-    setValue("concessionaire", event.target.value.certify_name);
+    setValue("concessionaire", event.target.value.fantasy_name);
     setConcessionaire(event.target.value);
 
     const data = {
@@ -1164,10 +1163,10 @@ export default function HorizontalLinearStepper() {
                             >
                               {concessionaires.map((concessionaire) => (
                                 <MenuItem
-                                  key={concessionaire.certify_name}
+                                  key={concessionaire.fantasy_name}
                                   value={concessionaire}
                                 >
-                                  {concessionaire.certify_name}
+                                  {concessionaire.fantasy_name}
                                 </MenuItem>
                               ))}
                             </Select>
@@ -1193,7 +1192,7 @@ export default function HorizontalLinearStepper() {
                             </span>
                           </Typography>
                           <Typography className=" text-slate-500 text-xl mt-2">
-                            {concessionaire.certify_name}
+                            {concessionaire.fantasy_name}
                           </Typography>
                           <Typography className=" text-slate-500 text-xl mt-2">
                             <span className="font-bold">Cep:</span>{" "}
