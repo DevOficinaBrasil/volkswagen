@@ -37,7 +37,7 @@ const NoticiasGrid = async ({ noticias }) => {
           >
             <img
               // SSLERRO01
-              src={`https://oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
+              src={`https://www.oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`}
               className="rounded shadow-lg object-cover w-full h-40"
             />
           </Link>
