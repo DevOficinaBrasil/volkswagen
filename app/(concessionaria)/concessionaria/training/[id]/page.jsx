@@ -10,6 +10,7 @@ import { Box, Button, Container, Grid, Paper, Table, TableBody, TableCell, Table
 export default function Page({ params }) {
     const [users, setUsers] = React.useState([])
     const { userData } = React.useContext(UserContext)
+    const [updateComponent, setUpdateComponent] = React.useState(false)
 
     React.useEffect(() => {
         const getTrainings = async () => {
@@ -24,10 +25,11 @@ export default function Page({ params }) {
             } else {
                 setUsers(response)
             }
+            setUpdateComponent(false)
         }
 
         getTrainings()
-    }, [userData])
+    }, [userData, updateComponent])
 
     const totalUsers = Object.keys(users).length
     
@@ -50,6 +52,7 @@ export default function Page({ params }) {
                 theme: "light",
                 transition: Bounce,
               });
+              setUpdateComponent(true)
         } else {
             toast.error(response, {
                 position: "top-right",
@@ -64,7 +67,7 @@ export default function Page({ params }) {
               });
         }
     }
-    console.log(params)
+    
     return(
         <Layout>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -104,7 +107,7 @@ export default function Page({ params }) {
                                             <TableCell>{row.email}</TableCell>
                                             <TableCell align="right">
                                             {Boolean(parseInt(row.trainings[0].pivot.presence)) ?
-                                                <Typography>Usuário prensente</Typography>
+                                                <Button variant="text" onClick={() => handleInfos(row.id)}>Retirar presença</Button>
                                                 :
                                                 <Button variant="text" onClick={() => handleInfos(row.id)}>Marcar presença</Button>
                                             }
