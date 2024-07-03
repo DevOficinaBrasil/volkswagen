@@ -86,6 +86,7 @@ export default function Page() {
                                         <TableCell>Nome Fantasia</TableCell>
                                         <TableCell>CNPJ</TableCell>
                                         <TableCell>DN</TableCell>
+                                        <TableCell>Email</TableCell>
                                         <TableCell align="right">Acesso</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -96,6 +97,7 @@ export default function Page() {
                                         <TableCell>{row.fantasy_name}</TableCell>
                                         <TableCell>{row.CNPJ}</TableCell>
                                         <TableCell>{row.DN}</TableCell>
+                                        <TableCell>{row.email}</TableCell>
                                         <TableCell align="right">{row.concessionaire_login_id == 0 ? <Button variant="text" onClick={() => handleInfos(row.id)}>Gerar senha</Button> : <h1>Usuário já possui acesso</h1>}</TableCell>
                                     </TableRow>
                                 ))}
