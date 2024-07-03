@@ -8,28 +8,29 @@ import { useRouter } from "next/navigation";
 const PdfTextEditor = ({ training }) => {
   const [existSheet, setExistSheet] = useState(false);
   const [pdfBytes, setPdfBytes] = useState(null);
+  const router = useRouter();
   const pdfUrl = "/documents/mpdf.pdf";
-  const router = useRouter()
+  // const router = useRouter()
 
   const { userData } = useContext(UserContext);
 
   useEffect(() => {
     const verifySheet = async () => {
-        const request = await fetch(`/api/verifySheet?training=${training.id}`, {
-            method: 'GET',
-        })
+      const request = await fetch(`/api/verifySheet?training=${training.id}`, {
+        method: "GET",
+      });
 
-        const response = await request.json()
+      const response = await request.json();
 
-        if (request.ok) {
-          setExistSheet(response)
-        } else {
-          setExistSheet(response)
-        }
-    }
+      if (request.ok) {
+        setExistSheet(response);
+      } else {
+        setExistSheet(response);
+      }
+    };
 
-    verifySheet()
-}, [])
+    verifySheet();
+  }, []);
 
   function convertDate(dateStr) {
     // Divide a string da data pelo caractere '/'
@@ -189,12 +190,12 @@ const PdfTextEditor = ({ training }) => {
   };
 
   const handleSheet = (id) => {
-      router.push(`/users/ficha/${id}`)
-  }
+    router.push(`/users/ficha/${id}`);
+  };
 
   return (
     <div>
-      {existSheet ?
+      {/* {existSheet ?
         <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
           Gerar certificado
         </VolksButton>
@@ -202,7 +203,23 @@ const PdfTextEditor = ({ training }) => {
         <VolksButton onClick={() => handleSheet(training.id)} spacing={{ m: 0 }}>
           Responder questionário
         </VolksButton>
-      }
+      } */}
+      {training.TreinamentoParticipou == 1 ? (
+        <VolksButton
+          onClick={
+            training.PreencheuFicha == 1
+              ? handleAddTextToPdf
+              : () => router.push("/ficha")
+          }
+          spacing={{ m: 0 }}
+        >
+          Gerar certificado
+        </VolksButton>
+      ) : (
+        <VolksButton disabled={true} spacing={{ m: 0 }}>
+          Não participou
+        </VolksButton>
+      )}
       {/* <button onClick={handleAddTextToPdf}>Add Text to PDF and Download</button> */}
     </div>
   );
