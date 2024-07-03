@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import "react-toastify/dist/ReactToastify.css";
 import Typography from '@mui/material/Typography';
 import { Controller, useForm } from 'react-hook-form';
@@ -18,7 +18,9 @@ export default function GeneralSheet({ params }) {
     const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(false)
-    
+
+    const queryParams = useSearchParams()
+
     const { handleSubmit, control } = useForm({
         defaultValues: {
             rating: '',
@@ -27,6 +29,7 @@ export default function GeneralSheet({ params }) {
             quest3: '',
             suggestion: '',
             training: params.id,
+            present: Boolean(queryParams.get('present')) ?? false
         },
     })
   

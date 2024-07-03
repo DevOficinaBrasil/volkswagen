@@ -59,7 +59,7 @@ export const handleSearchCep = async (event, setAlert) => {
       }
 
       setAlert(null);
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       setAlert(error.message);

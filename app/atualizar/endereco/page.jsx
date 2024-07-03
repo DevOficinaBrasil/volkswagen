@@ -55,7 +55,7 @@ export default function Page() {
 
       const response = await request.json();
 
-      console.log("all user :" + response);
+      // console.log("all user :" + response);
       // setValue("state", response.adressUser.state);
       // setValue("street", response.adressUser.street);
       // setValue("number", response.adressUser.number);

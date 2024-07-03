@@ -25,7 +25,7 @@ import Videos from "./components/videos";
 import Video from "./components/video";
 import HeroCard from "./components/heroCard";
 import useWindowSize from "@/app/hooks/useWindowsSize";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HeroMobile from "./components/heroMobile";
 import SubBannerMobile from "./components/subBannerMobile";
 import HeroCardMobile from "./components/heroCardMobile";
@@ -49,12 +49,47 @@ import Agenda from "./components/agenda";
 import { East } from "@mui/icons-material";
 import MateriasSection from "./components/materiasSection";
 import UltimasEdicoes from "./components/ultimasEdicoes";
+import LiveContext from "@/src/contexts/LiveContext";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+import UserContext from "@/src/contexts/UserContext";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   const windowSize = useWindowSize();
+  const { onLive, didOpen, setDidOpen } = useContext(LiveContext);
+  const { isAuthenticated } = useContext(UserContext);
+  const router = useRouter();
 
   // const pdfUrl = "/documents/CATALOGO_ECONOMY.pdf";
+  useEffect(() => {
+    if (onLive == 1 && didOpen == 0) {
+      Swal.fire({
+        title: "TREINAMENTO AO VIVO",
+        color: "red",
+        // text: "Aguarde...",
+        didOpen: () => {
+          // Swal.update({ icon: "warning" });
+        },
+        confirmButtonText: "Ir para treinamento",
+
+        // didClose: () => {
+        //   router.push("/treinamento-ao-vivo");
+        // },
+        allowOutsideClick: true,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          if (isAuthenticated) {
+            router.push("/treinamento-ao-vivo");
+          } else {
+            router.push("/login");
+          }
+        }
+      });
+      setDidOpen(1);
+    }
+  }, [onLive]);
 
   useEffect(() => {
     if (windowSize.width <= 1080) {
@@ -115,9 +150,7 @@ export default function Home() {
 
         <div className="flex">
           <VideosHome />
-
         </div>
-
 
         <Box>
           <Title title="Notícias" />

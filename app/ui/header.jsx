@@ -11,6 +11,8 @@ import { useRouter } from "next/navigation";
 import logo from "@/images/oficinaLogo.jpeg";
 import Link from "next/link";
 import Image from "next/image";
+import "./style/animation.css";
+import LiveContext from "@/src/contexts/LiveContext";
 
 export default function Header() {
   const { isAuthenticated, userData, logout } = useContext(UserContext);
@@ -18,6 +20,18 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
+  const [training, setTraining] = useState(null);
+  const [trainings, setTrainings] = useState();
+  const [aoVivo, setAoVivo] = useState();
+  const { onLive } = useContext(LiveContext);
+
+  useEffect(() => {
+    // console.log(aoVivo);
+  }, [aoVivo]);
+
+  useEffect(() => {
+    setAoVivo(onLive);
+  }, [onLive]);
 
   const open = Boolean(anchorEl);
 
@@ -134,7 +148,7 @@ export default function Header() {
       <Box className="flex flex-row items-center justify-center p-5">
         <Box className="flex-1"></Box>
 
-        <Box className="shrink-0">
+        <Box className="shrink-0 z-40">
           <Link href="/">
             <Image src={logo} width={250} height={200} alt="card" />
           </Link>
@@ -180,6 +194,16 @@ export default function Header() {
               Notícias
             </Link>
           </Grid>
+          {aoVivo == 0 ? null : (
+            <Grid item>
+              <Link
+                href={isAuthenticated ? "/treinamento-ao-vivo" : "/login"}
+                className="blink"
+              >
+                TREINAMENTO AO VIVO
+              </Link>
+            </Grid>
+          )}
         </Grid>
       </Box>
     </>
