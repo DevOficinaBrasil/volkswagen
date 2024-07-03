@@ -18,7 +18,7 @@ const VideosRelacionados = async () => {
   const videos = await responseVideos.json();
 
   const videosRelacionados = videos.data.slice(0, 6);
-  console.log(videos);
+  // console.log(videos);
 
   return (
     <div className="flex flex-col gap-5">

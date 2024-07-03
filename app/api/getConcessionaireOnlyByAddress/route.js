@@ -11,7 +11,7 @@ export async function POST(req) {
     encodeURIComponent(formData.get("city")) +
     "&state=" +
     encodeURIComponent(formData.get("state"));
-  // console.log(process.env.);
+  // // console.log(process.env.);
   const request = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/getConcessionaireOnlyByAddress`,
     {
@@ -25,7 +25,7 @@ export async function POST(req) {
 
   const response = await request.json();
 
-  // console.log("user: " + JSON.stringify(response));
+  // // console.log("user: " + JSON.stringify(response));
 
   if (request.status != 200) {
     return new Response(response, {

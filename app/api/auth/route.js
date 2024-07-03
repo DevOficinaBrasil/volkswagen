@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import UserContext from "@/src/contexts/UserContext";
 
 export async function POST(req) {
-  // console.log(process.env.);
+  // // console.log(process.env.);
   const formData = await req.formData();
   const data =
     "email=" +

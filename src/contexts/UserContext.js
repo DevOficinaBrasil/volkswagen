@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
 
     const response = await request.json();
 
-    console.log("user->" + JSON.stringify(response));
+    // console.log("user->" + JSON.stringify(response));
 
     if (request.ok) {
       setIsAuthenticated(true);
@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("refresh");
+    // console.log("refresh");
     const verify = async () => {
       const request = await fetch("/api/isAuthenticated", {
         method: "GET",
@@ -54,7 +54,7 @@ export const UserProvider = ({ children }) => {
       const response = await request.json();
 
       if (request.ok) {
-        console.log(response);
+        // console.log(response);
         localStorage.setItem("user_id", response.id);
         setIsAuthenticated(true);
         setuserData(response);

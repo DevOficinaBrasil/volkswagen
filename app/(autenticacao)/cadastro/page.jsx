@@ -331,9 +331,9 @@ export default function HorizontalLinearStepper() {
           throw new Error(fixEncoding(request.statusText));
         }
 
-        console.log(request);
+        // console.log(request);
         const response = await request.json();
-        console.log(response);
+        // console.log(response);
 
         if (watch("mode") != "online" && concessionaire.vacancies > 0) {
           registerTraining({
@@ -385,9 +385,9 @@ export default function HorizontalLinearStepper() {
           if (!request.ok) {
             throw new Error(fixEncoding(request.statusText));
           }
-          console.log(request);
+          // console.log(request);
           const response = await request.json();
-          console.log(response);
+          // console.log(response);
 
           if (watch("mode") != "online" && concessionaire.vacancies > 0) {
             registerTraining({
@@ -522,7 +522,7 @@ export default function HorizontalLinearStepper() {
       const response = await request.json();
 
       if (request.ok) {
-        console.log(response);
+        // console.log(response);
         setConcessionaires(response);
         // setMessageRender(1);
       } else {
@@ -573,7 +573,7 @@ export default function HorizontalLinearStepper() {
 
     const response = await request.json();
 
-    console.log(response.data[0].training_vacancies);
+    // console.log(response.data[0].training_vacancies);
     if (request.ok) {
       setTrainings(response.data[0].training_vacancies);
       // setMessageRender(1)
@@ -996,7 +996,7 @@ export default function HorizontalLinearStepper() {
                   </Typography>
                   <FormControl
                     onChange={(event) => {
-                      console.log(event);
+                      // console.log(event);
                     }}
                     fullWidth
                   >
@@ -1070,7 +1070,7 @@ export default function HorizontalLinearStepper() {
                               error={!!errors.concessionaire_state}
                               // onChange={(value) => {
 
-                              //   console.log(value.target.value);
+                              //   // console.log(value.target.value);
                               // }}
                             >
                               {stateName.map((estado) => (
@@ -1116,7 +1116,7 @@ export default function HorizontalLinearStepper() {
                               }}
                               // onChange={(value) => {
 
-                              //   console.log(value.target.value);
+                              //   // console.log(value.target.value);
                               // }}
                             >
                               {cities.map((cidade) => (
@@ -1158,7 +1158,7 @@ export default function HorizontalLinearStepper() {
                               }}
                               // onChange={(value) => {
 
-                              //   console.log(value.target.value);
+                              //   // console.log(value.target.value);
                               // }}
                             >
                               {concessionaires.map((concessionaire) => (

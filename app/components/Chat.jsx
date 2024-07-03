@@ -27,7 +27,7 @@ function Chat() {
 
       const result = await response.json();
       if (response.ok) {
-        console.log("Message sent:", result);
+        // console.log("Message sent:", result);
         setMessage(""); // Limpa o campo de entrada
       } else {
         console.error("Error sending message:", result.error);

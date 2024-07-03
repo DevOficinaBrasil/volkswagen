@@ -75,7 +75,7 @@ export default function Page() {
     for (const key in data) {
       formData.append(key, data[key]);
     }
-    // console.log(data);
+    // // console.log(data);
 
     const request = await fetch("/api/updateUser", {
       method: "POST",
@@ -83,7 +83,7 @@ export default function Page() {
     });
 
     const response = await request.text();
-    console.log(response);
+    // console.log(response);
 
     if (!request.ok) {
       setAlert(response);

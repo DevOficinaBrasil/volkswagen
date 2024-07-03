@@ -57,7 +57,7 @@ export default function Page() {
 
       const response = await request.json();
 
-      console.log("all user :" + response);
+      // console.log("all user :" + response);
       if (response.autoRepair != null) {
         setValue("role", response.autoRepair.role);
         setValue("cnpj", response.autoRepair.cnpj);
