@@ -80,7 +80,11 @@ function TreinamentoAoVivo() {
         <div className="col-span-8">
           <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
             <iframe
-              src={`https://vimeo.com/event/${training.live_url}/embed/interaction`}
+              src={
+                training && training.live_url
+                  ? `https://vimeo.com/event/${training.live_url}/embed/interaction`
+                  : "https://vimeo.com/event/4386223/embed/interaction"
+              }
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
               style={{
