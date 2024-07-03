@@ -79,22 +79,27 @@ function TreinamentoAoVivo() {
       <div className="grid grid-cols-12 gap-10">
         <div className="col-span-8">
           <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-            <iframe
-              src={
-                training && training.live_url
-                  ? `https://vimeo.com/event/${training.live_url}/embed/interaction`
-                  : "https://vimeo.com/event/4386223/embed/interaction"
-              }
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
-            ></iframe>
+            {/* {training.live_url} */}
+            {training && training.live_url ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: training.live_url,
+                }}
+              ></div>
+            ) : (
+              <iframe
+                src={"https://vimeo.com/event/4386223/embed/interaction"}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              ></iframe>
+            )}
           </div>
         </div>
 
