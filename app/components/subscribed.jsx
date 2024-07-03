@@ -33,6 +33,7 @@ export default function SubscribedCard(props) {
   const [verifyLocal, setVerifyLocal] = React.useState(false);
 
   React.useEffect(() => {
+    // console.log(props.content);
     if (props.content.concessionaire_id != 0) {
       setTrainingFormat("Presencial");
       setTrainingLocal(`

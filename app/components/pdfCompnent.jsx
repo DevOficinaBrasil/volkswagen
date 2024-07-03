@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import VolksButton from "./defaultButton";
 import UserContext from "@/src/contexts/UserContext";
+import { useRouter } from "next/navigation";
 // import pdfUrl from "@/images/mpdf.pdf";
 
 const PdfTextEditor = ({ training }) => {
   const [pdfBytes, setPdfBytes] = useState(null);
+  const router = useRouter();
   const pdfUrl = "/documents/mpdf.pdf";
 
   const { userData } = useContext(UserContext);
@@ -171,9 +173,22 @@ const PdfTextEditor = ({ training }) => {
 
   return (
     <div>
-      <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
-        Gerar certificado
-      </VolksButton>
+      {training.TreinamentoParticipou == 1 ? (
+        <VolksButton
+          onClick={
+            training.PreencheuFicha == 1
+              ? handleAddTextToPdf
+              : () => router.push("/ficha")
+          }
+          spacing={{ m: 0 }}
+        >
+          Gerar certificado
+        </VolksButton>
+      ) : (
+        <VolksButton disabled={true} spacing={{ m: 0 }}>
+          Não participou
+        </VolksButton>
+      )}
       {/* <button onClick={handleAddTextToPdf}>Add Text to PDF and Download</button> */}
     </div>
   );
