@@ -209,7 +209,7 @@ const PdfTextEditor = ({ training }) => {
           onClick={
             training.PreencheuFicha == 1
               ? handleAddTextToPdf
-              : () => router.push("/ficha")
+              : () => handleSheet(training.id)
           }
           spacing={{ m: 0 }}
         >
