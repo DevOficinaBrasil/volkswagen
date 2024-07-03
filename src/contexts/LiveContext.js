@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 const LiveContext = createContext();
 
 export const LiveProvider = ({ children }) => {
-  const [onLive, setOnLive] = useState();
+  const [onLive, setOnLive] = useState(0);
+  const [certify, setCertify] = useState();
   const [didOpen, setDidOpen] = useState(0);
   const [trainings, setTrainings] = useState([]);
   const [training, setTraining] = useState([]);
@@ -23,6 +24,7 @@ export const LiveProvider = ({ children }) => {
       if (request.ok) {
         response.map((training, index) => {
           if (training.active == 1) {
+            setCertify(training.certify);
             setOnLive(training.on_live);
             setTraining(training);
           }
@@ -35,7 +37,9 @@ export const LiveProvider = ({ children }) => {
     getTrainings();
   }, []);
   return (
-    <LiveContext.Provider value={{ onLive, setOnLive, didOpen, setDidOpen }}>
+    <LiveContext.Provider
+      value={{ onLive, setOnLive, didOpen, setDidOpen, setCertify, certify }}
+    >
       {children}
     </LiveContext.Provider>
   );

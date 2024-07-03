@@ -194,7 +194,7 @@ export default function Header() {
               Notícias
             </Link>
           </Grid>
-          {aoVivo == 0 ? null : (
+          {aoVivo == 1 ? (
             <Grid item>
               <Link
                 href={isAuthenticated ? "/treinamento-ao-vivo" : "/login"}
@@ -203,7 +203,7 @@ export default function Header() {
                 TREINAMENTO AO VIVO
               </Link>
             </Grid>
-          )}
+          ) : null}
         </Grid>
       </Box>
     </>
