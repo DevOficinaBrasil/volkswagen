@@ -10,10 +10,26 @@ import "./style/arrowTreinamentos.css";
 
 const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
+  const [vimeoThumbnails, setVimeoThumbnails] = useState({});
 
   useEffect(() => {
     getVideos();
   }, []);
+
+  useEffect(() => {
+    const fetchVimeoThumbnails = async () => {
+      const thumbnails = {};
+      for (const video of videosCarrosel?.data || []) {
+        if (video.TipoVideo === 'V') {
+          thumbnails[video.Imagem] = await getVimeoThumbnail(video.Imagem);
+        }
+      }
+    
+      setVimeoThumbnails(thumbnails);
+    };
+
+    fetchVimeoThumbnails();
+  }, [videosCarrosel]);
 
   const getVideos = async () => {
     const responseVideos = await fetch(
@@ -33,6 +49,17 @@ const VideosHome = () => {
     setVideosCarrosel(videos);
   };
 
+  const getVimeoThumbnail = async (videoId) => {
+    try {
+      const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
+      const data = await response.json();
+      return data[0].thumbnail_large; // ou thumbnail_medium, thumbnail_small conforme a necessidade
+    } catch (error) {
+      console.error('Error fetching Vimeo thumbnail:', error);
+      return '';
+    }
+  };
+
   const settings = {
     centerMode: true,
     autoplay: false,
@@ -42,8 +69,8 @@ const VideosHome = () => {
     autoplaySpeed: 4000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    beforeChange: function (currentSlide, nextSlide) {},
-    afterChange: function (currentSlide) {},
+    beforeChange: function (currentSlide, nextSlide) { },
+    afterChange: function (currentSlide) { },
     responsive: [
       {
         breakpoint: 1024,
@@ -99,15 +126,12 @@ const VideosHome = () => {
                   href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
                 >
                   <div
-                    className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
+                    className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center"
                     style={{
-                      backgroundImage: `url(' https://vumbnail.com/${video.Imagem}.jpg')`,
+                      backgroundImage: `url('${vimeoThumbnails[video.Imagem] || ''}')`,
                     }}
                   >
-                    {/* <PlayArrowRoundedIcon
-                   className='text-white shadow-lg'
-                   fontSize='large'
-                 /> */}
+                    {/* <PlayArrowRoundedIcon className="text-white shadow-lg" fontSize="large" /> */}
                   </div>
                   <div className="text-white font-semibold line-clamp-2">
                     {video.Titulo}
