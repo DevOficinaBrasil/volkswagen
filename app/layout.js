@@ -4,6 +4,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
+import { LiveProvider } from "@/src/contexts/LiveContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,14 +16,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <UserProvider>
-      <html lang="pt" className="scroll-smooth">
-        <GoogleTagManager gtmId="GTM-KJT5L4J" />
-        <body className={inter.className}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </body>
-      </html>
+      <LiveProvider>
+        <html lang="pt" className="scroll-smooth">
+          <GoogleTagManager gtmId="GTM-KJT5L4J" />
+          <body className={inter.className}>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </body>
+        </html>
+      </LiveProvider>
     </UserProvider>
   );
 }
