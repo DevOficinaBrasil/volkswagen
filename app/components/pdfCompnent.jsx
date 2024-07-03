@@ -205,17 +205,29 @@ const PdfTextEditor = ({ training }) => {
         </VolksButton>
       } */}
       {training.TreinamentoParticipou == 1 ? (
-        <VolksButton
-          onClick={
-            training.PreencheuFicha == 1
-              ? handleAddTextToPdf
-              : () => handleSheet(training.id)
-          }
-          spacing={{ m: 0 }}
-        >
-          Gerar certificado
-        </VolksButton>
+        training.PreencheuFicha == 1 ? (
+          <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
+            Gerar certificado
+          </VolksButton>
+        ) : (
+          <VolksButton
+            onClick={() => handleSheet(training.id)}
+            spacing={{ m: 0 }}
+          >
+            Responder questionário
+          </VolksButton>
+        )
       ) : (
+        // <VolksButton
+        //   onClick={
+        //     training.PreencheuFicha == 1
+        //       ? handleAddTextToPdf
+        //       : () => handleSheet(training.id)
+        //   }
+        //   spacing={{ m: 0 }}
+        // >
+        //   Gerar certificado
+        // </VolksButton>
         <VolksButton disabled={true} spacing={{ m: 0 }}>
           Não participou
         </VolksButton>

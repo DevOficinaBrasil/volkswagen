@@ -52,11 +52,13 @@ import UltimasEdicoes from "./components/ultimasEdicoes";
 import LiveContext from "@/src/contexts/LiveContext";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import UserContext from "@/src/contexts/UserContext";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   const windowSize = useWindowSize();
   const { onLive, didOpen, setDidOpen } = useContext(LiveContext);
+  const { isAuthenticated } = useContext(UserContext);
   const router = useRouter();
 
   // const pdfUrl = "/documents/CATALOGO_ECONOMY.pdf";
@@ -75,6 +77,15 @@ export default function Home() {
         //   router.push("/treinamento-ao-vivo");
         // },
         allowOutsideClick: true,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          if (isAuthenticated) {
+            router.push("/treinamento-ao-vivo");
+          } else {
+            router.push("/login");
+          }
+        }
       });
       setDidOpen(1);
     }
