@@ -26,7 +26,7 @@ export default function Header() {
   const { onLive } = useContext(LiveContext);
 
   useEffect(() => {
-    console.log(aoVivo);
+    // console.log(aoVivo);
   }, [aoVivo]);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function Header() {
       <Box className="flex flex-row items-center justify-center p-5">
         <Box className="flex-1"></Box>
 
-        <Box className="shrink-0">
+        <Box className="shrink-0 z-40">
           <Link href="/">
             <Image src={logo} width={250} height={200} alt="card" />
           </Link>

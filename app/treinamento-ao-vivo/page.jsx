@@ -5,7 +5,7 @@ import Chat from "../components/Chat";
 import { useContext } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import useContextCustom from "../hooks/useContextCustom";
-function page() {
+function TreinamentoAoVivo() {
   const [training, setTraining] = useState(null);
   const [trainings, setTrainings] = useState();
 
@@ -30,7 +30,7 @@ function page() {
       } else {
         setTrainings(response);
       }
-      // console.log(trainingActive);
+      // // console.log(trainingActive);
 
       // const data = {
       //   training: trainingActive,
@@ -43,10 +43,10 @@ function page() {
   }, []);
 
   useEffect(() => {
-    // training && console.log(training.id);
+    // training && // console.log(training.id);
     const putPresence = async (trainingID) => {
       const request = await fetch(
-        "http://127.0.0.1:8000/api/putTrainingPresence",
+        process.env.NEXT_PUBLIC_API_URL + "/api/putTrainingPresence",
         {
           method: "POST",
           headers: {
@@ -62,7 +62,7 @@ function page() {
       const response = await request.json();
       // trainingInactive = response;
 
-      // console.log(trainingActive);
+      // // console.log(trainingActive);
     };
     training && putPresence();
   }, [training]);
@@ -102,4 +102,4 @@ function page() {
   );
 }
 
-export default page;
+export default TreinamentoAoVivo;
