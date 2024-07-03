@@ -94,7 +94,7 @@ export default function SubscribedCard(props) {
           )}
         </CardContent>
 
-        {props.content.active == 1 ? (
+        {props.content.active == 1 && props.content.certify == "0" ? (
           <CardActions disableSpacing className="px-5 pb-5">
             <SubscribeModal
               content={props.content}
