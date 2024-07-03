@@ -60,6 +60,12 @@ export default function useRedirectPage() {
 
     router.push("/concessionaria");
   };
+  
+  const redirectPresent = (id) => {
+    verify();
 
-  return { redirectPage, generalRedirectPage };
+    router.push(`/users/ficha/${id}?present=true`);
+  };
+
+  return { redirectPage, generalRedirectPage, redirectPresent };
 }
