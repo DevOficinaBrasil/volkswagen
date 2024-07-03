@@ -14,6 +14,8 @@ const PdfTextEditor = ({ training }) => {
 
   const { userData } = useContext(UserContext);
 
+  console.log(training);
+
   useEffect(() => {
     const verifySheet = async () => {
       const request = await fetch(`/api/verifySheet?training=${training.id}`, {
@@ -211,7 +213,11 @@ const PdfTextEditor = ({ training }) => {
           </VolksButton>
         ) : (
           <VolksButton
-            onClick={() => handleSheet(training.id)}
+            onClick={
+              training.certify == 1
+                ? () => handleSheet(training.id)
+                : () => router.push("/users/ficha/indisponivel")
+            }
             spacing={{ m: 0 }}
           >
             Responder questionário
