@@ -1,12 +1,14 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "@/src/contexts/UserContext";
+import { useRouter } from "next/navigation";
 
-function Chat() {
+function Chat({ name }) {
   const { userData } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [key, setKey] = useState(0);
 
+  console.log(userData);
 
   useEffect(() => {
     // Atualiza o iframe a cada 5 segundos
@@ -21,11 +23,19 @@ function Chat() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
-    const data = {
-      Nome: userData.name,
-      // NomeOficina: userData.name? userData.name: "",
-      Mensagem: message,
-    };
+
+    const data =
+      userData.role == "common"
+        ? {
+            Nome: name ? name : userData.name,
+            // NomeOficina:         // NomeOficina: userData.name? userData.name: "",
+            Mensagem: message,
+          }
+        : {
+            Nome: "Concessionária",
+            NomeOficina: `${userData.fantasy_name} ${userData.DN}`, // NomeOficina: userData.name? userData.name: "",
+            Mensagem: message,
+          };
 
     try {
       const response = await fetch("/api/sendMessage", {
@@ -48,6 +58,7 @@ function Chat() {
   };
 
   return (
+   
     <div className="w-full h-full flex flex-col">
       <iframe
         key={key}
@@ -71,6 +82,7 @@ function Chat() {
         </button>
       </form>
     </div>
+
   );
 }
 
