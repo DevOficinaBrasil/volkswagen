@@ -151,7 +151,7 @@ function TreinamentoAoVivo() {
               <Button
                 className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50 h-fit "
                 href="/documents/A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
-                download="A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
+                target="_blank"
               >
                 <h1 className="font-normal text-center uppercase text-lg text-white w-fit h-fit rounded-xl border-volks-blue-800">
                   MATERIAL TÉCNICO
