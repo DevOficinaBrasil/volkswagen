@@ -118,13 +118,13 @@ export default function Trainings() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Ativar/Desativar</TableCell>
+            <TableCell>Status Live</TableCell>
             <TableCell>ID</TableCell>
             <TableCell>Data</TableCell>
             <TableCell>Nome</TableCell>
             <TableCell>Liberar Ficha</TableCell>
             <TableCell>Status</TableCell>
-            <TableCell align="right">Lista de inscritos</TableCell>
+            <TableCell align="right">Lista de Inscritos</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -135,6 +135,7 @@ export default function Trainings() {
                   <Button
                     className="bg-[#022663] w-24 text-white"
                     onClick={() => handleActiveButton(row.id, row.on_live)}
+                    sx={{ ":hover": { backgroundColor: "#184a9b" } }}
                   >
                     {onLive == 0 ? "Ativar" : "Desativar"}
                   </Button>
@@ -156,6 +157,7 @@ export default function Trainings() {
                   <Button
                     className="bg-[#022663] w-24 text-white"
                     onClick={() => handleActiveButtonSheet(row.id, row.certify)}
+                    sx={{ ":hover": { backgroundColor: "#184a9b" } }}
                   >
                     {certify == "0" ? "Liberar" : "Desativar"}
                   </Button>
