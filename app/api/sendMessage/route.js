@@ -30,8 +30,8 @@ export async function POST(req) {
 
   try {
     const [rows] = await connection.execute(
-      "INSERT INTO chat (Nome, NomeOficina, Mensagem, VW, Data, Hora) VALUES (?, ?, ?, ?, ?, ?)",
-      [Nome, NomeOficina, Mensagem, VW, Data, Hora]
+      "INSERT INTO chat (Nome, NomeOficina, Mensagem, VW, Data, Hora) VALUES (?, ?, ?, ?, ?)",
+      [Nome, NomeOficina, Mensagem, Data, Hora]
     );
     await connection.end();
 
