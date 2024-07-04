@@ -40,8 +40,7 @@ function Chat() {
   return (
     <div className="w-full h-full flex flex-col">
       <iframe
-        src="https://rota.oficinabrasil.com.br/ext-cod/chat/"
-        frameBorder="0"
+        src="https://chatpro.oficinabrasil.com.br/chat.php"
         className="w-full h-full"
       ></iframe>
       <form onSubmit={handleSubmit} className="mt-4 flex items-center">
