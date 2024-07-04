@@ -62,7 +62,10 @@ export default function Header() {
       setUserState(
         <Box className="flex justify-end items-center px-5">
           <a className="cursor-pointer flex items-center" onClick={handleClick}>
-            {userData.name} <MenuIcon className="ml-1" />
+            <span className="opacity-0 absolute sm:static sm:opacity-100">
+              {userData.name}
+            </span>
+            <MenuIcon className="ml-1" />
           </a>
 
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
