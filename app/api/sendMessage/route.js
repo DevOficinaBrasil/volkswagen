@@ -11,7 +11,7 @@ export async function POST(req) {
 
   const { Nome, NomeOficina, Mensagem, VW } = body;
 
-  if (!Nome || !NomeOficina || !Mensagem || VW === undefined) {
+  if (!Nome || !NomeOficina || !Mensagem) {
     return NextResponse.json(
       { error: "Missing required fields" },
       { status: 400 }
