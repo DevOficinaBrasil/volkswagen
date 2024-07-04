@@ -25,7 +25,7 @@ export async function POST(req) {
             encodeURIComponent(formData.get("training")) +
             "&present=" +
             encodeURIComponent(formData.get("present"))
-        return Response.json(process.env.NEXT_PUBLIC_API_URL, {status: 400})
+            
         const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/registerSheet`, {
             method: "POST",
             headers: {
