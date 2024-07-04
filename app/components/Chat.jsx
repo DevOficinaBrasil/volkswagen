@@ -1,16 +1,17 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import UserContext from "@/src/contexts/UserContext";
 
 function Chat() {
   const { userData } = useContext(UserContext);
   const [message, setMessage] = useState("");
+  const [key, setKey] = useState(0);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
     const data = {
-      Nome: userData.name, // Você vai substituir por valores da sessão do usuário
+      Nome: userData.name,
       NomeOficina: "testeopficina",
       Mensagem: message,
     };
@@ -26,8 +27,7 @@ function Chat() {
 
       const result = await response.json();
       if (response.ok) {
-        // console.log("Message sent:", result);
-        // Limpa o campo de entrada
+        // Mensagem enviada com sucesso
       } else {
         console.error("Error sending message:", result.error);
       }
@@ -36,9 +36,18 @@ function Chat() {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKey((prevKey) => prevKey + 1); // Atualiza a key para forçar a recarga do iframe
+    }, 5000);
+
+    return () => clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
+  }, []);
+
   return (
     <div className="w-full h-full flex flex-col">
       <iframe
+        key={key}
         src="https://chatpro.oficinabrasil.com.br/chat.php"
         className="w-full h-full"
       ></iframe>
