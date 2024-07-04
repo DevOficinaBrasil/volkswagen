@@ -11,14 +11,17 @@ export default async function liveIsOffMiddleware() {
   );
 
   const response = await request.json();
+  let live = false;
   // console.log(response);
   if (request.ok) {
-    response.map((training) => {
-      if (training.on_live == 1) {
+    for (let i = 0; i < response.length; i++) {
+      let training = response[i];
+      if (training.on_live == "1") {
+        // console.log(training.on_live);
+        // Se você deseja retornar true e sair do loop ao encontrar um "1", use return true;
         return true;
       }
-      return false;
-    });
+    }
   }
 
   return false;
