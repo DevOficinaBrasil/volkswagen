@@ -106,7 +106,7 @@ function TreinamentoAoVivo() {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={"...loading"}>
       <div className="container mx-auto my-5">
         <div className="flex flex-row xl:justify-center justify-evenly mt-4 px-5">
           {commonUserId && training && (
