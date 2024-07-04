@@ -1,12 +1,37 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
-import "./Chat.css";
 import UserContext from "@/src/contexts/UserContext";
 
 function Chat() {
   const { userData } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    // Adiciona dinamicamente o link CSS ao documento
+    const doc = document;
+    const head = doc.head;
+    const link = doc.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = "/path/to/your/Chat.css"; // Substitua pelo caminho correto para o seu arquivo CSS
+    head.appendChild(link);
+
+    // Função de limpeza para remover o link ao desmontar o componente
+    return () => {
+      head.removeChild(link);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Atualiza o iframe a cada 5 segundos
+    const interval = setInterval(() => {
+      setKey((prevKey) => prevKey + 1); // Atualiza a key para forçar a recarga do iframe
+    }, 5000);
+
+    // Limpa o intervalo quando o componente é desmontado
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,14 +61,6 @@ function Chat() {
       console.error("Network error:", error);
     }
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setKey((prevKey) => prevKey + 1); // Atualiza a key para forçar a recarga do iframe
-    }, 5000);
-
-    return () => clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
-  }, []);
 
   return (
     <div className="w-full h-full flex flex-col">

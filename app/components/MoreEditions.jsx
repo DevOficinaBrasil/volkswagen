@@ -35,7 +35,7 @@ function MoreEditions() {
 
     return (
         <div className="flex flex-col gap-y-5 bg-slate-200 rounded-xl">
-            <div className="text-xl font-semibold text-volks-blue-800 bg-blue-900 text-white px-4 py-2 rounded-t-xl">Mais Edições</div>
+            <div className="text-xl font-semibold text-volks-blue-800 bg-blue-900 px-4 py-2 rounded-t-xl">Mais Edições</div>
             <div className="grid lg:grid-cols-1 grid-cols-3 gap-4 px-4 py-2 max-h-[550px] overflow-y-auto">
                 {edicoes.map((edicao, key) => (
                     <div key={key} className="">
