@@ -2,15 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import Chat from "../components/Chat";
+import "./Chat.css";
 import { useContext } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import useContextCustom from "../hooks/useContextCustom";
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
+import banner from "@/images/banner.png";
+import Image from "next/image";
+import Link from "next/link";
 function TreinamentoAoVivo() {
   const [training, setTraining] = useState(null);
   const [trainings, setTrainings] = useState();
+  const [commonUserId, setCommonUserId] = useState();
 
   useEffect(() => {
+    // common_user_id = localStorage.getItem("user_id");
+    setCommonUserId(localStorage.getItem("user_id"));
     const getTrainings = async () => {
       const request = await fetch(
         "https://apivw.oficinabrasil.com.br/api/trainings",
@@ -68,44 +75,110 @@ function TreinamentoAoVivo() {
     training && putPresence();
   }, [training]);
 
+  const handleBannerClick = async (id, common_user_id) => {
+    const request = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/api/createBannerData",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "applicattion/json",
+        },
+        body: JSON.stringify({
+          training_id: id,
+          common_user_id: common_user_id,
+        }),
+      }
+    );
+  };
+
   return (
     <div className="container mx-auto my-5">
-      <div className="my-3">
+      <div className="flex flex-row xl:justify-center justify-evenly mt-4 px-5">
+        {commonUserId && training && (
+          <Link
+            href={"https://pecas.vw.com.br/"}
+            target="_blank"
+            onClick={() =>
+              handleBannerClick(training.id, localStorage.getItem("user_id"))
+            }
+          >
+            <Image
+              className="shadow-xl"
+              src={banner.src}
+              width={500}
+              height={100}
+            />
+          </Link>
+        )}
+      </div>
+      <div className="my-3 mt-10">
         <h2
           // variant="h2"
-          className="text-center text-volks-blue-800 font-semibold uppercase text-3xl"
+          className="text-center text-volks-blue-800 font-semibold uppercase xl:text-2xl text-md"
         >
           Treinamento ao vivo
         </h2>
 
-        <h1 className="font-normal text-center uppercase text-2xl">
+        <h1 className="font-normal text-center uppercase  xl:text-2xl text-md">
           {training && training.name}
         </h1>
-        <div className="flex flex-row justify-end mt-4">
-          <Button
-            className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50"
-            href="/documents/A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
-            download="A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
-          >
-            <h1 className="font-normal text-center uppercase text-lg text-white w-fit rounded-xl border-volks-blue-800">
-              MATERIAL TÉCNICO
-            </h1>
-          </Button>
-          <div className="w-2"></div>
-          {training && (
-            <Button
-              className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50"
-              href={`/users/ficha/${training.id}`}
-            >
-              <h1 className="font-normal text-center uppercase text-lg w-fit text-white  rounded-xl border-volks-blue-800">
-                Certificado
-              </h1>
-            </Button>
-          )}
-        </div>
+        <Grid container className="flex flex-row justify-between mt-4 px-5">
+          {/* <Grid item xs={12} lg={6}>
+            <div className="flex flex-row xl:justify-start justify-evenly mt-4">
+              {commonUserId && training && (
+                <Link
+                  href={"https://pecas.vw.com.br/"}
+                  target="_blank"
+                  onClick={() =>
+                    handleBannerClick(
+                      training.id,
+                      localStorage.getItem("user_id")
+                    )
+                  }
+                >
+                  <Image
+                    className="shadow-xl"
+                    src={banner.src}
+                    width={500}
+                    height={100}
+                  />
+                </Link>
+              )}
+            </div>
+          </Grid> */}
+          <Grid item xs={12} lg={12}>
+            <div className="flex flex-row xl:justify-end justify-evenly mt-4">
+              <Button
+                className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50 h-fit "
+                href="/documents/A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
+                download="A importância do Óleo Certo para o motor - Maxi Performance 1.pdf"
+              >
+                <h1 className="font-normal text-center uppercase text-lg text-white w-fit h-fit rounded-xl border-volks-blue-800">
+                  MATERIAL TÉCNICO
+                </h1>
+              </Button>
+              <div className="w-2"></div>
+              {training && (
+                <Button
+                  className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50 h-fit "
+                  href={`/users/ficha/${training.id}`}
+                  target="_blank"
+                >
+                  <h1 className="font-normal text-center uppercase text-lg w-fit text-white h-fit  rounded-xl border-volks-blue-800">
+                    Certificado
+                  </h1>
+                </Button>
+              )}
+            </div>
+          </Grid>
+        </Grid>
       </div>
-      <div className="grid grid-cols-12 gap-10">
-        <div className="col-span-8">
+      <Grid
+        container
+        columnSpacing={4}
+        className="flex flex-row justify-between mt-4 px-5"
+      >
+        <Grid item xs={12} lg={8}>
           <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
             {/* {training.live_url} */}
             {training && training.live_url ? (
@@ -129,12 +202,12 @@ function TreinamentoAoVivo() {
               ></iframe>
             )}
           </div>
-        </div>
+        </Grid>
 
-        <div className="col-span-4">
+        <Grid item xs={12} lg={4}>
           <Chat />
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </div>
   );
 }
