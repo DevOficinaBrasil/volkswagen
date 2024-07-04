@@ -80,7 +80,28 @@ export default function Page() {
                                 </Typography>
                             </Box>
                             <Table size="small">
-                                
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>ID</TableCell>
+                                        <TableCell>Nome Fantasia</TableCell>
+                                        <TableCell>CNPJ</TableCell>
+                                        <TableCell>DN</TableCell>
+                                        <TableCell>Email</TableCell>
+                                        <TableCell align="right">Acesso</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {concessionaires.map((row) => (
+                                    <TableRow key={row.id}>
+                                        <TableCell className='font-bold'>#{row.id}</TableCell>
+                                        <TableCell>{row.fantasy_name}</TableCell>
+                                        <TableCell>{row.CNPJ}</TableCell>
+                                        <TableCell>{row.DN}</TableCell>
+                                        <TableCell>{row.email}</TableCell>
+                                        <TableCell align="right">{row.concessionaire_login_id == 0 ? <Button variant="text" onClick={() => handleInfos(row.id)}>Gerar senha</Button> : <h1>Usuário já possui acesso</h1>}</TableCell>
+                                    </TableRow>
+                                ))}
+                                </TableBody>
                             </Table>
                         </React.Fragment>
                     </Paper>
