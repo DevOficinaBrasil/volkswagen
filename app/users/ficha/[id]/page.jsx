@@ -19,9 +19,16 @@ export default function GeneralSheet({ params }) {
     const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(false)
+    const [user, setUser] = React.useState(null)
     const { userData } = React.useContext(UserContext)
 
     const queryParams = useSearchParams()
+
+    React.useEffect(() => {
+        if(userData){
+            setUser(userData)
+        }
+    }, [userData])
 
     const { handleSubmit, control } = useForm({
         defaultValues: {
@@ -30,7 +37,7 @@ export default function GeneralSheet({ params }) {
             quest2: '',
             quest3: '',
             suggestion: '',
-            user: userData.id,
+            user: user.id,
             training: params.id,
             present: Boolean(queryParams.get('present')) ?? false
         },
