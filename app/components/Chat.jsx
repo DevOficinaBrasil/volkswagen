@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
+import "./Chat.css";
 import UserContext from "@/src/contexts/UserContext";
 
 function Chat() {
