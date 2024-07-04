@@ -3,12 +3,10 @@ import React, { useContext, useState, useEffect } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import { useRouter } from "next/navigation";
 
-function Chat({ name }) {
+function Chat(props) {
   const { userData } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [key, setKey] = useState(0);
-
-  console.log(userData);
 
   useEffect(() => {
     // Atualiza o iframe a cada 5 segundos
@@ -27,7 +25,7 @@ function Chat({ name }) {
     const data =
       userData.role == "common"
         ? {
-            Nome: name ? name : userData.name,
+            Nome: props.username ? props.username : userData.name,
             // NomeOficina:         // NomeOficina: userData.name? userData.name: "",
             Mensagem: message,
           }
