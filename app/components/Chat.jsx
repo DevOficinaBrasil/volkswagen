@@ -13,7 +13,6 @@ function Chat() {
       Nome: userData.name, // Você vai substituir por valores da sessão do usuário
       NomeOficina: "testeopficina",
       Mensagem: message,
-      VW: 1, // Ajustar conforme necessário
     };
 
     try {
