@@ -13,7 +13,7 @@ import Link from "next/link";
 function TreinamentoAoVivo() {
   const [training, setTraining] = useState(null);
   const [trainings, setTrainings] = useState();
-  const common_user_id = localStorage.getItem("user_id");
+  // const common_user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
     const getTrainings = async () => {
@@ -106,11 +106,16 @@ function TreinamentoAoVivo() {
         <Grid container className="flex flex-row justify-between mt-4 px-5">
           <Grid item xs={12} lg={6}>
             <div className="flex flex-row xl:justify-start justify-evenly mt-4">
-              {common_user_id && training && (
+              {localStorage.getItem("user_id") && training && (
                 <Link
                   href={"https://pecas.vw.com.br/"}
                   target="_blank"
-                  onClick={() => handleBannerClick(training.id, common_user_id)}
+                  onClick={() =>
+                    handleBannerClick(
+                      training.id,
+                      localStorage.getItem("user_id")
+                    )
+                  }
                 >
                   <Image
                     className="shadow-xl"
