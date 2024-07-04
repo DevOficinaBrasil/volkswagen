@@ -3,7 +3,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
 import Typography from "@mui/material/Typography";
 import { Controller, useForm } from "react-hook-form";
@@ -26,6 +26,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import UserContext from "@/src/contexts/UserContext";
 
 const defaultTheme = createTheme();
 
@@ -36,6 +37,9 @@ export default function GeneralSheet({ params }) {
   const [trainings, setTrainings] = React.useState();
   const queryParams = useSearchParams();
   console.log(params);
+  const router = useRouter();
+  const [user, setUser] = React.useState(null);
+  const { userData } = React.useContext(UserContext);
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -44,10 +48,19 @@ export default function GeneralSheet({ params }) {
       quest2: "",
       quest3: "",
       suggestion: "",
+      user: "",
       training: params.id,
       present: Boolean(queryParams.get("present")) ?? false,
     },
   });
+
+  React.useEffect(() => {
+    const setUserData = async () => {
+      setUser(userData);
+    };
+
+    setUserData();
+  }, [userData]);
 
   React.useEffect(() => {
     const getTrainings = async () => {
@@ -90,6 +103,8 @@ export default function GeneralSheet({ params }) {
     for (const key in data) {
       formData.append(key, data[key]);
     }
+
+    formData.set("user", user.id);
 
     try {
       const request = await fetch("/api/registerSheet", {

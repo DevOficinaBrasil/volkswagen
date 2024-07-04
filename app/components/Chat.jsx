@@ -8,7 +8,7 @@ function Chat() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setMessage("");
     const data = {
       Nome: userData.name, // Você vai substituir por valores da sessão do usuário
       NomeOficina: "testeopficina",
@@ -28,7 +28,7 @@ function Chat() {
       const result = await response.json();
       if (response.ok) {
         // console.log("Message sent:", result);
-        setMessage(""); // Limpa o campo de entrada
+        // Limpa o campo de entrada
       } else {
         console.error("Error sending message:", result.error);
       }
@@ -40,8 +40,7 @@ function Chat() {
   return (
     <div className="w-full h-full flex flex-col">
       <iframe
-        src="https://rota.oficinabrasil.com.br/ext-cod/chat/"
-        frameBorder="0"
+        src="https://chatpro.oficinabrasil.com.br/chat.php"
         className="w-full h-full"
       ></iframe>
       <form onSubmit={handleSubmit} className="mt-4 flex items-center">
