@@ -9,7 +9,7 @@ export async function POST(req) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { Nome, NomeOficina, Mensagem, VW } = body;
+  const { Nome, NomeOficina, Mensagem } = body;
 
   if (!Nome || !NomeOficina || !Mensagem) {
     return NextResponse.json(
@@ -41,6 +41,6 @@ export async function POST(req) {
     );
   } catch (error) {
     await connection.end();
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }
