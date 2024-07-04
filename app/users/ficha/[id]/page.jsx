@@ -36,7 +36,6 @@ export default function GeneralSheet({ params }) {
   const [training, setTraining] = React.useState(null);
   const [trainings, setTrainings] = React.useState();
   const queryParams = useSearchParams();
-  console.log(params);
   const router = useRouter();
   const [user, setUser] = React.useState(null);
   const { userData } = React.useContext(UserContext);
