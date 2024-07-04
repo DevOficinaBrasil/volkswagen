@@ -1,7 +1,6 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "@/src/contexts/UserContext";
-import { Suspense } from "react";
 import { useRouter } from "next/navigation";
 
 function Chat({ name }) {
@@ -59,31 +58,31 @@ function Chat({ name }) {
   };
 
   return (
-    <Suspense>
-      <div className="w-full h-full flex flex-col">
-        <iframe
-          key={key}
-          src="https://chatpro.oficinabrasil.com.br/chat.php"
-          className="w-full h-full"
-        ></iframe>
-        <form onSubmit={handleSubmit} className="mt-4 flex items-center">
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Sua mensagem"
-            className="border p-2 rounded-l mb-2 w-full"
-          />
+   
+    <div className="w-full h-full flex flex-col">
+      <iframe
+        key={key}
+        src="https://chatpro.oficinabrasil.com.br/chat.php"
+        className="w-full h-full"
+      ></iframe>
+      <form onSubmit={handleSubmit} className="mt-4 flex items-center">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Sua mensagem"
+          className="border p-2 rounded-l mb-2 w-full"
+        />
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-r mb-2"
-          >
-            Enviar
-          </button>
-        </form>
-      </div>
-    </Suspense>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded-r mb-2"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+
   );
 }
 
