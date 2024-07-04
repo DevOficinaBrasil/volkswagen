@@ -13,7 +13,7 @@ import Link from "next/link";
 function TreinamentoAoVivo() {
   const [training, setTraining] = useState(null);
   const [trainings, setTrainings] = useState();
-  const common_user_id = null;
+  let common_user_id = null;
 
   useEffect(() => {
     common_user_id = localStorage.getItem("user_id");
