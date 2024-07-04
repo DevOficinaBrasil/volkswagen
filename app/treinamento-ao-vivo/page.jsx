@@ -93,7 +93,25 @@ function TreinamentoAoVivo() {
 
   return (
     <div className="container mx-auto my-5">
-      <div className="my-3">
+      <div className="flex flex-row xl:justify-center justify-evenly mt-4 px-5">
+        {commonUserId && training && (
+          <Link
+            href={"https://pecas.vw.com.br/"}
+            target="_blank"
+            onClick={() =>
+              handleBannerClick(training.id, localStorage.getItem("user_id"))
+            }
+          >
+            <Image
+              className="shadow-xl"
+              src={banner.src}
+              width={500}
+              height={100}
+            />
+          </Link>
+        )}
+      </div>
+      <div className="my-3 mt-10">
         <h2
           // variant="h2"
           className="text-center text-volks-blue-800 font-semibold uppercase xl:text-2xl text-md"
@@ -104,9 +122,8 @@ function TreinamentoAoVivo() {
         <h1 className="font-normal text-center uppercase  xl:text-2xl text-md">
           {training && training.name}
         </h1>
-        <Grid container></Grid>
         <Grid container className="flex flex-row justify-between mt-4 px-5">
-          <Grid item xs={12} lg={6}>
+          {/* <Grid item xs={12} lg={6}>
             <div className="flex flex-row xl:justify-start justify-evenly mt-4">
               {commonUserId && training && (
                 <Link
@@ -128,8 +145,8 @@ function TreinamentoAoVivo() {
                 </Link>
               )}
             </div>
-          </Grid>
-          <Grid item xs={12} lg={6}>
+          </Grid> */}
+          <Grid item xs={12} lg={12}>
             <div className="flex flex-row xl:justify-end justify-evenly mt-4">
               <Button
                 className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50 h-fit "
@@ -145,6 +162,7 @@ function TreinamentoAoVivo() {
                 <Button
                   className="bg-volks-blue-800 rounded-lg hover:bg-volks-blue-800 hover:opacity-50 h-fit "
                   href={`/users/ficha/${training.id}`}
+                  target="_blank"
                 >
                   <h1 className="font-normal text-center uppercase text-lg w-fit text-white h-fit  rounded-xl border-volks-blue-800">
                     Certificado
