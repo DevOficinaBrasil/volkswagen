@@ -7,7 +7,7 @@ import { useContext } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import useContextCustom from "../hooks/useContextCustom";
 import { Button, Grid, Typography } from "@mui/material";
-import banner from "@/images/banner.png";
+import banner from "@/images/bannerVW.jpg";
 import Image from "next/image";
 import Link from "next/link";
 function TreinamentoAoVivo() {
