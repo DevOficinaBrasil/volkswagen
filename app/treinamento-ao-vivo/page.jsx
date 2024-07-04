@@ -155,7 +155,11 @@ function TreinamentoAoVivo() {
           </Grid>
         </Grid>
       </div>
-      <Grid container className="flex flex-row justify-between mt-4 px-5">
+      <Grid
+        container
+        columnSpacing={4}
+        className="flex flex-row justify-between mt-4 px-5"
+      >
         <Grid item xs={12} lg={8}>
           <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
             {/* {training.live_url} */}
