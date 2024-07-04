@@ -1,8 +1,9 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "@/src/contexts/UserContext";
+import { useRouter } from "next/navigation";
 
-function Chat() {
+function Chat({ name }) {
   const { userData } = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [key, setKey] = useState(0);
@@ -26,7 +27,7 @@ function Chat() {
     const data =
       userData.role == "common"
         ? {
-            Nome: userData.name,
+            Nome: name ? name : userData.name,
             // NomeOficina:         // NomeOficina: userData.name? userData.name: "",
             Mensagem: message,
           }
