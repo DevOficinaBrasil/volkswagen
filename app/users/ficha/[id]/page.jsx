@@ -25,9 +25,11 @@ export default function GeneralSheet({ params }) {
     const queryParams = useSearchParams()
 
     React.useEffect(() => {
-        if(userData){
+        const setUserData = async () => {
             setUser(userData)
         }
+
+        setUserData()
     }, [userData])
 
     const { handleSubmit, control } = useForm({
@@ -37,7 +39,7 @@ export default function GeneralSheet({ params }) {
             quest2: '',
             quest3: '',
             suggestion: '',
-            user: user.id,
+            user: '',
             training: params.id,
             present: Boolean(queryParams.get('present')) ?? false
         },
@@ -51,6 +53,8 @@ export default function GeneralSheet({ params }) {
         for (const key in data) {
             formData.append(key, data[key])
         }
+
+        formData.set('user', user.id)
 
         try{
             const request = await fetch('/api/registerSheet',{
