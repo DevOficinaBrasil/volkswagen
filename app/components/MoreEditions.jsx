@@ -35,14 +35,14 @@ function MoreEditions() {
 
     return (
         <div className="flex flex-col gap-y-5 bg-slate-200 rounded-xl">
-            <div className="text-xl font-semibold text-volks-blue-800 bg-blue-900 px-4 py-2 rounded-t-xl">Mais Edições</div>
+            <div className="text-xl font-semibold text-white bg-blue-900 px-4 py-2 rounded-t-xl">Mais Edições</div>
             <div className="grid lg:grid-cols-1 grid-cols-3 gap-4 px-4 py-2 max-h-[550px] overflow-y-auto">
                 {edicoes.map((edicao, key) => (
                     <div key={key} className="">
                         <a href={`/edicao/${edicao.EdicaoID}`} className="col-span-1 flex flex-col items-center">
                             <Image
                                 key={key}
-                                src={`https://oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
+                                src={`https://www.oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
                                 width={160}
                                 height={200}
                                 className="rounded"

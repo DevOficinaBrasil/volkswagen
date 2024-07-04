@@ -7,21 +7,6 @@ function Chat() {
   const [message, setMessage] = useState("");
   const [key, setKey] = useState(0);
 
-  useEffect(() => {
-    // Adiciona dinamicamente o link CSS ao documento
-    const doc = document;
-    const head = doc.head;
-    const link = doc.createElement("link");
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.href = "/path/to/your/Chat.css"; // Substitua pelo caminho correto para o seu arquivo CSS
-    head.appendChild(link);
-
-    // Função de limpeza para remover o link ao desmontar o componente
-    return () => {
-      head.removeChild(link);
-    };
-  }, []);
 
   useEffect(() => {
     // Atualiza o iframe a cada 5 segundos
@@ -38,7 +23,7 @@ function Chat() {
     setMessage("");
     const data = {
       Nome: userData.name,
-      NomeOficina: "testeopficina",
+      // NomeOficina: userData.name? userData.name: "",
       Mensagem: message,
     };
 

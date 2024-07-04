@@ -46,7 +46,7 @@ export default function UltimasEdicoes() {
             <a key={key} href={"/edicao/" + edicao.EdicaoID}>
               <Image
                 key={key}
-                src={`https://oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
+                src={`https://www.oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
                 width={398}
                 height={444}
               />
