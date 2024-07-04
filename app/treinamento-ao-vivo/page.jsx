@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Chat from "../components/Chat";
+import "./Chat.css";
 import { useContext } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import useContextCustom from "../hooks/useContextCustom";
