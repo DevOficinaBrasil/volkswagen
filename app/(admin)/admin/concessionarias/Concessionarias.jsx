@@ -68,45 +68,37 @@ export default function Page() {
     }
     
     return(
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <ToastContainer />
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <React.Fragment>
-                            <Box className="flex justify-between">
-                                <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                                    Concessionárias
-                                </Typography>
-                            </Box>
-                            <Table size="small">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>ID</TableCell>
-                                        <TableCell>Nome Fantasia</TableCell>
-                                        <TableCell>CNPJ</TableCell>
-                                        <TableCell>DN</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell align="right">Acesso</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                {concessionaires.map((row) => (
-                                    <TableRow key={row.id}>
-                                        <TableCell className='font-bold'>#{row.id}</TableCell>
-                                        <TableCell>{row.fantasy_name}</TableCell>
-                                        <TableCell>{row.CNPJ}</TableCell>
-                                        <TableCell>{row.DN}</TableCell>
-                                        <TableCell>{row.email}</TableCell>
-                                        <TableCell align="right">{row.concessionaire_login_id == 0 ? <Button variant="text" onClick={() => handleInfos(row.id)}>Gerar senha</Button> : <h1>Usuário já possui acesso</h1>}</TableCell>
-                                    </TableRow>
-                                ))}
-                                </TableBody>
-                            </Table>
-                        </React.Fragment>
-                    </Paper>
-                </Grid>
-            </Grid>
-        </Container>
+        <React.Fragment>
+        <ToastContainer />
+            <Box className="flex justify-between">
+                <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                    Concessionárias
+                </Typography>
+            </Box>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Nome Fantasia</TableCell>
+                        <TableCell>CNPJ</TableCell>
+                        <TableCell>DN</TableCell>
+                        <TableCell>Email</TableCell>
+                        <TableCell align="right">Acesso</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {concessionaires.map((row) => (
+                    <TableRow key={row.id}>
+                        <TableCell className='font-bold'>#{row.id}</TableCell>
+                        <TableCell>{row.fantasy_name}</TableCell>
+                        <TableCell>{row.CNPJ}</TableCell>
+                        <TableCell>{row.DN}</TableCell>
+                        <TableCell>{row.email}</TableCell>
+                        <TableCell align="right">{row.concessionaire_login_id == 0 ? <Button variant="text" onClick={() => handleInfos(row.id)}>Gerar senha</Button> : <h1>Usuário já possui acesso</h1>}</TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+        </React.Fragment>
     )
 }
