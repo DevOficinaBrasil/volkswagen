@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 
 export async function POST(req) {
     const jwt = cookies().get("token");
-    const user = cookies().get("context");
 
     if (jwt) {
         const formData = await req.formData();
@@ -21,17 +20,17 @@ export async function POST(req) {
             "&suggestion=" +
             encodeURIComponent(formData.get("suggestion")) +
             "&user=" +
-            encodeURIComponent(user.value) +
+            encodeURIComponent(formData.get("user")) +
             "&training=" +
             encodeURIComponent(formData.get("training")) +
             "&present=" +
             encodeURIComponent(formData.get("present"))
-        return Response.json(data, {status: 400})
+            
         const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/registerSheet`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: "Bearer " + jwt.value,
+                "Authorization": "Bearer " + jwt.value,
             },
             cache: "no-store",
             body: data,

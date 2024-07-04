@@ -11,6 +11,7 @@ import MaskedInput from '@/app/components/mask/inputMask';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert, Container, CssBaseline, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Rating, Select, TextField } from '@mui/material';
+import UserContext from '@/src/contexts/UserContext';
 
 const defaultTheme = createTheme();
 
@@ -18,6 +19,7 @@ export default function GeneralSheet({ params }) {
     const router = useRouter()
     const [alert, setAlert] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(false)
+    const { userData } = React.useContext(UserContext)
 
     const queryParams = useSearchParams()
 
@@ -28,11 +30,12 @@ export default function GeneralSheet({ params }) {
             quest2: '',
             quest3: '',
             suggestion: '',
+            user: userData.id,
             training: params.id,
             present: Boolean(queryParams.get('present')) ?? false
         },
     })
-  
+    
     const onSubmit = async (data) => {
         setIsLoading(true)
         
