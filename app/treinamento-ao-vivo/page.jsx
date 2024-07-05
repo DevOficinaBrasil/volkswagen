@@ -189,7 +189,7 @@ function TreinamentoAoVivo() {
               ></div>
             ) : (
               <iframe
-                src={"https://vimeo.com/event/4386223/embed/interaction"}
+                src={"https://vimeo.com/event/4386223/embed/interaction?autoplay=1"}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 style={{
