@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
 import { LiveProvider } from "@/src/contexts/LiveContext";
+import GoogleAnalytcsScripts from "./components/googleAnalyticsScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,9 @@ export default function RootLayout({ children }) {
     <UserProvider>
       <LiveProvider>
         <html lang="pt" className="scroll-smooth">
+          <head>
+            <GoogleAnalytcsScripts />
+          </head>
           <GoogleTagManager gtmId="GTM-KJT5L4J" />
           <body className={inter.className}>
             <Header />
