@@ -178,7 +178,7 @@ function TreinamentoAoVivo() {
         columnSpacing={4}
         className="flex flex-row justify-between mt-4 px-5"
       >
-        <Grid item xs={12} lg={8}>
+        <Grid item xs={12} lg={12}>
           <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
             {/* {training.live_url} */}
             {training && training.live_url ? (
@@ -204,12 +204,12 @@ function TreinamentoAoVivo() {
           </div>
         </Grid>
 
-        <Grid item xs={12} lg={4}>
+        {/* <Grid item xs={12} lg={4}>
           <Typography className="text-center font-bold uppercase text-sm">
             Mensagens sujeitas a aprovação do administrador
           </Typography>
           <Chat />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );
