@@ -49,7 +49,7 @@ export default function Agenda(){
                             Amarok V6
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 13 de Agosto
+                            Dia 03 de Setembro
                         </Typography>
                         <Link href="#">
                             <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
