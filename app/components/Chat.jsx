@@ -26,7 +26,7 @@ function Chat(props) {
       userData.role == "common"
         ? {
             Nome: props.username ? props.username : userData.name,
-            // NomeOficina:         // NomeOficina: userData.name? userData.name: "",
+            NomeOficina: "",         // NomeOficina: userData.name? userData.name: "",
             Mensagem: message,
           }
         : {
