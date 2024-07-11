@@ -34,9 +34,6 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 05 de Novembro
                         </Typography>
-                        <Link href="#">
-                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
-                        </Link>
                     </Box>
                 </Grid>
 
@@ -51,9 +48,6 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 03 de Setembro
                         </Typography>
-                        <Link href="#">
-                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
-                        </Link>
                     </Box>
                 </Grid>
 
@@ -69,7 +63,6 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 04 de Junho
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
 
@@ -84,7 +77,6 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
             </Grid>

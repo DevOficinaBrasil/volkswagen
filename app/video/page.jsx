@@ -25,7 +25,7 @@ export default async function Page({ searchParams }) {
 
   var videos = await response.json();
   return (
-    <div className="container mx-auto my-5">
+    <div className="container mx-auto px-28 my-5">
       {/* <div className='flex justify-center pt-10 pb-10'>
         <ResponsiveSuperBanner />
       </div> */}
@@ -59,9 +59,7 @@ export default async function Page({ searchParams }) {
                 className="bg-cover bg-center w-full aspect-video rounded-lg shadow-lg flex justify-center items-center"
                 style={{
                   backgroundImage:
-                    `url('https://img.youtube.com/vi/` +
-                    video.Codigo +
-                    `/sddefault.jpg')`,
+                    `url('https://vumbnail.com/${video.Imagem}.jpg`,
                 }}
               >
                 <PlayArrowRoundedIcon

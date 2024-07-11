@@ -18,8 +18,8 @@ const page = async (url) => {
   }
 
   return (
-    <div className="container mx-auto">
-      <div className="grid grid-cols-12 gap-10  mt-10">
+    <div className="container px-28">
+      <div className="grid grid-cols-12 gap-10 mt-10">
         <div className="lg:col-span-10 col-span-12">
           <div className="font-semibold text-volks-blue-800 text-3xl ">
             {edicao.Name}

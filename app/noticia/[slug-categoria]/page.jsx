@@ -22,12 +22,12 @@ const Page = async (url) => {
   var noticias = result.data;
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-28 py-5">
       <div className="pb-10">
-        <div className="font-bold text-4xl uppercase text-blue-900 text-shadow-sm mt-2">
+        <div className="font-bold text-center text-4xl uppercase text-blue-900 text-shadow-sm mt-2">
           Notícias
         </div>
-        <div className="text-xl uppercase text-blue-900">
+        <div className="text-xl text-center uppercase text-blue-900">
           {noticias[0]?.Nome}
         </div>
       </div>
