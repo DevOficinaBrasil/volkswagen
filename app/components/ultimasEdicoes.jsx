@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import capturMotor from "@/images/files_migration_tb_fotos-2.png";
 import renaultBanner from "@/images/vw_car.png";
@@ -36,12 +36,12 @@ export default function UltimasEdicoes() {
   }, []);
 
   return (
-    <div className="bg-gray-100 rounded-sm w-full pb-10 pt-5 px-10 flex flex-col gap-4 shadow-xl shadow-slate-300">
-      <div className="flex items-center pt-10 gap-3">
-        <div className="text-xl font-bold">ÚLTIMAS EDIÇÕES</div>
-      </div>
-      <div className="lg:p-5 p-1">
-        <Slider arrows={true} {...settings} className="">
+    <Box>
+      <Box className="flex items-center pt-10">
+        <Typography variant="h5" className="font-bold">ÚLTIMAS EDIÇÕES</Typography>
+      </Box>
+      <Box className="mt-5">
+        <Slider arrows={true} {...settings}>
           {edicoes?.map((edicao, key) => (
             <a key={key} href={"/edicao/" + edicao.EdicaoID}>
               <Image
@@ -49,11 +49,12 @@ export default function UltimasEdicoes() {
                 src={`https://www.oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
                 width={398}
                 height={444}
+                className="rounded"
               />
             </a>
           ))}
         </Slider>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
