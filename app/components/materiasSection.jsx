@@ -19,7 +19,7 @@ export default function MateriasSection() {
   return (
     <Grid container spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
       {news.map((noticia, key) => (
-        <Grid item xs={6}>
+        <Grid item xs={6} key={key}>
           <Grid container spacing={1} className="items-center">
             <Grid item xs={5}>
               <Image src={`https://www.oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`} width={200} height={100} className="rounded-2xl" />
