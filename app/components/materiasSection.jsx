@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRightAltOutlined } from "@mui/icons-material";
 
 export default function MateriasSection({ columns, limit }) {
+
   const [news, setNews] = React.useState([]);
 
   React.useEffect(() => {
@@ -53,6 +54,7 @@ export default function MateriasSection({ columns, limit }) {
               </Grid>
             </Grid>  
           </Link>
+
         </Grid>
       ))}
     </Grid>
