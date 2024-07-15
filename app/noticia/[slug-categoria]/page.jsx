@@ -22,7 +22,7 @@ const Page = async (url) => {
   
   return (
     <Box>
-      <Box className="w-full" sx={{
+      <Box className="w-full flex items-center justify-center text-center sm:text-left" sx={{
         backgroundImage: 'url(https://uploads.vw-mms.de/system/production/images/vwn/076/572/images/8fc64e1230b7fee77715ee3d23f88a8091bad920/DB2023AU00551_web_1600.jpg?1684311057)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -30,14 +30,14 @@ const Page = async (url) => {
         position: 'relative',
         height: 650,
       }}>
-        <Box className="absolute bottom-20 left-40">
-          <Typography variant="h1" className="uppercase font-bold text-white">Notícias</Typography>
-          <Typography variant="h1" className="uppercase font-bold text-white">Volkswagen</Typography>
+        <Box className="absolute sm:bottom-20 sm:left-40">
+          <Typography variant="h2" className="uppercase font-bold text-white">Notícias</Typography>
+          <Typography variant="h3" className="uppercase font-bold text-white">Volkswagen</Typography>
         </Box>
       </Box>
 
       <Box>
-        <Grid container className="px-28 pb-28" spacing={{ xs: 5, sm: 10 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid container className="sm:px-28 pb-28 flex justify-center" spacing={{ xs: 5, sm: 10 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {result.data.map((infos, index) => (
             <Grid item xs={3} sx={{ paddingTop: '20px !important', mb: 5 }} key={index}>
               <CardNoticia news={infos} />

@@ -8,7 +8,7 @@ const defaultTheme = createTheme();
 const Layout = ({ children }, props) => {
     return(
         <ThemeProvider theme={defaultTheme}>
-            <main className='flex flex-col gap-5 my-10 p-28'>
+            <main className='flex flex-col gap-5 my-10 p-5 sm:p-28'>
                 {children}
             </main>
         </ThemeProvider>

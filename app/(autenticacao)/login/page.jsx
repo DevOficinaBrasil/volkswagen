@@ -71,7 +71,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container>
-        <Grid container spacing={{ xs: 2, sm: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} className="py-28 flex justify-center items-center">
+        <Grid container spacing={{ xs: 5, sm: 7 }} columns={{ xs: 4, sm: 8, md: 12 }} className="py-28 flex justify-center items-center">
           <Grid item xs={5}>
             <Typography variant="h4" className="uppercase font-bold relative inline-block"
               sx={{
@@ -150,8 +150,8 @@ export default function SignIn() {
                 Cadastre-se
               </VolksButton>
 
-              <Box className="absolute p-5 rounded-2xl" sx={{ backgroundColor: '#02346B', right: -20, top: -20, }}>
-                <Image src={logo} width={70} height={70} />
+              <Box className="absolute p-2 sm:p-5 rounded-2xl sm:-right-8 sm:-top-8 -right-0 -top-5" sx={{ backgroundColor: '#02346B', }}>
+                <Image src={logo} width={60} height={60} />
               </Box>
             </Box>
           </Grid>

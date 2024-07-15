@@ -11,7 +11,7 @@ export default function CardNoticia({ news }){
                 position: 'relative',
                 height: 300,
             }}></Box>
-            <Box className="relative z-1 bg-white rounded-2xl shadow-md overflow-hidden py-5 -mt-10 ml-10 -mr-10">
+            <Box className="relative z-1 bg-white rounded-2xl shadow-md overflow-hidden py-5 -mt-10 ml-10 sm:-mr-10">
                 <Box className="px-5">
                     <Typography variant="subtitle1" className="uppercase font-bold">{news.Titulo}</Typography>
                     <Typography variant="body1">{news.SubTitulo}</Typography>
