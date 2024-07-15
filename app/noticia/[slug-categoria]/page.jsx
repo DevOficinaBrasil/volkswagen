@@ -19,7 +19,7 @@ const Page = async (url) => {
     })
 
   const result = await getNews.json()
-  console.log(result.data[0])
+  
   return (
     <Box>
       <Box className="w-full" sx={{
@@ -39,7 +39,7 @@ const Page = async (url) => {
       <Box>
         <Grid container className="px-28 pb-28" spacing={{ xs: 5, sm: 10 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {result.data.map((infos, index) => (
-            <Grid item xs={3} sx={{ paddingTop: '20px !important', mb: 5 }}>
+            <Grid item xs={3} sx={{ paddingTop: '20px !important', mb: 5 }} key={index}>
               <CardNoticia news={infos} />
             </Grid>
           ))}
