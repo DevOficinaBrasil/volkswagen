@@ -1,7 +1,7 @@
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "../../../api/auth/[...nextauth]/route";
 // import { redirect } from "next/navigation";
-import AtualizarMenu from "../components/atualizarMenu";
+import AtualizarMenu from "../../components/atualizarMenu";
 
 export default async function RootLayout({ children }) {
   // const session = await getServerSession(authOptions);
