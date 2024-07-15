@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function UltimasEdicoes() {
   const settings = {
@@ -37,21 +38,21 @@ export default function UltimasEdicoes() {
 
   return (
     <Box>
-      <Box className="flex items-center pt-10">
+      <Box>
         <Typography variant="h5" className="font-bold">ÚLTIMAS EDIÇÕES</Typography>
       </Box>
       <Box className="mt-5">
-        <Slider arrows={true} {...settings}>
+        <Slider arrows={false} {...settings}>
           {edicoes?.map((edicao, key) => (
-            <a key={key} href={"/edicao/" + edicao.EdicaoID}>
+            <Link key={key} href={"/edicao/" + edicao.EdicaoID}>
               <Image
                 key={key}
                 src={`https://www.oficinabrasil.com.br/api/CapaEdicao?img=${edicao.img_capa}`}
                 width={398}
                 height={444}
-                className="rounded"
+                className="rounded w-full"
               />
-            </a>
+            </Link>
           ))}
         </Slider>
       </Box>

@@ -4,9 +4,9 @@ import { formatDate } from "./functions/formatDate";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { ArrowRightAltOutlined } from "@mui/icons-material";
-import { Griffy } from "next/font/google";
 
-export default function MateriasSection() {
+export default function MateriasSection({ columns, limit }) {
+
   const [news, setNews] = React.useState([]);
 
   React.useEffect(() => {
@@ -17,38 +17,44 @@ export default function MateriasSection() {
   }, []);
 
   return (
-    <Grid container spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-      {news.map((noticia, key) => (
+    <Grid container spacing={{ xs: 3, md: 4 }} columns={columns}>
+      {news.slice(0, limit).map((noticia, key) => (
         <Grid item xs={6} key={key}>
-          <Grid container spacing={1} className="items-center">
-            <Grid item xs={5}>
-              <Image src={`https://www.oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`} width={200} height={100} className="rounded-2xl" />
-            </Grid>
-            <Grid item xs={7}>
-              <Box className="h-full flex flex-col justify-between">
-                <Box>
-                  <Typography variant="overline" className="bg-volks-blue-800 px-4 text-white rounded">
-                    {noticia.Nome}
-                  </Typography>
+          {console.log(noticia)}
+          <Link href={`/noticia/${noticia.SlugCategoria}/${noticia.SlugNoticia}`}>
+            <Grid container spacing={1} className="items-center h-full">
+              <Grid item xs={5}>
+                <Box sx={{ height: 150, overflow: 'hidden', position: 'relative' }} className="rounded-2xl">
+                  <Image src={`https://www.oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`} layout="fill" style={{ objectFit: 'cover' }} />
                 </Box>
-                <Box className="flex flex-col">
-                  <Typography variant="title" className="font-bold">
-                    {noticia.Titulo}
-                  </Typography>
-                  <Typography variant="caption" className="text-gray-500">
-                    {`${noticia.Autor} - ${formatDate(noticia.DataPostagem)}`}
-                  </Typography>
+              </Grid>
+              <Grid item xs={7} className="h-full">
+                <Box className="flex flex-col h-full justify-between">
                   <Box>
-                    <Link href="">
-                      <Typography variant="caption" className="text-volks-blue-800 flex items-center">
-                        saiba mais<ArrowRightAltOutlined />
-                      </Typography>
-                    </Link>
+                    <Typography variant="overline" className="bg-volks-blue-800 px-4 text-white rounded">
+                      {noticia.Nome}
+                    </Typography>
+                  </Box>
+                  <Box className="flex flex-col">
+                    <Typography variant="title" className="font-bold">
+                      {noticia.Titulo}
+                    </Typography>
+                    <Typography variant="caption" className="text-gray-500">
+                      {`${noticia.Autor} - ${formatDate(noticia.DataPostagem)}`}
+                    </Typography>
+                    <Box>
+                      <Link href="">
+                        <Typography variant="caption" className="text-volks-blue-800 flex items-center">
+                          saiba mais<ArrowRightAltOutlined />
+                        </Typography>
+                      </Link>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            </Grid>
-          </Grid>  
+              </Grid>
+            </Grid>  
+          </Link>
+
         </Grid>
       ))}
     </Grid>

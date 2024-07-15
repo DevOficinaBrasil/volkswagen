@@ -32,6 +32,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.oficinabrasil.com.br",
       },
+      {
+        protocol: "https",
+        hostname: "uploads.vw-mms.de",
+      }
     ],
   },
 };

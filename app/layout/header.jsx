@@ -20,14 +20,8 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
-  const [training, setTraining] = useState(null);
-  const [trainings, setTrainings] = useState();
   const [aoVivo, setAoVivo] = useState();
   const { onLive } = useContext(LiveContext);
-
-  useEffect(() => {
-    // console.log(aoVivo);
-  }, [aoVivo]);
 
   useEffect(() => {
     setAoVivo(onLive);
@@ -148,10 +142,10 @@ export default function Header() {
 
   return (
     <>
-      <Box className="flex flex-row items-center justify-center p-5">
+      <Box className="sm:flex flex-row items-center justify-center p-5">
         <Box className="flex-1"></Box>
 
-        <Box className="shrink-0 z-40">
+        <Box className="flex justify-center shrink-0 z-40 mb-5 sm:mb-0">
           <Link href="/">
             <Image src={logo} width={250} height={200} alt="card" />
           </Link>
@@ -176,7 +170,7 @@ export default function Header() {
           <Grid item>
             <Link
               href="/treinamento"
-              className="hover:text-volks-blue-800 ease-in-out duration-200"
+              className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase"
             >
               Treinamentos
             </Link>
@@ -184,7 +178,7 @@ export default function Header() {
           <Grid item>
             <Link
               href="/#economy"
-              className="hover:text-volks-blue-800 ease-in-out duration-200"
+              className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase"
             >
               Catálogo Economy
             </Link>
@@ -192,7 +186,7 @@ export default function Header() {
           <Grid item>
             <Link
               href="/noticia/volkswagen"
-              className="hover:text-volks-blue-800 ease-in-out duration-200"
+              className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase"
             >
               Notícias
             </Link>

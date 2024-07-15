@@ -7,16 +7,13 @@ export async function GET(req) {
   const user = cookies().get("context");
 
   if (jwt) {
-    const request = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/trainings/${user.value}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + jwt.value,
-        },
-        cache: "no-store",
-      }
-    );
+    const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/trainings/${user.value}`,{
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + jwt.value,
+      },
+      cache: "no-store",
+    });
 
     const response = await request.json();
 

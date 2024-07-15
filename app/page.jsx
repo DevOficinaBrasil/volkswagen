@@ -2,57 +2,36 @@
 
 import {
   Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Divider,
   Grid,
-  Typography,
 } from "@mui/material";
 import Cards from "./components/card";
 import Hero from "./components/hero";
 import Title from "./components/title";
 import Pieces from "./components/pieces";
-import Cover from "./components/cover";
-import CoverBox from "./components/coverBox";
-import CoverBoxMobile from "./components/coverBoxMobile";
 
 import VideosHome from "./components/VideosHome";
 
 import SubBanner from "./components/subBanner";
-import Videos from "./components/videos";
-import Video from "./components/video";
-import HeroCard from "./components/heroCard";
 import useWindowSize from "@/app/hooks/useWindowsSize";
 import { useContext, useEffect, useState } from "react";
 import HeroMobile from "./components/heroMobile";
 import SubBannerMobile from "./components/subBannerMobile";
-import HeroCardMobile from "./components/heroCardMobile";
-import CoverMobile from "./components/coverMobile";
 import PiecesMobile from "./components/piecesMobile";
 
 import banner from "@/images/banner.png";
 import economy from "@/images/economy.png";
-import cardImage1 from "@/images/card-image-1.png";
-import cardImage2 from "@/images/card-image-2.png";
-import cardImage3 from "@/images/card-image-3.png";
-import partsBanner1 from "@/images/parts-banner-1.png";
 import partsCover1 from "@/images/parts-cover-1.png";
 import partsCover2 from "@/images/parts-cover-2.png";
 import partsCover3 from "@/images/parts-cover-3.png";
 import partsCover4 from "@/images/parts-cover-4.png";
-import PdfComponent from "./components/pdfCompnent";
-import PdfTextEditor from "./components/pdfCompnent";
-import Link from "next/link";
 import Agenda from "./components/agenda";
-import { East } from "@mui/icons-material";
 import MateriasSection from "./components/materiasSection";
 import UltimasEdicoes from "./components/ultimasEdicoes";
 import LiveContext from "@/src/contexts/LiveContext";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import UserContext from "@/src/contexts/UserContext";
+import Layout from "./layout/Layout";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
@@ -98,79 +77,35 @@ export default function Home() {
       setMobile(false);
     }
   }, [windowSize]);
-  const className = mobile
-    ? "flex flex-col gap-5 my-10 px-5"
-    : "flex flex-col gap-5 my-10 px-28";
 
   return (
     <div>
-      {!mobile && (
-        <Hero
-          title="A importância do Óleo Certo para o motor - Maxi Performance"
-          subtitle="3º Treinamento"
-          dateTime="Dia 04 de Julho  | às 19:30"
-          background={banner}
-        ></Hero>
-      )}
+      <Hero mobile={mobile} />
 
-      {mobile && (
-        <>
-          <HeroMobile
-            title="A importância do Óleo Certo para o motor - Maxi Performance"
-            subtitle="3º Treinamento"
-            dateTime="Dia 04 de Julho | às 19:30"
-            background={banner}
-          ></HeroMobile>
-          <div
-            style={{
-              height: 30,
-            }}
-          ></div>
-        </>
-      )}
-
-      <main className={className}>
+      <Layout>
         <Box>
           <Title title="Agenda 2024" />
         </Box>
         <Agenda />
 
-        {/* 
-        <Videos>
-          <Video url="https://placehold.co/1360x768" />
-          <Video url="https://placehold.co/1360x768" />
-          <Video url="https://placehold.co/1360x768" />
-        </Videos>
-        */}
-
-        <Box>
-          <Title title="Videos Técnicos" />
-        </Box>
-
-        <div className="flex">
+        <Box className="flex my-20">
           <VideosHome />
-        </div>
+        </Box>
 
         <Box>
           <Title title="Notícias" />
         </Box>
 
         <Box>
-          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            <Grid item xs={8}>
-              <MateriasSection />
+          <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid item xs={9}>
+              <MateriasSection limit={6} columns={{ xs: 4, sm: 8, md: 12 }} />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <UltimasEdicoes />
             </Grid>
           </Grid>
         </Box>
-
-        {/* 
-        <div className="lg:col-span-12 xl:col-span-4 2xl:col-span-4 col-span-12 flex flex-col gap-5 justify-between ">
-          <UltimasEdicoes />
-        </div> 
-        */}
 
         {mobile ? (
           <SubBannerMobile title="Economy" subtitle="Catálogo" image={economy}>
@@ -293,7 +228,7 @@ export default function Home() {
             </Cards>
           </Pieces>
         )}
-      </main>
+      </Layout>
     </div>
   );
 }
