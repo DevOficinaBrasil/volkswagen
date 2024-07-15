@@ -44,7 +44,7 @@ export default function Home() {
   useEffect(() => {
     if (onLive == 1 && didOpen == 0) {
       Swal.fire({
-        title: "TREINAMENTO AO VIVO",
+        title: "TREINAMENTO",
         color: "red",
         // text: "Aguarde...",
         didOpen: () => {

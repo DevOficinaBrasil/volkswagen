@@ -197,7 +197,7 @@ export default function Header() {
                 href={isAuthenticated ? "/treinamento-ao-vivo" : "/login"}
                 className="blink"
               >
-                TREINAMENTO AO VIVO
+                TREINAMENTO
               </Link>
             </Grid>
           ) : null}
