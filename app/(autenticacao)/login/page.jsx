@@ -4,21 +4,19 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import Avatar from "@mui/material/Avatar";
-import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Alert } from "@mui/material";
+import { Alert, Button, Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import VolksButton from "@/app/components/defaultButton";
 import { deleteTokens } from "../handler";
 import useRedirectPage from "@/app/hooks/useRedirect";
 import UserContext from "@/src/contexts/UserContext";
+import VolksButton from "@/app/components/defaultButton";
+import logo from "@/images/VW.png"
+import Image from "next/image";
+
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -72,96 +70,92 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <Image
-              src="https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png"
-              width={150}
-              height={150}
-              alt=""
-            />
-          </Avatar>
-
-          <Typography component="h1" variant="h5">
-            Acessar
-          </Typography>
-
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
+      <Container>
+        <Grid container spacing={{ xs: 2, sm: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} className="py-28 flex justify-center items-center">
+          <Grid item xs={5}>
+            <Typography variant="h4" className="uppercase font-bold relative inline-block"
               sx={{
-                "& .MuiOutlinedInput-root": {
-                  backgroundColor: "#F8F8F8",
-                  "& fieldset": { border: "none" },
-                },
+                '::before': {
+                  content: '""',
+                  zIndex: -1,
+                  bottom: -2,
+                  right: -2,
+                  width: '55%',
+                  height: '25px',
+                  borderRadius: 1,
+                  position: 'absolute',
+                  backgroundColor: '#01B9FE',
+                }
               }}
-            />
+              gutterBottom
+            >
+              Faça o login
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "#F8F8F8",
+                    "& fieldset": { border: "none" },
+                  },
+                }}
+              />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  backgroundColor: "#F8F8F8",
-                  "& fieldset": { border: "none" },
-                },
-              }}
-            />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Senha"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "#F8F8F8",
+                    "& fieldset": { border: "none" },
+                  },
+                }}
+              />
 
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Lembrar senha"
-            />
+              {alert && <Alert severity="error">{alert}</Alert>}
 
-            {alert && <Alert severity="error">{alert}</Alert>}
+              <Button type="submit" fullWidth className="text-black shadow-md mt-4 p-5 text-xs">
+                Acessar
+              </Button>
 
-            <VolksButton type="submit" fullWidth>
-              Login
-            </VolksButton>
-
-            <Grid container>
-              <Grid item xs>
+              <Box container className="mt-5">
                 <Link href="/reset-password" variant="body2">
                   Esqueceu a senha?
                 </Link>
-              </Grid>
+              </Box>
+            </Box>
+          </Grid>
 
-              <Grid item>
-                <Link href="/cadastro" variant="body2">
-                  {"Ainda não tem uma conta? Cadastre-se"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
+          <Grid item xs={7}>
+            <Box className="bg-gray-50 pl-10 pr-5 py-16 rounded-2xl relative">
+              <Typography className="uppercase" variant="body2" gutterBottom>Não possui cadastro ainda?</Typography>
+              <Typography className="uppercase font-bold" variant="h4">Cadastre no treinamento Volkswagen</Typography>
+              <Typography className="uppercase mt-8">Venha aprender com especialistas de uma das maiores montadoras do país</Typography>
+
+              <VolksButton variant="contained" className="p-4 mt-8 font-bold" fullWidth>
+                Cadastre-se
+              </VolksButton>
+
+              <Box className="absolute p-5 rounded-2xl" sx={{ backgroundColor: '#02346B', right: -20, top: -20, }}>
+                <Image src={logo} width={70} height={70} />
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
       </Container>
     </ThemeProvider>
   );

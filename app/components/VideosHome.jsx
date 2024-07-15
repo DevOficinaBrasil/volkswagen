@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import Link from "next/link";
 import "./style/arrowTreinamentos.css";
+import { Box } from "@mui/material";
 
 const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
@@ -83,24 +84,24 @@ const VideosHome = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-900 to-blue-950 h-full w-full rounded-xl flex flex-col justify-between shadow-xl shadow-slate-300">
-      <div className=" bg-blue-600 text-white w-fit p-3 ml-8 text-lg font-semibold">
-        VÍDEOS VW
-      </div>
-      <div className="lg:px-0 py-4">
+    <Box className="bg-gradient-to-r from-blue-900 to-blue-950 h-full w-full rounded-2xl flex flex-col justify-between shadow-xl shadow-slate-300">
+      <Box className="text-white w-fit py-3 px-5 ml-8 text-lg font-semibold uppercase" sx={{ backgroundColor: '#0090FF' }}>
+        Vídeos Técnicos
+      </Box>
+      <Box className="lg:px-0 py-8">
         <Slider
           {...settings}
           className="bg-transparent max-h-full px-0"
           arrows={true}
         >
           {videosCarrosel?.data?.map((video, key) => (
-            <div key={key} className="flex flex-col hover:scale-105 px-2">
+            <Box key={key} className="flex flex-col px-5 py-5">
               {video.TipoVideo == "Y" && (
                 <Link
                   className=""
                   href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
                 >
-                  <div
+                  <Box
                     className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center "
                     style={{
                       backgroundImage:
@@ -113,46 +114,38 @@ const VideosHome = () => {
                    className='text-white shadow-lg'
                    fontSize='large'
                  /> */}
-                  </div>
-                  <div className="text-white font-semibold line-clamp-2">
+                  </Box>
+                  <Box className="text-white font-semibold line-clamp-2">
                     {video.Titulo}
-                  </div>
+                  </Box>
                 </Link>
               )}
 
               {video.TipoVideo == "V" && (
                 <Link
-                  className=""
                   href={"/video/" + video.SlugCategoria + "/" + video.Codigo}
                 >
-                  <div
-                    className="bg-cover bg-center min-h-52 rounded-lg shadow-lg flex justify-center items-center"
+                  <Box
+                    className="bg-cover bg-center aspect-video hover:scale-105 duration-300 rounded-2xl shadow-lg flex justify-center items-center"
                     style={{
                       backgroundImage: `url('${vimeoThumbnails[video.Imagem] || ''}')`,
                     }}
                   >
-                    {/* <PlayArrowRoundedIcon className="text-white shadow-lg" fontSize="large" /> */}
-                  </div>
-                  <div className="text-white font-semibold line-clamp-2">
-                    {video.Titulo}
-                  </div>
+                  </Box>
                 </Link>
               )}
-            </div>
+            </Box>
           ))}
         </Slider>
-      </div>
-      <div className="w-full p-5 self-center ">
-        <a href="https://www.youtube.com/watch?v=foo_BrEiBRE">
-          <Button
-            variant="contained"
-            className="text-white font-bold w-full bg-from-blue-60 hover:scale-95"
-          >
-            SE INSCREVA
+      </Box>
+      <Box className="w-full p-5 text-center">
+        <Link href="https://www.youtube.com/watch?v=foo_BrEiBRE">
+          <Button variant="contained" className="text-white font-bold w-3/6" sx={{ backgroundColor: '#0090FF', ':hover': { backgroundColor: '#056ADA' } }}>
+            Se inscreva
           </Button>
-        </a>
-      </div>
-    </div>
+        </Link>
+      </Box>
+    </Box>
   );
 };
 // href={"/video/" + video.SlugCategoria + "/" + video.VideoID}
