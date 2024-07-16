@@ -146,9 +146,11 @@ export default function SignIn() {
               <Typography className="uppercase font-bold" variant="h4">Cadastre no treinamento Volkswagen</Typography>
               <Typography className="uppercase mt-8">Venha aprender com especialistas de uma das maiores montadoras do país</Typography>
 
-              <VolksButton variant="contained" className="p-4 mt-8 font-bold" fullWidth>
-                Cadastre-se
-              </VolksButton>
+              <Link href="/cadastro">
+                <VolksButton variant="contained" className="p-4 mt-8 font-bold" fullWidth>
+                  Cadastre-se
+                </VolksButton>
+              </Link>
 
               <Box className="absolute p-2 sm:p-5 rounded-2xl sm:-right-8 sm:-top-8 -right-0 -top-5" sx={{ backgroundColor: '#02346B', }}>
                 <Image src={logo} width={60} height={60} />

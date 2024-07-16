@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import Link from "next/link";
 import "./style/arrowTreinamentos.css";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
@@ -132,6 +132,7 @@ const VideosHome = () => {
                     }}
                   >
                   </Box>
+                  <Typography variant="subtitle2" className="text-white mt-5">{video.Titulo}</Typography>
                 </Link>
               )}
             </Box>

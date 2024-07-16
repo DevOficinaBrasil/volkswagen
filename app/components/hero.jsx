@@ -6,8 +6,10 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import MateriasSection from "./materiasSection";
-import logo from "@/images/VW.png"
+import logo from "@/images/VW.png";
 import Image from "next/image";
+import cover1 from "@/images/Home_NO_Shell.png";
+import Link from "next/link";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -16,7 +18,7 @@ const images = [
         training: '3º Treinamento',
         title: 'A importância do Óleo Certo para o motor - Maxi Performance',
         date: '04 de JUlho | às 19:30',
-        imgPath: 'https://uploads.vw-mms.de/system/production/images/vwn/038/132/images/3b63173cda7e9f4b5f4be3498945af5eda94974c/DB2021AU00686_web_1600.jpg?1658139524',
+        imgPath: 'blob:https://adminoficinabrasil-my.sharepoint.com/4d6d0e56-5a56-4f37-becc-0366335dc695',
     },
 ];
 
@@ -36,11 +38,11 @@ export default function Hero(props) {
     const handleStepChange = (step) => {
       setActiveStep(step);
     };
-
+    
   return (
     <Box>
         <Box>
-            <Grid container className="flex items-center">
+            <Grid container className="flex items-center mt-10">
                 <Grid item xs={12} sm={7}>
                     <Box className="p-5 sm:p-14">
                         <AutoPlaySwipeableViews
@@ -51,22 +53,24 @@ export default function Hero(props) {
                             className="rounded-2xl"
                         >
                             {images.map((step, index) => (
-                            <Box key={step.label} className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 650 } }}>
-                                {Math.abs(activeStep - index) <= 2 ? (
-                                <Box
-                                    component="img"
-                                    sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
-                                    src={step.imgPath}
-                                    alt={step.title}
-                                />
-                                ) : null}
-                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', }}></Box>
-                                <Box className="absolute bottom-5 left-5 sm:bottom-10 sm:left-10">
-                                    <Typography variant="h4" sx={{ color: '#0090FF', fontSize: { xs: '1.5rem' } }} className="font-bold" gutterBottom>{step.training}</Typography>
-                                    <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem' } }} className="text-white">{step.title}</Typography>
-                                    <Typography variant="overline" className="text-white">{step.date}</Typography>
+                            <Link href="/treinamento">
+                                <Box key={step.label} className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 500 } }}>
+                                    {Math.abs(activeStep - index) <= 2 ? (
+                                    <Box
+                                        component="img"
+                                        sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'fill' }}
+                                        src={cover1.src}//{step.imgPath}
+                                        alt={step.title}
+                                    />
+                                    ) : null}
+                                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', }}></Box>
+                                    <Box className="absolute bottom-5 left-5 sm:bottom-10 sm:left-10">
+                                        <Typography variant="h4" sx={{ color: '#0090FF', fontSize: { xs: '1.5rem' } }} className="font-bold" gutterBottom>{step.training}</Typography>
+                                        <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem' } }} className="text-white">{step.title}</Typography>
+                                        <Typography variant="overline" className="text-white">{step.date}</Typography>
+                                    </Box>
                                 </Box>
-                            </Box>
+                            </Link>
                             ))}
                         </AutoPlaySwipeableViews>
                         <MobileStepper
