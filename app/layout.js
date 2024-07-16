@@ -1,13 +1,13 @@
 import "./globals.css";
 import { UserProvider } from "@/src/contexts/UserContext";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { LiveProvider } from "@/src/contexts/LiveContext";
 import GoogleAnalytcsScripts from "./components/googleAnalyticsScript";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Notícias Oficina VW",

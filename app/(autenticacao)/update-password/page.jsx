@@ -34,7 +34,7 @@ export default function SignIn(){
 
     const formData = new FormData(event.currentTarget);
 
-    const request = await fetch('/api/reset',{
+    const request = await fetch('/api/resetPassword',{
       method: 'POST',
       body: formData,
     })
