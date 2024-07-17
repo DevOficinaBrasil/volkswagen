@@ -43,9 +43,9 @@ export default function Training() {
       </Box>
       <Box className="flex flex-row gap-5">
         <Box className="grow">
-          <Card sx={{ maxWidth: 650 }}>
+          <Card className="rounded-2xl">
             <CardMedia
-              sx={{ height: 250 }}
+              sx={{ height: 300 }}
               image={training.cover}
               title="green iguana"
             />
