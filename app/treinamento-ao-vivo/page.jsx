@@ -137,7 +137,7 @@ function TreinamentoAoVivo() {
                   }
                 }
               }}>
-                <Typography variant="h4" className="sm:text-white font-bold mb-5 pr-28" sx={{ textShadow: '0px 4px 5px rgba(0,0,0,0.25)' }}>Tema: {training.name}</Typography>
+                <Typography variant="h4" className="sm:text-white font-bold mb-5" sx={{ textShadow: '0px 4px 5px rgba(0,0,0,0.25)', paddingRight: '40%' }}>Tema: {training.name}</Typography>
                 <iframe src={training.live_url}
                   frameborder="0"
                   allow="autoplay;
