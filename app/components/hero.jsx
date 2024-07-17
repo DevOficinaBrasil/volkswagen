@@ -54,7 +54,7 @@ export default function Hero(props) {
                         >
                             {images.map((step, index) => (
                             <Link key={step.label} href="/treinamento">
-                                <Box className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 500 } }}>
+                                <Box className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 550 } }}>
                                     {Math.abs(activeStep - index) <= 2 ? (
                                     <Box
                                         component="img"

@@ -28,16 +28,32 @@ const Page = async (url) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         position: 'relative',
-        height: 650,
+        height: 550,
       }}>
         <Box className="absolute sm:bottom-20 sm:left-40">
-          <Typography variant="h2" className="uppercase font-bold text-white">Notícias</Typography>
-          <Typography variant="h3" className="uppercase font-bold text-white">Volkswagen</Typography>
+          <Typography variant="h1" className="uppercase font-bold text-white" sx={{ fontSize: {
+              xs: '3rem',
+              sm: '3.5rem',
+              md: '4rem',
+              lg: '4.5rem',
+              xl: '5rem',
+          }}}>
+            Notícias
+          </Typography>
+          <Typography variant="h1" className="uppercase font-bold text-white"  sx={{ fontSize: {
+              xs: '3rem',
+              sm: '3.5rem',
+              md: '4rem',
+              lg: '4.5rem',
+              xl: '5rem',
+          }}}>
+            Volkswagen
+          </Typography>
         </Box>
       </Box>
 
-      <Box>
-        <Grid container className="sm:px-28 pb-28 flex justify-center">
+      <Box className="relative -mt-20">
+        <Grid container className="sm:px-28 px-5 pb-28 flex justify-center"  spacing={{ xs: 4, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
           {result.data.map((infos, index) => (
             <Grid item xs={3} key={index} className="w-full">
               <CardNoticia news={infos} />
