@@ -65,7 +65,7 @@ export default function RedirectPage() {
     return `Dia ${dia} de ${meses[mes]} de ${ano}`;
   }
   return (
-    <main className="flex flex-col gap-5 px-5">
+    <main className="flex flex-col gap-5 mb-20">
       <ToastContainer />
       <Box className="relative flex flex-col justify-center items-center lg:py-20">
         <Typography

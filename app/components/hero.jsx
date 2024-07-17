@@ -53,8 +53,8 @@ export default function Hero(props) {
                             className="rounded-2xl"
                         >
                             {images.map((step, index) => (
-                            <Link href="/treinamento">
-                                <Box key={step.label} className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 500 } }}>
+                            <Link key={step.label} href="/treinamento">
+                                <Box className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 500 } }}>
                                     {Math.abs(activeStep - index) <= 2 ? (
                                     <Box
                                         component="img"

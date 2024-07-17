@@ -37,9 +37,9 @@ const Page = async (url) => {
       </Box>
 
       <Box>
-        <Grid container className="sm:px-28 pb-28 flex justify-center" spacing={{ xs: 5, sm: 10 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid container className="sm:px-28 pb-28 flex justify-center">
           {result.data.map((infos, index) => (
-            <Grid item xs={3} sx={{ paddingTop: '20px !important', mb: 5 }} key={index}>
+            <Grid item xs={3} key={index} className="w-full">
               <CardNoticia news={infos} />
             </Grid>
           ))}
