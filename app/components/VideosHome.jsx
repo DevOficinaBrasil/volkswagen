@@ -8,6 +8,7 @@ import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import Link from "next/link";
 import "./style/arrowTreinamentos.css";
 import { Box, Typography } from "@mui/material";
+import coverVW from "@/images/capaVW.jpg"
 
 const VideosHome = () => {
   const [videosCarrosel, setVideosCarrosel] = useState([]);
@@ -128,7 +129,7 @@ const VideosHome = () => {
                   <Box
                     className="bg-cover bg-center aspect-video hover:scale-105 duration-300 rounded-2xl shadow-lg flex justify-center items-center"
                     style={{
-                      backgroundImage: `url('${vimeoThumbnails[video.Imagem] || ''}')`,
+                      backgroundImage: `url('${vimeoThumbnails[video.Imagem] || coverVW.src}')`,
                     }}
                   >
                   </Box>
