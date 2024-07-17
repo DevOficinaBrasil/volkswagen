@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import CardNoticia from "@/app/components/cardNoticia";
+import Link from "next/link";
 
 const Page = async (url) => {
   const apiUrl = "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/noticia/getByCategorySlug" +
@@ -56,7 +57,9 @@ const Page = async (url) => {
         <Grid container className="sm:px-28 px-5 pb-28 flex justify-center"  spacing={{ xs: 4, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
           {result.data.map((infos, index) => (
             <Grid item xs={3} key={index} className="w-full">
-              <CardNoticia news={infos} />
+              <Link href={`/noticia/${infos.SlugCategoria}/${infos.SlugNoticia}`}>
+                <CardNoticia news={infos} />
+              </Link>
             </Grid>
           ))}
         </Grid>
