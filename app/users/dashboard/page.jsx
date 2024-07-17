@@ -13,6 +13,7 @@ import Image from "next/image";
 import { CardMembership } from "@mui/icons-material";
 import moment from "moment";
 import PdfTextEditor from "@/app/components/pdfCompnent";
+import SubscribeModal from "@/app/components/subscribe";
 
 export default function Dashboard() {
   const [trainings, setTrainings] = React.useState([]);
@@ -153,7 +154,7 @@ export default function Dashboard() {
       <ToastContainer />
       {verifySubscribed ? (
         Object.keys(groupByYear).map(year => (
-          <Box className="my-5">
+          <Box className="my-5" key={year}>
             <TitleTraining>Treinamento {year}</TitleTraining>
             {groupByYear[year].map(item => (
               <CardTraining key={item.id} title={item.name} date={item.date} infos={item}></CardTraining>
