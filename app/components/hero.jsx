@@ -65,12 +65,12 @@ export default function Hero(props) {
                                         alt={step.title}
                                     />
                                     ) : null}
-                                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', }}></Box>
-                                    <Box className="absolute bottom-5 left-5 sm:bottom-10 sm:left-10">
+                                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', }}></Box>
+                                    {/*<Box className="absolute bottom-5 left-5 sm:bottom-10 sm:left-10">
                                         <Typography variant="h4" sx={{ color: '#0090FF', fontSize: { xs: '1.5rem' } }} className="font-bold" gutterBottom>{step.training}</Typography>
                                         <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem' } }} className="text-white">{step.title}</Typography>
                                         <Typography variant="overline" className="text-white">{step.date}</Typography>
-                                    </Box>
+                                    </Box>*/}
                                 </Box>
                             </Box>
                             ))}

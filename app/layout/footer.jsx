@@ -33,24 +33,32 @@ export default function Footer() {
           <Grid item xs={5}>
             <Grid container className="h-full">
               <Grid item xs={3}>
-                <Box sx={{ backgroundColor: '#3A559F' }} className="h-full flex items-center justify-center p-5 sm:p-0">
-                  <Facebook className="text-white" fontSize="large" />
-                </Box>
+                <Link href="https://www.facebook.com/JornalOficinaBrasilOficial">
+                  <Box sx={{ backgroundColor: '#3A559F' }} className="h-full flex items-center justify-center p-5 sm:p-0">
+                    <Facebook className="text-white" fontSize="large" />
+                  </Box>
+                </Link>
               </Grid>
               <Grid item xs={3}>
-                <Box sx={{ backgroundColor: '#007AB9' }} className="h-full flex items-center justify-center">
-                  <LinkedIn className="text-white" fontSize="large" />
-                </Box>
+                <Link href="https://www.linkedin.com/company/24995424/admin/feed/posts/">
+                  <Box sx={{ backgroundColor: '#007AB9' }} className="h-full flex items-center justify-center">
+                    <LinkedIn className="text-white" fontSize="large" />
+                  </Box>
+                </Link>
               </Grid>
               <Grid item xs={3}>
-                <Box sx={{ backgroundColor: '#FF0000' }} className="h-full flex items-center justify-center">
-                  <YouTube className="text-white" fontSize="large" />
-                </Box>
+                <Link href="https://www.youtube.com/@TVOficinaBrasil">
+                  <Box sx={{ backgroundColor: '#FF0000' }} className="h-full flex items-center justify-center">
+                    <YouTube className="text-white" fontSize="large" />
+                  </Box>
+                </Link>
               </Grid>
               <Grid item xs={3}>
-                <Box sx={{ background: 'linear-gradient(45deg, rgba(254,173,48,1) 0%, rgba(205,18,169,1) 100%)' }} className="h-full flex items-center justify-center">
-                  <Instagram className="text-white" fontSize="large" />
-                </Box>
+                <Link href="https://www.instagram.com/jornalob/">
+                  <Box sx={{ background: 'linear-gradient(45deg, rgba(254,173,48,1) 0%, rgba(205,18,169,1) 100%)' }} className="h-full flex items-center justify-center">
+                    <Instagram className="text-white" fontSize="large" />
+                  </Box>
+                </Link>
               </Grid>
             </Grid>
           </Grid>
