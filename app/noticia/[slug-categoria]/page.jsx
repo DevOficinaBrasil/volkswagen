@@ -41,7 +41,7 @@ const Page = async (url) => {
           }}}>
             Notícias
           </Typography>
-          <Typography variant="h1" className="uppercase font-bold text-white"  sx={{ fontSize: {
+          <Typography variant="h1" className="uppercase font-bold text-white" sx={{ fontSize: {
               xs: '3rem',
               sm: '3.5rem',
               md: '4rem',
