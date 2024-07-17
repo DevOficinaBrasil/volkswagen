@@ -87,7 +87,7 @@ const VideosHome = () => {
   return (
     <Box className="bg-gradient-to-r from-blue-900 to-blue-950 h-full w-full rounded-2xl flex flex-col justify-between shadow-xl shadow-slate-300">
       <Box className="text-white w-fit py-3 px-5 ml-8 text-lg font-semibold uppercase" sx={{ backgroundColor: '#0090FF' }}>
-        Vídeos Técnicos
+        Dicas Técnicos
       </Box>
       <Box className="lg:px-0 py-8">
         <Slider
@@ -143,7 +143,7 @@ const VideosHome = () => {
       <Box className="w-full p-5 text-center">
         <Link href="https://www.youtube.com/watch?v=foo_BrEiBRE">
           <Button variant="contained" className="text-white font-bold w-3/6" sx={{ backgroundColor: '#0090FF', ':hover': { backgroundColor: '#056ADA' } }}>
-            Se inscreva
+            Confira todos os vídeos
           </Button>
         </Link>
       </Box>
