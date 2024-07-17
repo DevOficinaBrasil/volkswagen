@@ -27,6 +27,7 @@ import {
   TextField,
 } from "@mui/material";
 import UserContext from "@/src/contexts/UserContext";
+import Layout from "@/app/layout/Layout";
 
 const defaultTheme = createTheme();
 
@@ -144,7 +145,7 @@ export default function GeneralSheet({ params }) {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="md">
+      <Layout>
         <ToastContainer />
         <CssBaseline />
         {training && training.certify == "1" ? (
@@ -349,7 +350,7 @@ export default function GeneralSheet({ params }) {
             </Box>
           </Box>
         )}
-      </Container>
+      </Layout>
     </ThemeProvider>
   );
 }
