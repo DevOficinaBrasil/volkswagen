@@ -152,9 +152,10 @@ function TreinamentoAoVivo() {
             <Grid item xs={5}>
               <Box className="sm:px-10">
                 <Typography className="text-center font-bold uppercase text-sm">
-                  Mensagens sujeitas a aprovação do administrador
+                  Chat disponível apenas durante o treinamento ao vivo
+                  {/*Mensagens sujeitas a aprovação do administrador*/}
                 </Typography>
-                <Chat />
+                {/*<Chat />*/}
               </Box>
             </Grid>
           </Grid>
