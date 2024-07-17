@@ -1,5 +1,6 @@
 import React from "react";
 import MoreEditions from "../../components/MoreEditions";
+import Layout from "@/app/layout/Layout";
 const page = async (url) => {
   const data = await fetch(
     "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/edicao/" +
@@ -18,7 +19,7 @@ const page = async (url) => {
   }
 
   return (
-    <div className="container px-28">
+    <Layout>
       <div className="grid grid-cols-12 gap-10 mt-10">
         <div className="lg:col-span-10 col-span-12">
           <div className="font-semibold text-volks-blue-800 text-3xl ">
@@ -35,7 +36,7 @@ const page = async (url) => {
           <MoreEditions />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
