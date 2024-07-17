@@ -14,8 +14,6 @@ const PdfTextEditor = ({ training }) => {
 
   const { userData } = useContext(UserContext);
 
-  console.log(training);
-
   useEffect(() => {
     const verifySheet = async () => {
       const request = await fetch(`/api/verifySheet?training=${training.id}`, {
@@ -195,6 +193,7 @@ const PdfTextEditor = ({ training }) => {
     router.push(`/users/ficha/${id}`);
   };
 
+  console.log(training.PreencheuFicha);
   return (
     <div>
       {/* {existSheet ?
@@ -208,9 +207,9 @@ const PdfTextEditor = ({ training }) => {
       } */}
       {training.TreinamentoParticipou == 1 ? (
         training.PreencheuFicha == 1 ? (
-          <VolksButton onClick={handleAddTextToPdf} spacing={{ m: 0 }}>
+          <Button onClick={handleAddTextToPdf} startIcon={<CardMembership />} className="text-black shadow-md bg-gradient-to-r from-gray-200 to-bg-white font-light px-5">
             Gerar certificado
-          </VolksButton>
+          </Button>
         ) : (
           <VolksButton
             onClick={

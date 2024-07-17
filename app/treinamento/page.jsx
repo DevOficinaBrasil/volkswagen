@@ -2,11 +2,12 @@
 // @refresh reset
 
 import * as React from "react";
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Grid, List, ListItem, Paper, Typography } from "@mui/material";
 import SubscribeModal from "../components/subscribe";
 import moment from "moment";
 import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
+import Layout from "../layout/Layout";
 
 export default function Training() {
   const [trainings, setTrainings] = React.useState([]);
@@ -36,131 +37,75 @@ export default function Training() {
   }, []);
 
   return (
-    <main className="flex flex-col gap-5 px-5">
-      <ToastContainer />
-      <Box className="relative py-10 flex justify-center items-center rounded-xl mt-5" sx={{
-        backgroundImage: `url(${kombiHeader.src})`,
-        backgroundPosition: 'right',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-      }}>
-        <Box className="z-1">
-          <Typography variant="h3" className="text-white font-bold ">Treinamento</Typography>
+    <Layout>
+      <Box className="text-center">
+        <Typography variant="h3" className="font-bold text-volks-blue-900">Treinamento</Typography>
+      </Box>
+      <Box className="flex flex-row gap-5">
+        <Box className="grow">
+          <Card sx={{ maxWidth: 650 }}>
+            <CardMedia
+              sx={{ height: 250 }}
+              image={training.cover}
+              title="green iguana"
+            />
+            <CardContent sx={{ backgroundColor: '#02346B' }} className="text-white">
+              <Typography variant="h5" className="font-bold">
+                Treinamento - Volkswagen
+              </Typography>
+              <Typography variant="h6">
+                {training.name}
+              </Typography>
+
+              <Box className="mt-5">
+                <Typography variant="subtitle2" gutterBottom>
+                  {moment(training.date).format("DD/MM/YYYY")}
+                </Typography>
+                <Button variant="contained" fullWidth>Se inscreva</Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+        <Box className="grow">
+          <Box className="p-5 h-full">
+            <Box>
+              <Typography variant="h5" className="font-bold uppercase">Cronograma</Typography>
+            </Box>
+            <Box className="h-full">
+              <List className="h-full flex flex-col justify-between">
+                <ListItem className="">
+                  <Paper className="w-full flex justify-between p-5">
+                    <Typography className="font-bold text-neutral-600">19:30</Typography>
+                    <Typography>Introdução</Typography>
+                    <Typography className="font-bold text-neutral-600">30 min</Typography>
+                  </Paper>
+                </ListItem>
+                <ListItem className="flex justify-between">
+                  <Paper className="w-full flex justify-between p-5">
+                    <Typography className="font-bold text-neutral-600">20:30</Typography>
+                    <Typography>Intervalo</Typography>
+                    <Typography className="font-bold text-neutral-600">30 min</Typography>
+                  </Paper>
+                </ListItem>
+                <ListItem className="flex justify-between">
+                  <Paper className="w-full flex justify-between p-5">
+                    <Typography className="font-bold text-neutral-600">21:00</Typography>
+                    <Typography>Encerramento</Typography>
+                    <Typography className="font-bold text-neutral-600">30 min</Typography>
+                  </Paper>
+                </ListItem>
+                <ListItem className="flex justify-between">
+                  <Paper className="w-full flex justify-between p-5">
+                    <Typography className="font-bold text-neutral-600">21:30</Typography>
+                    <Typography>Emissão dos certificados</Typography>
+                    <Typography className="font-bold text-neutral-600">30 min</Typography>
+                  </Paper>
+                </ListItem>
+              </List>
+            </Box>
+          </Box>
         </Box>
       </Box>
-
-      <Box className="lg:px-40">
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
-          <Grid item xs={6}>
-            <Box className="flex flex-col items-center gap-5">
-              <Box className="bg-volks-grey-100 rounded-md font-bold py-1 px-3 shadow-md">
-                <Typography className="text-volks-blue-900 font-bold ">Todos os treinamentos</Typography>
-              </Box>
-              <Box className=" hidden bg-slate-200 shadow shadow-slate-500 rounded-xl w-full font-bold text-blue-900 py-1 px-5 mx-10 max-h-32 overflow-y-auto">
-                {trainings.map((training, key) => (
-                  <Box key={key} className="my-3">
-                    <span className="">
-                      Data: {moment(training.date).format("DD/MM/YYYY")} -
-                    </span>
-                    <span className="font-normal"> {training.name}</span>
-                  </Box>
-                ))}
-              </Box>
-
-              <Box className="bg-blue-900 flex flex-col gap-y-5 w-full rounded-xl py-10 px-5 shadow shadow-slate-500">
-                <Box className="text-white text-center font-bold text-2xl lg:text-4xl">
-                  Treinamento
-                </Box>
-                <Box className="text-center text-white font-semibold lg:text-3xl">
-                  <Typography variant="h5">
-                    {training.name}
-                  </Typography>
-                </Box>
-                <Box className="text-center text-white lg:text-3xl text-xl">
-                  <Typography>
-                    {moment(training.date).format("DD/MM/YYYY")} - às 19:30
-                  </Typography>
-                </Box>
-
-                <Box className="w-full flex justify-center">
-                  <SubscribeModal content={training} type={"insert"}>
-                    Fazer Inscrição
-                  </SubscribeModal>
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box className="flex flex-col items-center gap-5">
-              <Box className="bg-volks-blue-900 rounded-md font-bold py-1 px-3 shadow-md">
-                <Typography className="text-volks-grey-100 font-bold">Cronograma</Typography>
-              </Box>
-
-              <Box className="bg-slate-200 shadow-lg rounded-tr-xl rounded-bl-xl flex flex-col gap-y-5 justify-center text-blue-900 w-full lg:px-10 px-4 py-12">
-                <Box className="w-full flex items-center justify-between text-xl">
-                  <Box className="font-bold ">19h30</Box>
-
-                  <Box className="font-extralight flex flex-col items-center">
-                    Início
-                  </Box>
-
-                  <Box className="font-bold">60 min</Box>
-                </Box>
-
-                <Divider className="border-blue-900" />
-
-                <Box className="w-full flex items-center justify-between text-xl">
-                  <Box className="font-bold ">20h30</Box>
-
-                  <Box className="font-extralight flex flex-col items-center">
-                    Intervalo
-                  </Box>
-
-                  <Box className="font-bold">20 min</Box>
-
-                </Box>
-
-                <Divider className="border-blue-900" />
-
-                <Box className="w-full flex items-center justify-between text-xl">
-                  <Box className="font-bold ">21h20</Box>
-
-                  <Box className="font-extralight flex flex-col items-center text-center">
-                    Emissão dos certificados
-                  </Box>
-
-                  <Box className="font-bold">30 min</Box>
-
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-    </main>
-  );
-}
-
-function DescriptionCard(props) {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "#023489",
-        color: "white",
-        borderRadius: 3,
-        py: 2,
-        px: 3,
-      }}
-    >
-      <Typography
-        variant="h5"
-        className="flex items-center gap-x-2 font-semibold"
-      >
-        {props.icon} {props.description}
-      </Typography>
-      <Typography variant="body1" className="font-thin">
-        {props.content}
-      </Typography>
-    </Box>
+    </Layout>
   );
 }

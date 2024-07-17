@@ -596,7 +596,7 @@ export default function HorizontalLinearStepper() {
       <Container component="main" maxWidth="md">
         <ToastContainer />
         <CssBaseline />
-        <Box sx={{ marginTop: 8 }}>
+        <Box sx={{ marginY: 20 }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               sx={{

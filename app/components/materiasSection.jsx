@@ -20,7 +20,6 @@ export default function MateriasSection({ columns, limit }) {
     <Grid container spacing={{ xs: 3, md: 4 }} columns={columns}>
       {news.slice(0, limit).map((noticia, key) => (
         <Grid item xs={6} key={key}>
-          {console.log(noticia)}
           <Link href={`/noticia/${noticia.SlugCategoria}/${noticia.SlugNoticia}`}>
             <Grid container spacing={1} className="items-center h-full">
               <Grid item xs={5}>
