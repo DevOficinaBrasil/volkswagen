@@ -10,6 +10,7 @@ import logo from "@/images/VW.png";
 import Image from "next/image";
 import cover1 from "@/images/Home_NO_Shell.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -26,6 +27,7 @@ export default function Hero(props) {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = images.length;
+    const router = useRouter()
   
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -53,7 +55,7 @@ export default function Hero(props) {
                             className="rounded-2xl"
                         >
                             {images.map((step, index) => (
-                            <Link key={step.label} href="/treinamento-ao-vivo">
+                            <Box key={step.label} onClick={() => {router.push("/treinamento-ao-vivo")}} className="cursor-pointer">
                                 <Box className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 550 } }}>
                                     {Math.abs(activeStep - index) <= 2 ? (
                                     <Box
@@ -70,7 +72,7 @@ export default function Hero(props) {
                                         <Typography variant="overline" className="text-white">{step.date}</Typography>
                                     </Box>
                                 </Box>
-                            </Link>
+                            </Box>
                             ))}
                         </AutoPlaySwipeableViews>
                         <MobileStepper
