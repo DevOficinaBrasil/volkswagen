@@ -19,7 +19,7 @@ const images = [
         training: '3º Treinamento',
         title: 'A importância do Óleo Certo para o motor - Maxi Performance',
         date: '04 de JUlho | às 19:30',
-        imgPath: 'blob:https://adminoficinabrasil-my.sharepoint.com/4d6d0e56-5a56-4f37-becc-0366335dc695',
+        imgPath: 'https://uploads.vw-mms.de/system/production/images/vwn/082/251/images/8fef328a5dcbb1c7e076011e3d9d49cf4927e82d/DB2024AU01163_web_1160.jpg?1720018311',
     },
 ];
 
@@ -56,7 +56,7 @@ export default function Hero(props) {
                         >
                             {images.map((step, index) => (
                             <Box key={step.label} onClick={() => {router.push("/treinamento-ao-vivo")}} className="cursor-pointer">
-                                <Box className="relative overflow-hidden" sx={{ height: { xs: 350, sm: 550 } }}>
+                                <Box className="relative overflow-hidden aspect-video">
                                     {Math.abs(activeStep - index) <= 2 ? (
                                     <Box
                                         component="img"
