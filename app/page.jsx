@@ -83,9 +83,6 @@ export default function Home() {
       <Hero mobile={mobile} />
 
       <Layout>
-        <Box>
-          <Title title="Agenda 2024" />
-        </Box>
         <Agenda />
 
         <Box className="flex my-20">
