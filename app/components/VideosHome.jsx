@@ -201,7 +201,7 @@ const VideosHome = () => {
               ))}
             </Slider>
           </Box>
-          <Box className="w-full pb-5 text-center">
+          <Box className="w-full py-5 text-center">
             <Link href="https://www.youtube.com/watch?v=foo_BrEiBRE">
               <Button variant="contained" className="text-white font-bold w-3/6" sx={{ backgroundColor: '#0090FF', ':hover': { backgroundColor: '#056ADA' } }}>
                 Confira todos os vídeos
