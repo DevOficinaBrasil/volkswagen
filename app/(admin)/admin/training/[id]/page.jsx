@@ -22,7 +22,7 @@ export default function Page({ params }) {
   React.useEffect(() => {
     const getTrainings = async () => {
       const request = await fetch(
-        `/api/usersOnTraining?training=${params.id}`,
+        `/api/getUsersOnTraining?training=${params.id}`,
         {
           method: "GET",
         }
