@@ -15,7 +15,7 @@ const defaultTheme = createTheme({
 const Layout = ({ children }, props) => {
     return(
         <ThemeProvider theme={defaultTheme}>
-            <div className='flex flex-col gap-5 my-10 p-5 sm:p-28'>
+            <div className='flex flex-col gap-5 my-10 p-5 sm:px-28 sm:py-12'>
                 {children}
             </div>
         </ThemeProvider>

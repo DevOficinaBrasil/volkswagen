@@ -21,13 +21,13 @@ export default function MateriasSection({ columns, limit }) {
       {news.slice(0, limit).map((noticia, key) => (
         <Grid item xs={6} key={key}>
           <Link href={`/noticia/${noticia.SlugCategoria}/${noticia.SlugNoticia}`}>
-            <Grid container spacing={1} className="items-center h-full">
-              <Grid item xs={5}>
-                <Box sx={{ height: 150, overflow: 'hidden', position: 'relative' }} className="rounded-2xl">
+            <Grid container spacing={2} columns={{ xs: 4, md: 8, lg: 12 }}className="items-center justify-center h-full">
+              <Grid item xs={3}>
+                <Box sx={{ overflow: 'hidden', position: 'relative' }} className="rounded-2xl aspect-video">
                   <Image src={`https://www.oficinabrasil.com.br/api/noticiaImages?img=${noticia.Imagem}`} layout="fill" style={{ objectFit: 'cover' }} />
                 </Box>
               </Grid>
-              <Grid item xs={7} className="h-full">
+              <Grid item xs={9} className="lg:h-full">
                 <Box className="flex flex-col h-full justify-between">
                   <Box>
                     <Typography variant="overline" className="bg-volks-blue-800 px-4 text-white rounded">
