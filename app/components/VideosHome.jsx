@@ -213,9 +213,9 @@ const VideosHome = () => {
       <Grid item xs={12} sm={5}>
         <Box className="w-full flex flex-col justify-between">
           <Box className="px-5">
-            <Typography className="font-bold uppercase">Últimos Treinamentos</Typography>
+            <Typography variant="h5" className="font-bold uppercase">Últimos Treinamentos</Typography>
           </Box>
-          <Box className="lg:px-0 pt-2">
+          <Box className="lg:px-0">
             <Slider
               {...settingsTraining}
               arrows={true}
