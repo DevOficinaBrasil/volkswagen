@@ -61,7 +61,7 @@ export default function Training() {
                 <Typography variant="subtitle2" gutterBottom>
                   {moment(training.date).format("DD/MM/YYYY")}
                 </Typography>
-                <Button variant="contained" fullWidth>Se inscreva</Button>
+                <SubscribeModal content={training} type="insert" fullWidth>Se inscreva</SubscribeModal>
               </Box>
             </CardContent>
           </Card>

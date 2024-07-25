@@ -26,7 +26,7 @@ import { Route } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import moment from "moment";
 
-export default function SubscribeModal(props) {
+export default function SubscribeModal({fullWidth, content, concessionaire, type, id, children}) {
   const { isAuthenticated, userData } = React.useContext(UserContext);
   const [concessionairesInfos, setConcessionairesInfos] = React.useState(null);
   const [concessionaires, setConcessionaires] = React.useState([]);
@@ -51,10 +51,10 @@ export default function SubscribeModal(props) {
   });
 
   const estadosCidade = {};
-  const date = moment(props.content.date).format("DD/MM/YYYY");
-  const concessionaireAddress = props.concessionaire
-    ? props.concessionaire.concessionaires
-    : props.content.concessionaires;
+  const date = moment(content.date).format("DD/MM/YYYY");
+  const concessionaireAddress = concessionaire
+    ? concessionaire.concessionaires
+    : content.concessionaires;
 
   React.useEffect(() => {
     if (userData) {
@@ -107,7 +107,7 @@ export default function SubscribeModal(props) {
 
     if (event.target.value != "") {
       const request = await fetch(
-        `/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}&training=${props.content.id}`,
+        `/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}&training=${content.id}`,
         {
           method: "GET",
         }
@@ -145,7 +145,7 @@ export default function SubscribeModal(props) {
 
       setFormData((prevFormData) => ({
         ...prevFormData,
-        trainingID: props.content.id,
+        trainingID: content.id,
         concessionaire_state: "",
         concessionaire_city: "",
         concessionaire: "",
@@ -181,7 +181,7 @@ export default function SubscribeModal(props) {
       setFormData((prev) => ({
         ...prev,
         concessionaireID: concessionaires[event.target.value].id,
-        trainingID: props.content.id,
+        trainingID: content.id,
       }));
 
       if (concessionaires[event.target.value].vacancies > 0) {
@@ -205,13 +205,13 @@ export default function SubscribeModal(props) {
       }
     }
 
-    if (props.type == "insert") {
+    if (type == "insert") {
       request = await fetch("/api/registerTraining", {
         method: "POST",
         body: sendFormData,
       });
     } else {
-      sendFormData.append("id", props.id);
+      sendFormData.append("id", id);
 
       request = await fetch("/api/updateTraining", {
         method: "PUT",
@@ -268,7 +268,7 @@ export default function SubscribeModal(props) {
             <Typography className="">{date}</Typography>
           </Grid>
           <Grid item xs={6}>
-            {props.type == "insert" ? (
+            {type == "insert" ? (
               <Button variant="outlined" onClick={handleSubmit}>
                 Fazer Inscrição!
               </Button>
@@ -290,8 +290,9 @@ export default function SubscribeModal(props) {
         onClick={() => {
           isAuthenticated ? handleOpen() : router.push("/login");
         }}
+        fullWidth={fullWidth}
       >
-        {props.children}
+        {children}
       </Button>
       <Modal
         open={open}
