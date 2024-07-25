@@ -1,8 +1,8 @@
 // handlers.js
 
-export const handleSearchDocument = async (event, setValue) => {
+export const handleSearchDocument = async (event, setValue, setVerifyIfExist) => {
   if (event.target.value.length >= 14) {
-    const data = "cpf=" + encodeURIComponent(event.target.value);
+    const data = "document=" + encodeURIComponent(event.target.value);
 
     try {
       const request = await fetch(
@@ -17,18 +17,26 @@ export const handleSearchDocument = async (event, setValue) => {
           },
         }
       );
-
+      
       if (!request.ok) {
-        throw new Error("Network response was not ok");
+        const response = await request.json();
+
+        throw new Error(response);
       }
 
       const response = await request.json();
-
+      
       setValue("name", response.Nome);
       setValue("phone", response.Celular);
       setValue("born_at", response.Nascimento);
       setValue("email", response.Email);
     } catch (error) {
+      const bool = error.message.toLowerCase() === 'true'
+
+      if(bool){
+        setVerifyIfExist(true)
+      }
+
       setValue("name", "");
       setValue("phone", "");
       setValue("born_at", "");
@@ -39,6 +47,8 @@ export const handleSearchDocument = async (event, setValue) => {
     setValue("phone", "");
     setValue("born_at", "");
     setValue("email", "");
+
+    setVerifyIfExist(false)
   }
 };
 

@@ -36,14 +36,15 @@ import {
 } from "@mui/material";
 import Title from "@/app/components/title";
 import { escape } from "querystring";
-
-const steps = ["Cadastro básico", "Adicionar endereço", "Informações finais"];
+import { verify } from "crypto";
+import Link from "next/link";
 
 const defaultTheme = createTheme();
 
 export default function HorizontalLinearStepper() {
   const router = useRouter();
   const [alert, setAlert] = React.useState(null);
+  const [verifyIfExist, setVerifyIfExist] = React.useState(false)
   const [address, setAddress] = React.useState("");
   const [autoRepairAddress, setAutoRepairAddress] = React.useState("");
   const [formRender, setformRender] = React.useState(0);
@@ -622,7 +623,7 @@ export default function HorizontalLinearStepper() {
                     control={control}
                     {...register("document", {
                       onChange: (event) =>
-                        handleSearchDocument(event, setValue),
+                        handleSearchDocument(event, setValue, setVerifyIfExist),
                     })}
                     render={({ field }) => (
                       <TextField
@@ -648,7 +649,13 @@ export default function HorizontalLinearStepper() {
                     )}
                   />
                 </Grid>
+              </Grid>
+            </Box>
 
+            {!verifyIfExist ? 
+            <>
+            <Box noValidate sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Controller
                     name="name"
@@ -1328,6 +1335,17 @@ export default function HorizontalLinearStepper() {
                 {isLoading ? "Enviando..." : "Finalizar"}
               </Button>
             </Box>
+            </>:
+              <Box className="mt-5">
+                <Box className="text-center">
+                  <Typography variant="h6" className="text-volks-blue-900 font-bold" gutterBottom>Encontramos seu cadastro na nossa base, como deseja prosseguir?</Typography>
+                </Box>
+                <Box className="flex justify-around">
+                  <Link href="/login">Fazer login</Link>
+                  <Link href="/reset-password">Recuperar senha</Link>
+                </Box>
+              </Box>
+            }
           </form>
         </Box>
       </Container>
