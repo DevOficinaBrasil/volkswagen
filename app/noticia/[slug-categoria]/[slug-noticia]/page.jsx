@@ -72,7 +72,12 @@ const Noticia = (url) => {
 
     img{
       width: 30%;
-      border-radius: 20px
+      border-radius: 20px;
+      margin: 50px 0;
+
+      @media (max-width: 768px){
+        width: 100%;
+      }
     }
   `;
 
