@@ -208,7 +208,6 @@ export default function HorizontalLinearStepper() {
     deleteOldTokens();
   }, []);
 
-
   React.useEffect(() => {
     const arraySearch = locations.estados.filter((object) =>
       Object.keys(cityState).includes(object.sigla)
@@ -221,7 +220,6 @@ export default function HorizontalLinearStepper() {
 
     setstateName(arrayFind);
   }, [cityState]);
-
 
   React.useEffect(() => {
     if (autoRepairAddress) {
@@ -288,18 +286,20 @@ export default function HorizontalLinearStepper() {
   const onSubmit = async (data) => {
     setIsLoading(true);
 
-    if (watch("mode") == "online") {
-      try {
-        const request = await fetch(
-          process.env.NEXT_PUBLIC_API_URL + "/createUserConecta",
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-          }
-        );
-      } catch (e) {
-        console.log("erro", e);
-      }
+    try {
+      const request = await fetch(
+        "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/saveVW",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+
+      const data = await request.json();
+      router.push("/realizado");
+    } catch (e) {
+      setIsLoading(false);
+      console.log("erro", e);
     }
   };
 
