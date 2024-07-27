@@ -38,6 +38,7 @@ import Title from "@/app/components/title";
 import { escape } from "querystring";
 import { verify } from "crypto";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 const defaultTheme = createTheme();
 
@@ -295,8 +296,16 @@ export default function HorizontalLinearStepper() {
         }
       );
 
-      const data = await request.json();
-      router.push("/realizado");
+      const volt = await request.json();
+
+      if (volt.status) {
+        router.push("/realizado");
+      } else {
+        Swal.fire({
+          title: "erro, tente novamente",
+          icon: "error",
+        });
+      }
     } catch (e) {
       setIsLoading(false);
       console.log("erro", e);
