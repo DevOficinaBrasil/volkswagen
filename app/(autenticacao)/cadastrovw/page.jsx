@@ -291,6 +291,9 @@ export default function HorizontalLinearStepper() {
       const request = await fetch(
         "https://apiob.oficinabrasil.com.br/Backend-jornalOficinaBrasil/server.php/api/saveVW",
         {
+          headers: {
+            "Content-Type": "application/json",
+          },
           method: "POST",
           body: JSON.stringify(data),
         }
