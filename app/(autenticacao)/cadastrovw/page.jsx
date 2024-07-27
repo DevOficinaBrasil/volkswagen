@@ -302,7 +302,10 @@ export default function HorizontalLinearStepper() {
       const volt = await request.json();
 
       if (volt.status) {
-        router.push("/realizado");
+        Swal.fire({
+          title: "Cadastro Realiazado!",
+          icon: "success",
+        });
       } else {
         Swal.fire({
           title: "erro, tente novamente",
