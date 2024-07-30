@@ -992,249 +992,253 @@ export default function HorizontalLinearStepper() {
                     )}
                   />
                 </Grid>
-
-                <Grid item xs={12} sm={12}>
-                  <Typography
-                    className="m-5 text-volks-blue-900 font-bold text-center"
-                    component="h1"
-                    variant="h5"
-                  >
-                    Inscreva-se - {training && training.name}
-                  </Typography>
-                  <FormControl
-                    onChange={(event) => {
-                      // console.log(event);
-                    }}
-                    fullWidth
-                  >
-                    {/* <InputLabel id="mode-select-label">
-                          Escolha o modo
-                        </InputLabel> */}
-                    <FormLabel component="legend">Escolha o modo</FormLabel>
-                    <Controller
-                      name="mode"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <RadioGroup {...field}>
-                          <FormControlLabel
-                            value="online"
-                            control={<Radio />}
-                            label="Online"
-                          />
-                          <FormControlLabel
-                            className="mt-2"
-                            value="presencial"
-                            control={<Radio />}
-                            label={`Presencial`}
-                          />{" "}
-                        </RadioGroup>
-                      )}
-                    />
-                  </FormControl>
-                  {errors.training && (
-                    <div className="ml-2 text-red-600">
-                      {errors.training.message}
-                    </div>
-                  )}
-                </Grid>
-                {training && renderForm == false && (
-                  <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
-                    <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
-                      Informações:
-                    </Typography>
-                    <Typography className=" text-slate-500 text-xl mt-2">
-                      {training.name}
-                    </Typography>
-                    <Typography className=" text-slate-500 text-xl mt-2">
-                      {convertDate(training.date)}
-                    </Typography>
-                  </div>
-                )}
-                {renderForm && (
-                  <Grid container spacing={2} className="mt-2">
-                    <Grid item xs={12} sm={6}>
-                      <Controller
-                        name="concessionaire_state"
-                        rules={{ required: "Campo obrigatório" }}
-                        control={control}
-                        render={({ field }) => (
-                          <FormControl fullWidth>
-                            <InputLabel id="Estado">Estado</InputLabel>
-                            <Select
-                              className="bg-[#F8F8F8]"
-                              {...field}
-                              label="Estado"
-                              labelId="Estado"
-                              id="Estado"
-                              onChange={handleStateChange}
-                              sx={{
-                                backgroundColor: "#F8F8F8",
-                                "& .MuiOutlinedInput-notchedOutline": {
-                                  border: "none",
-                                },
-                              }}
-                              error={!!errors.concessionaire_state}
-                              // onChange={(value) => {
-
-                              //   // console.log(value.target.value);
-                              // }}
-                            >
-                              {stateName.map((estado) => (
-                                <MenuItem
-                                  key={estado.sigla}
-                                  value={estado.sigla}
-                                >
-                                  {estado.nome}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        )}
-                      />
-                      {errors.concessionaire_state && (
-                        <div className="ml-2 text-red-600">
-                          {errors.concessionaire_state.message}
-                        </div>
-                      )}
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <Controller
-                        name="concessionaire_city"
-                        rules={{ required: "Campo obrigatório" }}
-                        control={control}
-                        render={({ field }) => (
-                          <FormControl fullWidth>
-                            <InputLabel id="city">Cidade</InputLabel>
-                            <Select
-                              className="bg-[#F8F8F8]"
-                              {...field}
-                              onChange={handleGetConcessionaire}
-                              label="Estado"
-                              labelId="Estado"
-                              id="Estado"
-                              error={!!errors.concessionaire_city}
-                              sx={{
-                                backgroundColor: "#F8F8F8",
-                                "& .MuiOutlinedInput-notchedOutline": {
-                                  border: "none",
-                                },
-                              }}
-                              // onChange={(value) => {
-
-                              //   // console.log(value.target.value);
-                              // }}
-                            >
-                              {cities.map((cidade) => (
-                                <MenuItem key={cidade} value={cidade}>
-                                  {cidade}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        )}
-                      />
-                      {errors.concessionaire_city && (
-                        <div className="ml-2 text-red-600">
-                          {errors.concessionaire_city.message}
-                        </div>
-                      )}
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                      <Controller
-                        name="concessionaire"
-                        rules={{ required: "Campo obrigatório" }}
-                        control={control}
-                        render={({ field }) => (
-                          <FormControl fullWidth>
-                            <InputLabel id="city">Concessionaria</InputLabel>
-                            <Select
-                              className="bg-[#F8F8F8]"
-                              {...field}
-                              onChange={handleConcessionaireChange}
-                              label="Concessionaria"
-                              labelId="Concessionaria"
-                              id="Concessionaria"
-                              error={!!errors.concessionaire}
-                              sx={{
-                                backgroundColor: "#F8F8F8",
-                                "& .MuiOutlinedInput-notchedOutline": {
-                                  border: "none",
-                                },
-                              }}
-                              // onChange={(value) => {
-
-                              //   // console.log(value.target.value);
-                              // }}
-                            >
-                              {concessionaires.map((concessionaire) => (
-                                <MenuItem
-                                  key={concessionaire.fantasy_name}
-                                  value={concessionaire}
-                                >
-                                  {concessionaire.fantasy_name}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        )}
-                      />
-
-                      {errors.concessionaire && (
-                        <div className="ml-2 text-red-600">
-                          {errors.concessionaire.message}
-                        </div>
-                      )}
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                      {concessionaires &&
-                      concessionaire &&
-                      concessionaire.vacancies > 0 ? (
-                        <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
-                          <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
-                            Endereço da concessionária -{" "}
-                            <span className="text-slate-500">
-                              VAGAS RESTANTES: {concessionaire.vacancies}
-                            </span>
-                          </Typography>
-                          <Typography className=" text-slate-500 text-xl mt-2">
-                            {concessionaire.fantasy_name}
-                          </Typography>
-                          <Typography className=" text-slate-500 text-xl mt-2">
-                            <span className="font-bold">Cep:</span>{" "}
-                            {concessionaire.address &&
-                              concessionaire.address.cep}
-                          </Typography>
-                          <Typography className=" text-slate-500 text-xl mt-2">
-                            <span className="font-bold">Rua:</span>{" "}
-                            {concessionaire.address &&
-                              concessionaire.address.street}
-                            ,{" "}
-                            {concessionaire.address &&
-                              concessionaire.address.number}
-                          </Typography>
-                          {concessionaire.address &&
-                          concessionaire.address.complement ? (
-                            <Typography>
-                              {concessionaire.address.complement}
-                            </Typography>
-                          ) : null}
-                        </div>
-                      ) : (
-                        watch("concessionaire") && (
-                          <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
-                            <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
-                              SEM VAGAS
-                            </Typography>
-                          </div>
-                        )
-                      )}
-                    </Grid>
-                  </Grid>
-                )}
               </Grid>
             </Box>
+
+            {training &&
+            <Box>
+              <Grid item xs={12} sm={12}>
+                <Typography
+                  className="m-5 text-volks-blue-900 font-bold text-center"
+                  component="h1"
+                  variant="h5"
+                >
+                  Inscreva-se - {training.name}
+                </Typography>
+                <FormControl
+                  onChange={(event) => {
+                    // console.log(event);
+                  }}
+                  fullWidth
+                >
+                  {/* <InputLabel id="mode-select-label">
+                        Escolha o modo
+                      </InputLabel> */}
+                  <FormLabel component="legend">Escolha o modo</FormLabel>
+                  <Controller
+                    name="mode"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <RadioGroup {...field}>
+                        <FormControlLabel
+                          value="online"
+                          control={<Radio />}
+                          label="Online"
+                        />
+                        <FormControlLabel
+                          className="mt-2"
+                          value="presencial"
+                          control={<Radio />}
+                          label={`Presencial`}
+                        />{" "}
+                      </RadioGroup>
+                    )}
+                  />
+                </FormControl>
+                {errors.training && (
+                  <div className="ml-2 text-red-600">
+                    {errors.training.message}
+                  </div>
+                )}
+              </Grid>
+              {training && renderForm == false && (
+                <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
+                  <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
+                    Informações:
+                  </Typography>
+                  <Typography className=" text-slate-500 text-xl mt-2">
+                    {training.name}
+                  </Typography>
+                  <Typography className=" text-slate-500 text-xl mt-2">
+                    {convertDate(training.date)}
+                  </Typography>
+                </div>
+              )}
+              {renderForm && (
+                <Grid container spacing={2} className="mt-2">
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="concessionaire_state"
+                      rules={{ required: "Campo obrigatório" }}
+                      control={control}
+                      render={({ field }) => (
+                        <FormControl fullWidth>
+                          <InputLabel id="Estado">Estado</InputLabel>
+                          <Select
+                            className="bg-[#F8F8F8]"
+                            {...field}
+                            label="Estado"
+                            labelId="Estado"
+                            id="Estado"
+                            onChange={handleStateChange}
+                            sx={{
+                              backgroundColor: "#F8F8F8",
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                border: "none",
+                              },
+                            }}
+                            error={!!errors.concessionaire_state}
+                            // onChange={(value) => {
+
+                            //   // console.log(value.target.value);
+                            // }}
+                          >
+                            {stateName.map((estado) => (
+                              <MenuItem
+                                key={estado.sigla}
+                                value={estado.sigla}
+                              >
+                                {estado.nome}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+                    {errors.concessionaire_state && (
+                      <div className="ml-2 text-red-600">
+                        {errors.concessionaire_state.message}
+                      </div>
+                    )}
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="concessionaire_city"
+                      rules={{ required: "Campo obrigatório" }}
+                      control={control}
+                      render={({ field }) => (
+                        <FormControl fullWidth>
+                          <InputLabel id="city">Cidade</InputLabel>
+                          <Select
+                            className="bg-[#F8F8F8]"
+                            {...field}
+                            onChange={handleGetConcessionaire}
+                            label="Estado"
+                            labelId="Estado"
+                            id="Estado"
+                            error={!!errors.concessionaire_city}
+                            sx={{
+                              backgroundColor: "#F8F8F8",
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                border: "none",
+                              },
+                            }}
+                            // onChange={(value) => {
+
+                            //   // console.log(value.target.value);
+                            // }}
+                          >
+                            {cities.map((cidade) => (
+                              <MenuItem key={cidade} value={cidade}>
+                                {cidade}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+                    {errors.concessionaire_city && (
+                      <div className="ml-2 text-red-600">
+                        {errors.concessionaire_city.message}
+                      </div>
+                    )}
+                  </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <Controller
+                      name="concessionaire"
+                      rules={{ required: "Campo obrigatório" }}
+                      control={control}
+                      render={({ field }) => (
+                        <FormControl fullWidth>
+                          <InputLabel id="city">Concessionaria</InputLabel>
+                          <Select
+                            className="bg-[#F8F8F8]"
+                            {...field}
+                            onChange={handleConcessionaireChange}
+                            label="Concessionaria"
+                            labelId="Concessionaria"
+                            id="Concessionaria"
+                            error={!!errors.concessionaire}
+                            sx={{
+                              backgroundColor: "#F8F8F8",
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                border: "none",
+                              },
+                            }}
+                            // onChange={(value) => {
+
+                            //   // console.log(value.target.value);
+                            // }}
+                          >
+                            {concessionaires.map((concessionaire) => (
+                              <MenuItem
+                                key={concessionaire.fantasy_name}
+                                value={concessionaire}
+                              >
+                                {concessionaire.fantasy_name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+
+                    {errors.concessionaire && (
+                      <div className="ml-2 text-red-600">
+                        {errors.concessionaire.message}
+                      </div>
+                    )}
+                  </Grid>
+                  <Grid item xs={12} sm={12}>
+                    {concessionaires &&
+                    concessionaire &&
+                    concessionaire.vacancies > 0 ? (
+                      <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
+                        <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
+                          Endereço da concessionária -{" "}
+                          <span className="text-slate-500">
+                            VAGAS RESTANTES: {concessionaire.vacancies}
+                          </span>
+                        </Typography>
+                        <Typography className=" text-slate-500 text-xl mt-2">
+                          {concessionaire.fantasy_name}
+                        </Typography>
+                        <Typography className=" text-slate-500 text-xl mt-2">
+                          <span className="font-bold">Cep:</span>{" "}
+                          {concessionaire.address &&
+                            concessionaire.address.cep}
+                        </Typography>
+                        <Typography className=" text-slate-500 text-xl mt-2">
+                          <span className="font-bold">Rua:</span>{" "}
+                          {concessionaire.address &&
+                            concessionaire.address.street}
+                          ,{" "}
+                          {concessionaire.address &&
+                            concessionaire.address.number}
+                        </Typography>
+                        {concessionaire.address &&
+                        concessionaire.address.complement ? (
+                          <Typography>
+                            {concessionaire.address.complement}
+                          </Typography>
+                        ) : null}
+                      </div>
+                    ) : (
+                      watch("concessionaire") && (
+                        <div className="border-4 border-volks-blue-800 border-opacity-50 rounded-xl px-5 py-2">
+                          <Typography className="font-extrabold text-volks-blue-800 mb-3 text-lg text-left">
+                            SEM VAGAS
+                          </Typography>
+                        </div>
+                      )
+                    )}
+                  </Grid>
+                </Grid>
+              )}
+            </Box>
+            }
 
             <Box
               sx={{
