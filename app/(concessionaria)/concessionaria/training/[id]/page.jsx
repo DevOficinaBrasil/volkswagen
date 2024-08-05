@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import UserContext from '@/src/contexts/UserContext';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Box, Button, Container, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import Title from '../../components/Title';
 
 export default function Page({ params }) {
     const [users, setUsers] = React.useState([])
@@ -74,49 +75,45 @@ export default function Page({ params }) {
                 <ToastContainer />
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
+                        <Title>Usuários cadastrados</Title>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                            <React.Fragment>
-                                <Box className="flex justify-between">
-                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                                        Usuários presenciais nesse treinamento
+                            <Box className="flex justify-between">
+                                <Box className="text-right">
+                                    <Typography variant="h6" className="font-bold" gutterBottom>
+                                        Total de inscritos: {totalUsers}
                                     </Typography>
-                                    <Box className="text-right">
-                                        <Typography component="h2" variant="h6" color="secondary" gutterBottom>
-                                            Total de inscritos: {totalUsers}
-                                        </Typography>
-                                    </Box>
                                 </Box>
-                                <Table size="small">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>ID</TableCell>
-                                            <TableCell>Nome</TableCell>
-                                            <TableCell >CPF</TableCell>
-                                            <TableCell >Telefone</TableCell>
-                                            <TableCell >Email</TableCell>
-                                            <TableCell align="right">CPF</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                    {users.map((row) => (
-                                        <TableRow key={row.id}>
-                                            <TableCell className='font-bold'>#{row.id}</TableCell>
-                                            <TableCell>{row.name}</TableCell>
-                                            <TableCell>{row.document}</TableCell>
-                                            <TableCell>{row.phone}</TableCell>
-                                            <TableCell>{row.email}</TableCell>
-                                            <TableCell align="right">
-                                            {Boolean(parseInt(row.trainings[0].pivot.presence)) ?
-                                                <Button variant="text" onClick={() => handleInfos(row.id)}>Retirar presença</Button>
-                                                :
-                                                <Button variant="text" onClick={() => handleInfos(row.id)}>Marcar presença</Button>
-                                            }
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                    </TableBody>
-                                </Table>
-                            </React.Fragment>
+                            </Box>
+                            <Table size="small" sx={{ '& .MuiTableHead-root': { backgroundColor: 'rgb(229, 231, 235)', overflow: "hidden" } }}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>ID</TableCell>
+                                        <TableCell>Nome</TableCell>
+                                        <TableCell >CPF</TableCell>
+                                        <TableCell >Telefone</TableCell>
+                                        <TableCell >Email</TableCell>
+                                        <TableCell align="right">CPF</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {users.map((row) => (
+                                    <TableRow key={row.id}>
+                                        <TableCell className='font-bold'>#{row.id}</TableCell>
+                                        <TableCell>{row.name}</TableCell>
+                                        <TableCell>{row.document}</TableCell>
+                                        <TableCell>{row.phone}</TableCell>
+                                        <TableCell>{row.email}</TableCell>
+                                        <TableCell align="right">
+                                        {Boolean(parseInt(row.trainings[0].pivot.presence)) ?
+                                            <Button variant="text" onClick={() => handleInfos(row.id)} sx={{ backgroundColor: "rgb(239 68 68)", color: "white", borderRadius: "5px", ":hover": { backgroundColor: "rgb(220 38 38)" } }}>Retirar presença</Button>
+                                            :
+                                            <Button variant="text" onClick={() => handleInfos(row.id)} sx={{ backgroundColor: "rgb(96 165 250)", color: "white", borderRadius: "5px", ":hover": { backgroundColor: "rgb(59 130 246)" } }}>Marcar presença</Button>
+                                        }
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                                </TableBody>
+                            </Table>
                         </Paper>
                     </Grid>
                 </Grid>
