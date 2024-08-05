@@ -125,7 +125,7 @@ export default function HorizontalLinearStepper() {
 
   React.useEffect(() => {
     const getTrainings = async () => {
-      const request = await fetch("/api/trainings", {
+      const request = await fetch("/api/getTrainings", {
         method: "GET",
       });
 
@@ -555,34 +555,9 @@ export default function HorizontalLinearStepper() {
   };
   const handleConcessionaireChange = async (event) => {
     setAlert(null);
-    // handleInputChange(event);
     setValue("concessionaire", event.target.value.fantasy_name);
     setConcessionaire(event.target.value);
-
-    const data = {
-      concessionaireID: event.target.value.id,
-    };
-
-    const formData = new FormData();
-    for (const key in data) {
-      formData.append(key, data[key]);
-    }
-    const request = await fetch(`/api/getTrainingByConcessionaireId`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const response = await request.json();
-
-    // console.log(response.data[0].training_vacancies);
-    if (request.ok) {
-      setTrainings(response.data[0].training_vacancies);
-      // setMessageRender(1)
-    } else {
-      // setMessageRender(2)
-      // setInfosRender(0)
-    }
-  };
+  }
 
   React.useEffect(() => {
     if (watch("mode") == "online") {

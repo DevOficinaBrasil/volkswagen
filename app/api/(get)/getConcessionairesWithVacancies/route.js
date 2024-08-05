@@ -8,7 +8,7 @@ export async function GET(req) {
     if(jwt){
         const { searchParams } =  new URL(req.url)
         
-        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/trainings/users/${searchParams.get('training')}`, {
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/vacancies/${searchParams.get('training')}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + jwt.value
@@ -18,12 +18,12 @@ export async function GET(req) {
         
         const response = await request.json()
 
-        if( request.status != 200 ){
-            return new Response(response, {
-                status: 401,
-            })
+        if(request.ok){
+            return Response.json(response)
         }
-        
-        return Response.json(response)
+
+        return new Response(response, {
+            status: 401,
+        })
     }
 }

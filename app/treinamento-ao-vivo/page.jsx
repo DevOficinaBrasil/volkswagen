@@ -14,21 +14,14 @@ import Layout from "../layout/Layout";
 import { AddTask, CarRepair, CardMembership } from "@mui/icons-material";
 function TreinamentoAoVivo() {
   const [training, setTraining] = useState([]);
-  const [trainings, setTrainings] = useState([]);
-  const [commonUserId, setCommonUserId] = useState();
-
-  useEffect(() => {
-    // common_user_id = localStorage.getItem("user_id");
-    setCommonUserId(localStorage.getItem("user_id"));
+  
+  React.useEffect(() => {
     const getTrainings = async () => {
-      const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/trainings`,{
+      const request = await fetch("/api/getTrainings", {
         method: "GET",
-        cache: 'no-store',
       });
 
       const response = await request.json();
-      
-      setTrainings(response);
 
       if (request.ok) {
         response.map((training, index) => {
@@ -36,61 +29,27 @@ function TreinamentoAoVivo() {
             setTraining(training);
           }
         });
-      } else {
-        setTrainings(response);
       }
-      // // console.log(trainingActive);
-
-      // const data = {
-      //   training: trainingActive,
-      //   trainings: trainingInactive,
-      // };
-
-      // return trainingActive;
     };
     getTrainings();
   }, []);
 
-  useEffect(() => {
-    // training && // console.log(training.id);
-    const putPresence = async (trainingID) => {
-      const request = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/api/putTrainingPresence",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "applicattion/json",
-          },
-          body: JSON.stringify({
-            userID: localStorage.getItem("user_id"),
-            trainingID: training.id,
-          }),
-        }
-      );
+  React.useEffect(() => {
+    const postPresence = async (trainingId) => {
+      console.log(training)
+      const formData = new FormData();
 
-      const response = await request.json();
-      // trainingInactive = response;
+      formData.set("userId", localStorage.getItem("user_id"))
+      formData.set("trainingId", training.id)
 
-      // // console.log(trainingActive);
-    };
-    training && putPresence();
-  }, [training]);
-
-  const handleBannerClick = async (id, common_user_id) => {
-    const request = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/api/createBannerData",
-      {
+      await fetch("/api/addPresence",{
         method: "POST",
-        headers: {
-          "Content-Type": "applicattion/json",
-        },
-        body: JSON.stringify({
-          training_id: id,
-          common_user_id: common_user_id,
-        }),
-      }
-    );
-  };
+        body: formData,
+      });
+    };
+
+    training.id && postPresence();
+  }, [training]);
 
   return (
     <Layout>
