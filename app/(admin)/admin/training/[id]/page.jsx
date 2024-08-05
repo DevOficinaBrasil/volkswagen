@@ -40,9 +40,9 @@ export default function Page({ params }) {
 
       if (request.ok) {
         setTrainingInfo(response);
-        setCertify(response.certify);
-        setStatus(response.active);
-        setOnLive(response.on_live);
+        setCertify(Boolean(parseInt(response.certify)));
+        setStatus(Boolean(parseInt(response.active)));
+        setOnLive(Boolean(parseInt(response.on_live)));
       }
     };
 
@@ -67,7 +67,7 @@ export default function Page({ params }) {
   
   const handleTrainingStatus = async (id) => {
     const formData = new FormData();
-    console.log(status)
+
     formData.set("active", !status)
     formData.set("trainingId", id)
     
