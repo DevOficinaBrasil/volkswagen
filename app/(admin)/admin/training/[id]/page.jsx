@@ -265,12 +265,11 @@ export default function Page({ params }) {
                 <Typography variant="h5" className="font-bold uppercase mb-5">Vagas disponíveis</Typography>
                 <Box className="flex flex-col gap-5">
                 {concessionaireVacancies.map((row, index) => (
-                  <Box className="flex justify-between items-center">
+                  <Box className="flex justify-between items-center" key={index}>
                     <Box className="font-bold">#{row.concessionaire.DN}</Box>
                     <Box>{row.concessionaire.fantasy_name}</Box>
                     <Box>
                       <Controller
-                        key={index}
                         name={`vacancies.${row.id}`}
                         control={control}
                         defaultValue={`${row.vacancies}`}
