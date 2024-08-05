@@ -20,27 +20,27 @@ export default function Trainings(){
 
     function Title({ children }){
         return(
-          <Box className="flex items-center justify-center mb-3">
-            <Typography variant="h5" className="relative font-bold inline-block" sx={{
-              '::before': {
-                position: 'absolute',
-                content: '""',
-                right: -10,
-                zIndex: -1,
-                width: '72%',
-                height: '100%',
-                borderRadius: 1,
-                backgroundColor: '#01B9FE',
-              }
-            }}>
-              {children}
-            </Typography>
-            <Box className="grow">
-                <Divider sx={{ borderBottomWidth: 1, width: '80%', ml: 5 }} />
+            <Box className="flex items-center justify-center mb-3">
+                <Typography variant="h5" className="relative font-bold inline-block" sx={{
+                '::before': {
+                    position: 'absolute',
+                    content: '""',
+                    right: -10,
+                    zIndex: -1,
+                    width: '72%',
+                    height: '100%',
+                    borderRadius: 1,
+                    backgroundColor: '#01B9FE',
+                }
+                }}>
+                {children}
+                </Typography>
+                <Box className="grow">
+                    <Divider sx={{ borderBottomWidth: 1, width: '80%', ml: 5 }} />
+                </Box>
             </Box>
-          </Box>
         )
-      }
+    }
 
     React.useEffect(() => {
         if(userData){
@@ -53,7 +53,6 @@ export default function Trainings(){
     
                 if (request.ok) {
                     setTrainings(response)
-                    console.log(response)
                 }
             }
 
@@ -64,7 +63,7 @@ export default function Trainings(){
     const handleInfos = (id) => {
         router.push(`/concessionaria/training/${id}`)
     }
-
+    
     return(
         <Layout>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -80,7 +79,7 @@ export default function Trainings(){
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {trainings.map((row, index) => (
+                        {trainings.sort((a, b) => a.training_id - b.training_id).map((row, index) => (
                             <TableRow key={index}>
                                 <TableCell className="text-sky-400 font-bold">#{row.trainings.id}</TableCell>
                                 <TableCell>{row.trainings.name}</TableCell>
