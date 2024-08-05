@@ -38,6 +38,7 @@ export default function Training() {
 
   return (
     <Layout>
+      <ToastContainer/>
       <Box className="text-center">
         <Typography variant="h3" className="font-bold text-volks-blue-900">Treinamento</Typography>
       </Box>
