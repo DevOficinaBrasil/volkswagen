@@ -43,47 +43,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 const Layout = ({ children }) => {
-    const [open, setOpen] = React.useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
-
     return(
         <ThemeProvider theme={defaultTheme}>
-            <Box sx={{ display: 'flex' }}>
+            <Box className="flex">
                 <CssBaseline />
-                <Drawer variant="permanent" open={open}>
-                    <Toolbar
-                        sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        px: [1],
-                        }}
-                    >
-                        Painel Concessionária
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Toolbar>
-                    <Divider />
+                <Box className="px-6 py-7 border-r">
                     <List component="nav">
                         {mainListItems}
                     </List>
-                </Drawer>
+                </Box>
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                            ? theme.palette.grey[100]
-                            : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
                     }}
                 >
-                    <Toolbar />
                     {children}
                 </Box>
             </Box>

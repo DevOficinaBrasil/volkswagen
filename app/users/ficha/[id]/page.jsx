@@ -64,12 +64,9 @@ export default function GeneralSheet({ params }) {
 
   React.useEffect(() => {
     const getTrainings = async () => {
-      const request = await fetch(
-        "https://apivw.oficinabrasil.com.br/api/trainings",
-        {
-          method: "GET",
-        }
-      );
+      const request = await fetch("/api/getTrainings",{
+        method: "GET",
+      });
 
       const response = await request.json();
       setTrainings(response);

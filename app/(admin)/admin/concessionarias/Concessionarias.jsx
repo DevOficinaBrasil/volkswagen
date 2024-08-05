@@ -5,6 +5,7 @@ import { Bounce, toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import Layout from '../components/Layout';
 
 export default function Page() {
     const [concessionaires, setConcessionaires] = React.useState([])
@@ -68,7 +69,47 @@ export default function Page() {
     }
     
     return(
-        <React.Fragment>
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Box>
+                <Paper className="flex flex-col gap-5 p-5">
+                    <Box>
+                        <Paper className="p-5">
+                            <Typography variant="h5" className="font-bold uppercase mb-5">Concessionárias cadastradas </Typography>
+                            <Box>
+                                <Table size="small">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>ID</TableCell>
+                                            <TableCell>Nome Fantasia</TableCell>
+                                            <TableCell>CNPJ</TableCell>
+                                            <TableCell>DN</TableCell>
+                                            <TableCell>Email</TableCell>
+                                            <TableCell align="right">Acesso</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    {concessionaires.map((row) => (
+                                        <TableRow key={row.id}>
+                                            <TableCell className='font-bold'>#{row.id}</TableCell>
+                                            <TableCell>{row.fantasy_name}</TableCell>
+                                            <TableCell>{row.CNPJ}</TableCell>
+                                            <TableCell>{row.DN}</TableCell>
+                                            <TableCell>{row.email}</TableCell>
+                                            <TableCell align="right">{row.concessionaire_login_id == 0 ? <Button variant="text" onClick={() => handleInfos(row.id)}>Gerar senha</Button> : <h1>Usuário já possui acesso</h1>}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                    </TableBody>
+                                </Table> 
+                            </Box>
+                        </Paper>
+                    </Box>  
+                </Paper>
+            </Box>
+        </Container>
+    )
+}
+{/**
+    <React.Fragment>
         <ToastContainer />
             <Box className="flex justify-between">
                 <Typography component="h2" variant="h6" color="primary" gutterBottom>
@@ -99,6 +140,4 @@ export default function Page() {
                 ))}
                 </TableBody>
             </Table>
-        </React.Fragment>
-    )
-}
+        </React.Fragment> */}

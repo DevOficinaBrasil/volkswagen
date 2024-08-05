@@ -11,8 +11,9 @@ export async function GET(req) {
     
     const role = await request.json()
     
-    if(request.status == 200){
+    if(request.ok){
         let request
+
         if(role.role == 'common' || role.role == 'admin'){
             request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${user.value}`, {
                 method: 'GET',
@@ -42,7 +43,7 @@ export async function GET(req) {
         }
     }
 
-    return Response.json(false, {
+    return Response.json('Usuário não encontrado', {
         status: 404
     })
 }

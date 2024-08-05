@@ -8,8 +8,7 @@ export async function PUT(req) {
     if(jwt){
         const training =  await req.formData()
 
-        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/training/${training.get('id')}`, {
-
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/updateConcessionaireTraining/${training.get('id')}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

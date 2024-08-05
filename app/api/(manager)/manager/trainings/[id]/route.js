@@ -2,16 +2,13 @@
 
 import { cookies } from 'next/headers'
 
-export async function GET(req) {
+export async function GET(req, { params }) {
     const jwt = cookies().get('token')
 
     if(jwt){
-        const { searchParams } =  new URL(req.url)
-        
-        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/manager/trainings/${searchParams.get('id')}`, {
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/manager/trainings/${params.id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ' + jwt.value
             },
             cache: 'no-store',

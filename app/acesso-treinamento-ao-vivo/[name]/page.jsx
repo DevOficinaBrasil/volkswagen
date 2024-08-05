@@ -1,26 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 import Chat from "../../components/Chat";
 import { useContext } from "react";
 import UserContext from "@/src/contexts/UserContext";
 import useContextCustom from "../../hooks/useContextCustom";
 import { Button, Typography } from "@mui/material";
 function TreinamentoAoVivo({ params }) {
-  const [training, setTraining] = useState(null);
-  const [trainings, setTrainings] = useState();
+  const [training, setTraining] = React.useState(null);
   
-  useEffect(() => {
+  React.useEffect(() => {
     const getTrainings = async () => {
-      const request = await fetch(
-        "https://apivw.oficinabrasil.com.br/api/trainings",
-        {
-          method: "GET",
-        }
-      );
+      const request = await fetch("/api/getTrainings", {
+        method: "GET",
+      });
 
       const response = await request.json();
-      setTrainings(response);
 
       if (request.ok) {
         response.map((training, index) => {
@@ -28,45 +23,10 @@ function TreinamentoAoVivo({ params }) {
             setTraining(training);
           }
         });
-      } else {
-        setTrainings(response);
       }
-      // // console.log(trainingActive);
-
-      // const data = {
-      //   training: trainingActive,
-      //   trainings: trainingInactive,
-      // };
-
-      // return trainingActive;
     };
     getTrainings();
   }, []);
-
-  useEffect(() => {
-    // training && // console.log(training.id);
-    const putPresence = async (trainingID) => {
-      const request = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/api/putTrainingPresence",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "applicattion/json",
-          },
-          body: JSON.stringify({
-            userID: localStorage.getItem("user_id"),
-            trainingID: training.id,
-          }),
-        }
-      );
-
-      const response = await request.json();
-      // trainingInactive = response;
-
-      // // console.log(trainingActive);
-    };
-    training && putPresence();
-  }, [training]);
 
   return (
     <div className="container mx-auto my-5">

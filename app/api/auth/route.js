@@ -4,22 +4,19 @@ import { cookies } from "next/headers";
 import UserContext from "@/src/contexts/UserContext";
 
 export async function POST(req) {
-  // // console.log(process.env.);
   const formData = await req.formData();
-  const data =
-    "email=" +
-    encodeURIComponent(formData.get("email")) +
-    "&password=" +
-    encodeURIComponent(formData.get("password"));
 
   const request = await fetch(
     `${process.env.NEXT_PUBLIC_SINGLEPASS_URL}/api/signin`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify({
+        email: formData.get('email'),
+        password: formData.get('password'),
+      }),
     }
   );
 

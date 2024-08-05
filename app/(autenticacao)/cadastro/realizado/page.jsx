@@ -14,7 +14,7 @@ export default function RedirectPage() {
 
   React.useEffect(() => {
     const getTrainings = async () => {
-      const request = await fetch("/api/trainings", {
+      const request = await fetch("/api/getTrainings", {
         method: "GET",
       });
 

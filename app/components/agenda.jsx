@@ -71,7 +71,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 04 de Junho
                         </Typography>
-                        <Button variant="contained" disabled>Em breve</Button>
+                        <Button variant="contained" disabled>Encerrado</Button>
                     </Box>
                 </Grid>
                 <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -88,7 +88,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="contained" disabled>Em breve</Button>
+                        <Button variant="contained" disabled>Encerrado</Button>
                     </Box>
                 </Grid>
             </Grid>
