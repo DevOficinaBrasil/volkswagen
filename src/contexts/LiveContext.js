@@ -20,14 +20,15 @@ export const LiveProvider = ({ children }) => {
       });
 
       const response = await request.json();
+
       setTrainings(response);
 
       if (request.ok) {
         response.map((training, index) => {
           if (training.active == 1) {
-            setCertify(training.certify);
-            setStatus(training.active);
-            setOnLive(training.on_live);
+            setCertify(Boolean(parseInt(training.certify)));
+            setStatus(Boolean(parseInt(training.active)));
+            setOnLive(Boolean(parseInt(training.on_live)));
             setTraining(training);
           }
         });

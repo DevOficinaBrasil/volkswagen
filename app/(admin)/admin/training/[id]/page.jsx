@@ -67,10 +67,10 @@ export default function Page({ params }) {
   
   const handleTrainingStatus = async (id) => {
     const formData = new FormData();
-console.log(!status)
+    
     formData.set("active", !status)
     formData.set("trainingId", id)
-
+    
     setStatus((prevData) => {
       return !prevData;
     });
