@@ -7,6 +7,7 @@ import SubscribeModal from "../components/subscribe";
 import moment from "moment";
 import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
+import Layout from "../layout/Layout";
 
 export default function RedirectPage(){
     const [trainings, setTrainings] = React.useState([]);
@@ -35,13 +36,12 @@ export default function RedirectPage(){
       getTrainings();
     }, []);
     return (
-        <main className="flex flex-col gap-5 px-5">
+        <Layout>
             <ToastContainer />
-            <Box className="relative flex flex-col justify-center items-center lg:py-20">
+            <Box className="relative flex flex-col justify-center items-center lg:pb-10">
                 <Typography variant="h3" className="text-blue-900 font-bold" gutterBottom>Seja bem vindo!</Typography>
                 <Typography variant="subtitle" className="text-blue-900">Se inscreva no nosso proximo treinamento</Typography>
             </Box>
-        
             <Box className="lg:px-40">
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                     <Grid item xs={6}>
@@ -130,6 +130,6 @@ export default function RedirectPage(){
                     </Grid>
                 </Grid>
             </Box>
-        </main>
+        </Layout>
     );
 }
