@@ -7,6 +7,7 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  InputLabel,
   Paper,
   Table,
   TableBody,
@@ -21,17 +22,21 @@ import Layout from "../../components/Layout";
 import LiveContext from "@/src/contexts/LiveContext";
 import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "@/app/components/mask/inputMask";
-import { Send } from "@mui/icons-material";
+import { Search, Send } from "@mui/icons-material";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import { FormControl, MenuItem, Select } from "@mui/base";
 
 export default function Page({ params }) {
+  const [updatedData, setUpdatedData] = React.useState(0);
   const [trainingInfo, setTrainingInfo] = React.useState([]);
+  const [trainingToAdd, setTrainingToAdd] = React.useState([]);
+  const [listTrainingToAdd, setListTrainingToAdd] = React.useState([]);
   const [concessionaireVacancies, setConcessionaireVacancies] = React.useState([]);
   const { onLive, setOnLive, certify, setCertify, status, setStatus } = React.useContext(LiveContext);
 
   React.useEffect(() => {
-    const getTrainings = async () => {
+    const getTraining = async () => {
       const request = await fetch(`/api/getAdminTraining?training=${params.id}`,{
         method: "GET",
       });
@@ -46,10 +51,27 @@ export default function Page({ params }) {
       }
     };
 
-    getTrainings();
+    getTraining();
   }, [status]);
 
   React.useEffect(() => {
+    console.log(updatedData)
+    const getTrainings = async (trainingsWithVacancies) => {
+      const request = await fetch(`/api/admin/getConcessionaires`,{
+        method: "GET",
+      });
+
+      const response = await request.json();
+
+      if (request.ok) {
+        const onRight = new Set(trainingsWithVacancies.map(obj => obj.concessionaire_id))
+
+        const diferent = response.filter(obj => !onRight.has(obj.id))
+
+        setTrainingToAdd(diferent)
+      }
+    };
+
     const getConcessionaires = async () => {
       const request = await fetch(`/api/getConcessionairesWithVacancies?training=${params.id}`,{
         method: "GET",
@@ -59,11 +81,12 @@ export default function Page({ params }) {
 
       if (request.ok) {
         setConcessionaireVacancies(response);
+        getTrainings(response)
       }
     };
 
     getConcessionaires();
-  }, []);
+  }, [updatedData]);
   
   const handleTrainingStatus = async (id) => {
     const formData = new FormData();
@@ -181,6 +204,61 @@ export default function Page({ params }) {
     onSubmit(data, value)
   }
 
+  const handleChange = (event) => {
+    if(event.target.value.length <= 0){
+      setListTrainingToAdd([])
+    }else{
+      const result = trainingToAdd.filter(training => training.DN.startsWith(event.target.value))
+  
+      setListTrainingToAdd(result)
+    }
+  };
+  
+  const addConcessionaire = async (id) => {
+    const formData = new FormData();
+
+    formData.set("concessionaire_id", id)
+    formData.set("training_id", params.id)
+
+    const request = await fetch("/api/admin/addConcessionaireOnTraining",{
+      method: "POST",
+      body: formData,
+    });
+
+    const response = await request.json();
+
+    if (request.ok) {
+      toast.success(response, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+
+      setUpdatedData((prevData) => {
+        return prevData + 1;
+      })
+      setListTrainingToAdd([])
+    }else{
+      toast.error(response, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+  }
+
   return (
     <Layout>
       <ToastContainer />
@@ -262,48 +340,96 @@ export default function Page({ params }) {
 
             <Box>
               <Paper className="p-5">
+                <Typography variant="h5" className="font-bold uppercase mb-5">Adicionar concessionária</Typography>
+                <Box className="flex flex-col gap-5">
+                  <TextField
+                    margin="normal"
+                    fullWidth
+                    id="search"
+                    label="Buscar concessionária (DN)"
+                    name="search"
+                    autoFocus
+                    onChange={handleChange}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Search className="text-sky-400" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        backgroundColor: "#F8F8F8",
+                        "& fieldset": { border: "none" },
+                      },
+                    }}
+                  />
+                </Box>
+                <Box className="flex flex-col gap-5">
+                  {listTrainingToAdd.length != 0 ? 
+                    listTrainingToAdd.map((item, index) => (
+                      <Box key={index} className="flex justify-between items-center">
+                        <Box>DN: {item.DN}</Box>
+                        <Box>Nome Fantasia: {item.fantasy_name}</Box>
+                        <Box>
+                          <Button onClick={() => addConcessionaire(item.id)}>Adicionar ao treinamento</Button>
+                        </Box>
+                      </Box>
+                    ))
+                  :
+                    <Typography>Nenhuma concessionária encontrada</Typography>
+                  }
+                </Box>
+              </Paper>
+            </Box>
+
+            <Box>
+              <Paper className="p-5">
                 <Typography variant="h5" className="font-bold uppercase mb-5">Vagas disponíveis</Typography>
                 <Box className="flex flex-col gap-5">
-                {concessionaireVacancies.map((row, index) => (
-                  <Box className="flex justify-between items-center" key={index}>
-                    <Box className="font-bold">#{row.concessionaire.DN}</Box>
-                    <Box>{row.concessionaire.fantasy_name}</Box>
-                    <Box>
-                      <Controller
-                        name={`vacancies.${row.id}`}
-                        control={control}
-                        defaultValue={`${row.vacancies}`}
-                        render={({ field }) => (
-                          <TextField
-                            id="vacancies"
-                            fullWidth
-                            required
-                            InputProps={{
-                              inputComponent: MaskedInput,
-                              inputProps: {
-                                mask: "0000",
-                              },
-                              endAdornment: (
-                                <InputAdornment position="end">
-                                  <IconButton onClick={() => {handleSubmit(row.id)}}>
-                                    <Send />
-                                  </IconButton>
-                                </InputAdornment>
-                              )
-                            }}
-                            sx={{
-                              "& .MuiOutlinedInput-root": {
-                                backgroundColor: "#F8F8F8",
-                                "& fieldset": { border: "none" },
-                              },
-                            }}
-                            {...field}
-                          />
-                        )}
-                      />
+                  {concessionaireVacancies.map((row, index) => (
+                    <Box className="flex justify-between items-center" key={index}>
+                      <Box className="font-bold">#{row.concessionaire.DN}</Box>
+                      <Box>{row.concessionaire.fantasy_name}</Box>
+                      <Box>
+                        <Controller
+                          name={`vacancies.${row.id}`}
+                          control={control}
+                          defaultValue={`${row.vacancies}`}
+                          render={({ field }) => (
+                            <TextField
+                              id="vacancies"
+                              fullWidth
+                              required
+                              InputProps={{
+                                inputComponent: MaskedInput,
+                                inputProps: {
+                                  mask: "0000",
+                                },
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <IconButton onClick={() => {handleSubmit(row.id)}}>
+                                      <Send className="text-sky-400" />
+                                    </IconButton>
+                                  </InputAdornment>
+                                )
+                              }}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  backgroundColor: "#F8F8F8",
+                                  "& fieldset": { border: "none" },
+                                },
+                              }}
+                              {...field}
+                            />
+                          )}
+                        />
+                        <Box>
+                          
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                ))}
+                  ))}
                 </Box>
               </Paper>
             </Box>

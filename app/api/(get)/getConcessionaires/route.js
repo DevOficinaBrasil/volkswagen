@@ -8,15 +8,7 @@ export async function GET(req) {
   //   if (jwt) {
   const { searchParams } = new URL(req.url);
 
-  const request = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_API_URL
-    }/api/getConcessionaireByAddress?state=${searchParams.get(
-      "state"
-    )}&city=${searchParams.get("city")}&training=${searchParams.get(
-      "training"
-    )}`,
-    {
+  const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getConcessionaireByAddress?state=${searchParams.get("state")}&city=${searchParams.get("city")}&training=${searchParams.get("training")}`, {
       method: "GET",
       // headers: {
       //     'Authorization': 'Bearer ' + jwt.value
