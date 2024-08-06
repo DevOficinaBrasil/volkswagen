@@ -55,8 +55,8 @@ export default function Hero(props) {
                             className="rounded-2xl"
                         >
                             {images.map((step, index) => (
-                            <Link href="/treinamento">
-                                <Box key={step.label} onClick={() => {router.push("/treinamento-ao-vivo")}} className="cursor-pointer">
+                            <Link href="/treinamento" key={step.label}>
+                                <Box onClick={() => {router.push("/treinamento-ao-vivo")}} className="cursor-pointer">
                                     <Box className="relative overflow-hidden aspect-video">
                                         {Math.abs(activeStep - index) <= 2 ? (
                                             <Box
