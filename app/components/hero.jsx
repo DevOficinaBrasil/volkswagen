@@ -8,7 +8,7 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import MateriasSection from "./materiasSection";
 import logo from "@/images/VW.png";
 import Image from "next/image";
-import cover1 from "@/images/Home_NO_Shell.png";
+import cover1 from "@/images/banner_training_47.jpeg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
