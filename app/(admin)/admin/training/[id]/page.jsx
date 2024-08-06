@@ -55,7 +55,6 @@ export default function Page({ params }) {
   }, [status]);
 
   React.useEffect(() => {
-    console.log(updatedData)
     const getTrainings = async (trainingsWithVacancies) => {
       const request = await fetch(`/api/admin/getConcessionaires`,{
         method: "GET",
@@ -226,7 +225,7 @@ export default function Page({ params }) {
     });
 
     const response = await request.json();
-
+console.log(response)
     if (request.ok) {
       toast.success(response, {
         position: "top-right",
