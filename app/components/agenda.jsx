@@ -46,7 +46,7 @@ export default function Agenda(){
                 <Grid item xs={12} sm  className="grow">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Motor
+                            <LockOpenOutlinedIcon className="mr-2" sx={{ color: "green" }} /> Motor
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Amarok V6
@@ -54,7 +54,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 03 de Setembro
                         </Typography>
-                        <Button variant="contained" disabled>Em breve</Button>
+                        <Button variant="contained" href="/treinamento">Se inscreva!</Button>
                     </Box>
                 </Grid>
                 <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
