@@ -7,7 +7,7 @@ export async function POST(req) {
 
     if(jwt){
         const infos =  await req.formData()
-        return Response.json(infos.get('concessionaire_id'))
+        
         const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/vacancies`,{
             method: "POST",
             headers: {
