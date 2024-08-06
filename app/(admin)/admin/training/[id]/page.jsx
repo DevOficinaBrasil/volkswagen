@@ -225,7 +225,7 @@ export default function Page({ params }) {
     });
 
     const response = await request.json();
-console.log(response)
+    
     if (request.ok) {
       toast.success(response, {
         position: "top-right",
