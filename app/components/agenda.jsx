@@ -45,8 +45,8 @@ export default function Agenda(){
                 </Grid>
                 <Grid item xs={12} sm  className="grow">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" sx={{ color: "green" }} /> Motor
+                        <Typography className="flex items-center text-green-600 font-bold" gutterBottom>
+                            <LockOpenOutlinedIcon className="mr-2" /> Motor
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Amarok V6
@@ -62,7 +62,7 @@ export default function Agenda(){
                 </Grid>
                 <Grid item xs={12} sm  className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
+                        <Typography className="flex items-center text-red-600 font-bold" gutterBottom>
                             <LockOutlinedIcon className="mr-2" />Novas Tecnologias 
                         </Typography>
                         <Typography variant="subtitle uppercase">
@@ -79,7 +79,7 @@ export default function Agenda(){
                 </Grid>
                 <Grid item xs={12} sm className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
+                        <Typography className="flex items-center text-red-600 font-bold" gutterBottom>
                             <LockOutlinedIcon className="mr-2" /> Injeção eletrônica
                         </Typography>
                         <Typography variant="subtitle uppercase">
