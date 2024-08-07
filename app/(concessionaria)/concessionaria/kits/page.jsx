@@ -77,7 +77,10 @@ export default function Trainings(){
                 <Box>
                     <Grid container gap={{ xs: 2 }}>
                         <Grid item xs>
-                            <KitCard kitId={training.id} title="Post e Story" archive="post" extension="zip" editableExtension="zip" />
+                            <KitCard kitId={training.id} title="Post" archive="post" extension="png" editableExtension="psd" />
+                        </Grid>
+                        <Grid item xs>
+                            <KitCard kitId={training.id} title="Story" archive="story" extension="png" editableExtension="psd" />
                         </Grid>
                         <Grid item xs>
                             <KitCard kitId={training.id} title="Banner" archive="banner" extension="png" editableExtension="ai" />
