@@ -18,7 +18,30 @@ import KitCard from '../components/KitCard';
 export default function Trainings(){
     const { userData } = React.useContext(UserContext);
     const [training, setTraining] = React.useState([])
+    const [releaseKit, setReleaseKit] = React.useState(false)
     const router = useRouter()
+
+    React.useEffect(() => {
+        if(userData){
+            const getTrainings = async () => {
+                const request = await fetch(`/api/manager/trainings/${userData.id}`, {
+                    method: 'GET',
+                })
+
+                const response = await request.json()
+
+                if (request.ok) {
+                    response.forEach(element => {
+                        if(element.trainings.active == 1){
+                            setReleaseKit(true)
+                        }
+                    });
+                }
+            }
+
+            getTrainings()
+        }
+    }, [userData])
 
     function Title({ children }){
         return(
@@ -42,7 +65,34 @@ export default function Trainings(){
             </Box>
           </Box>
         )
-      }
+    }
+
+    function BigTitle({ children }){
+        return(
+            <Box className="flex items-center justify-center mb-3">
+                <Box className="grow">
+                    <Divider sx={{ borderBottomWidth: 1, width: '95%' }} />
+                </Box>
+                <Typography variant="h3" className="relative font-bold inline-block" sx={{
+                '::before': {
+                    position: 'absolute',
+                    content: '""',
+                    right: -10,
+                    zIndex: -1,
+                    width: '72%',
+                    height: '100%',
+                    borderRadius: 1,
+                    backgroundColor: '#01B9FE',
+                }
+                }}>
+                {children}
+                </Typography>
+                <Box className="grow">
+                    <Divider sx={{ borderBottomWidth: 1, width: '80%', ml: 5 }} />
+                </Box>
+            </Box>
+        )
+    }
 
     React.useEffect(() => {
         if(userData){
@@ -68,6 +118,7 @@ export default function Trainings(){
 
     return(
         <Layout>
+            {releaseKit ?
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <Box className="mb-10">
                     <Title>Kits de Divulgação</Title>
@@ -94,6 +145,17 @@ export default function Trainings(){
                     </Grid>
                 </Box>
             </Container>
+             : 
+            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                <BigTitle variant='h3' className='font-bold'>Que Pena :(</BigTitle>
+                <Box className="text-center px-28">
+                    <Typography variant='h5' gutterBottom>Você não tem permissão para acessar o kit de divulgação</Typography>
+                    <Typography variant='body'>
+                        Os nossos kit de divulgação exclusivos são disponibilizados apenas para as concessionárias que oferecem o treinamento presencialmente em sua unidade.
+                    </Typography>
+                </Box>
+            </Container>
+            }
         </Layout>
     )
 }
