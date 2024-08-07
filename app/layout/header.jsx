@@ -72,7 +72,7 @@ export default function Header() {
             </MenuItem>
             <MenuItem
               onClick={() => {
-                router.push("/atualizar");
+                router.push("/users/atualizar/pessoais");
               }}
             >
               Atualizar meus dados

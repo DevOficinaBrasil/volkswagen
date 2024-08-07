@@ -29,7 +29,7 @@ export default function useRedirectPage() {
             if (trainingData.on_live == 1 && trainingData.Inscrito == 1) {
               router.push("/treinamento-ao-vivo");
             } else {
-              router.push("/users/sucesso");
+              router.push("/treinamento");
             }
           }
         });

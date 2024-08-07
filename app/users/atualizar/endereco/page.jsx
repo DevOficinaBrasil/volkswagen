@@ -24,6 +24,7 @@ import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "@/app/components/mask/inputMask";
 import Swal from "sweetalert2";
 import UserContext from "@/src/contexts/UserContext";
+import Layout from "@/app/layout/Layout";
 
 export default function Page() {
   const router = useRouter();
@@ -176,198 +177,200 @@ export default function Page() {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xl">
-        <CssBaseline />
-        <Box sx={{ marginTop: 4 }}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-              }}
-            >
-              <Typography
-                className="mb-5 text-volks-blue-900 font-thin"
-                component="h1"
-                variant="h5"
+      <Layout>
+        <Container component="main" maxWidth="xl">
+          <CssBaseline />
+          <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                }}
               >
-                Endereço Pessoal
-              </Typography>
-            </Box>
+                <Typography
+                  className="mb-5 text-volks-blue-900 font-bold"
+                  component="h1"
+                  variant="h5"
+                >
+                  Endereço Pessoal
+                </Typography>
+              </Box>
 
-            <Box noValidate sx={{ mt: 0 }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Controller
-                    name="cep"
-                    control={control}
-                    {...register("cep", {
-                      onChange: async (event) => {
-                        setAddress(await handleSearchCep(event));
-                      },
-                    })}
-                    render={({ field }) => (
-                      <TextField
-                        key="cep"
-                        id="cep"
-                        label="CEP"
-                        fullWidth
-                        required
-                        InputProps={{
-                          inputComponent: MaskedInput,
-                          inputProps: {
-                            mask: "00000-000",
-                          },
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+              <Box noValidate sx={{ mt: 0 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Controller
+                      name="cep"
+                      control={control}
+                      {...register("cep", {
+                        onChange: async (event) => {
+                          setAddress(await handleSearchCep(event));
+                        },
+                      })}
+                      render={({ field }) => (
+                        <TextField
+                          key="cep"
+                          id="cep"
+                          label="CEP"
+                          fullWidth
+                          required
+                          InputProps={{
+                            inputComponent: MaskedInput,
+                            inputProps: {
+                              mask: "00000-000",
+                            },
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="state"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="state"
-                        id="state"
-                        label="Estado"
-                        fullWidth
-                        required
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="state"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="state"
+                          id="state"
+                          label="Estado"
+                          fullWidth
+                          required
+                          InputProps={{
+                            readOnly: true,
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="city"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="city"
-                        id="city"
-                        label="Cidade"
-                        fullWidth
-                        required
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="city"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="city"
+                          id="city"
+                          label="Cidade"
+                          fullWidth
+                          required
+                          InputProps={{
+                            readOnly: true,
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={8}>
-                  <Controller
-                    name="street"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="street"
-                        id="street"
-                        label="Rua"
-                        fullWidth
-                        required
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={8}>
+                    <Controller
+                      name="street"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="street"
+                          id="street"
+                          label="Rua"
+                          fullWidth
+                          required
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={4}>
-                  <Controller
-                    name="number"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="number"
-                        id="number"
-                        label="Número"
-                        fullWidth
-                        required
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Controller
+                      name="number"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="number"
+                          id="number"
+                          label="Número"
+                          fullWidth
+                          required
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12}>
-                  <Controller
-                    name="complement"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="complement"
-                        id="complement"
-                        label="Complemento"
-                        fullWidth
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
+                  <Grid item xs={12}>
+                    <Controller
+                      name="complement"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="complement"
+                          id="complement"
+                          label="Complemento"
+                          fullWidth
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-            <button
-              disabled={disabled}
-              type="submit"
-              className={
-                disabled
-                  ? "h-12 w-full mt-10 flex justify-between bg-slate-500 items-center rounded-lg shadow px-5 "
-                  : "h-12 w-full mt-10 flex justify-between bg-gradient-to-r from-volks-blue-900 to-volks-blue-800 items-center rounded-lg shadow px-5 hover:scale-105"
-              }
-            >
-              <div className="text-white font-semibold">Atualizar endereço</div>
-              <EastIcon className="text-white" />
-            </button>
-          </form>
-        </Box>
-      </Container>
+              </Box>
+              <button
+                disabled={disabled}
+                type="submit"
+                className={
+                  disabled
+                    ? "h-12 w-full mt-10 flex justify-between bg-slate-500 items-center rounded-lg shadow px-5 "
+                    : "h-12 w-full mt-10 flex justify-between bg-gradient-to-r from-volks-blue-900 to-volks-blue-800 items-center rounded-lg shadow px-5 hover:scale-105"
+                }
+              >
+                <div className="text-white font-semibold">Atualizar endereço</div>
+                <EastIcon className="text-white" />
+              </button>
+            </form>
+          </Box>
+        </Container>
+      </Layout>
     </ThemeProvider>
   );
 }

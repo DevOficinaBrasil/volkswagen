@@ -21,7 +21,7 @@ const AtualizarMenu = () => {
           key={menu.value}
           // href={`/atualizar/${menu.value}`}
           onClick={() => {
-            userData && router.push(`/atualizar/${menu.value}`);
+            userData && router.push(`/users/atualizar/${menu.value}`);
           }}
           className={`w-[105%] font-medium text-center rounded-r-full hover:bg-blue-200 py-2 px-1 ${
             pathname.includes(menu.value)

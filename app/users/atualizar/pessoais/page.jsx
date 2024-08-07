@@ -25,6 +25,7 @@ import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "@/app/components/mask/inputMask";
 import Swal from "sweetalert2";
 import UserContext from "@/src/contexts/UserContext";
+import Layout from "@/app/layout/Layout";
 
 export default function Page() {
   const [alert, setAlert] = React.useState(null);
@@ -115,217 +116,219 @@ export default function Page() {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xl">
-        <CssBaseline />
-        <Box sx={{ marginTop: 4 }}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-              }}
-            >
-              <Typography
-                className="mb-5 text-volks-blue-900 font-thin"
-                component="h1"
-                variant="h5"
+      <Layout>
+        <Container component="main" maxWidth="xl">
+          <CssBaseline />
+          <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                }}
               >
-                Dados Pessoais
-              </Typography>
-            </Box>
+                <Typography
+                  className="mb-5 text-volks-blue-900 font-bold"
+                  component="h1"
+                  variant="h5"
+                >
+                  Dados Pessoais
+                </Typography>
+              </Box>
 
-            <Box noValidate sx={{ mt: 0 }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Controller
-                    name="document"
-                    control={control}
-                    // {...register("document", {
-                    //   onChange: handleSearchDocument,
-                    // })}
-                    render={({ field }) => (
-                      <TextField
-                        key="document"
-                        id="document"
-                        label="CPF"
-                        fullWidth
-                        required
-                        InputProps={{
-                          inputComponent: MaskedInput,
-                          inputProps: {
-                            mask: "000.000.000-00",
-                          },
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="name"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="name"
-                        id="name"
-                        label="Nome Completo"
-                        fullWidth
-                        required
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="phone"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="phone"
-                        id="phone"
-                        label="Telefone"
-                        fullWidth
-                        required
-                        InputProps={{
-                          inputComponent: MaskedInput,
-                          inputProps: {
-                            mask: "(00) 0 0000-0000",
-                          },
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="gender"
-                    control={control}
-                    render={({ field }) => (
-                      <FormControl variant="outlined" fullWidth>
-                        <InputLabel id="gender">Gênero</InputLabel>
-                        <Select
-                          labelId="gender"
-                          label="Gênero"
+              <Box noValidate sx={{ mt: 0 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Controller
+                      name="document"
+                      control={control}
+                      // {...register("document", {
+                      //   onChange: handleSearchDocument,
+                      // })}
+                      render={({ field }) => (
+                        <TextField
+                          key="document"
+                          id="document"
+                          label="CPF"
                           fullWidth
                           required
+                          InputProps={{
+                            inputComponent: MaskedInput,
+                            inputProps: {
+                              mask: "000.000.000-00",
+                            },
+                          }}
                           sx={{
-                            backgroundColor: "#F8F8F8",
-                            "& .MuiOutlinedInput-notchedOutline": {
-                              border: "none",
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
                             },
                           }}
                           {...field}
-                        >
-                          <MenuItem key="gender-female" value="Feminino">
-                            Feminino
-                          </MenuItem>
-                          <MenuItem key="gender-male" value="Masculino">
-                            Masculino
-                          </MenuItem>
-                          <MenuItem key="gender-other" value="Outros">
-                            Outros
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    )}
-                  />
-                </Grid>
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="born_at"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="born_at"
-                        id="born_at"
-                        label="Data de Nascimento"
-                        fullWidth
-                        required
-                        InputProps={{
-                          inputComponent: MaskedInput,
-                          inputProps: {
-                            mask: "00/00/0000",
-                          },
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="name"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="name"
+                          id="name"
+                          label="Nome Completo"
+                          fullWidth
+                          required
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
 
-                <Grid item xs={12}>
-                  <Controller
-                    name="email"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        key="email"
-                        id="email"
-                        label="E-Mail"
-                        fullWidth
-                        required
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            backgroundColor: "#F8F8F8",
-                            "& fieldset": { border: "none" },
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
-                  />
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="phone"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="phone"
+                          id="phone"
+                          label="Telefone"
+                          fullWidth
+                          required
+                          InputProps={{
+                            inputComponent: MaskedInput,
+                            inputProps: {
+                              mask: "(00) 0 0000-0000",
+                            },
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="gender"
+                      control={control}
+                      render={({ field }) => (
+                        <FormControl variant="outlined" fullWidth>
+                          <InputLabel id="gender">Gênero</InputLabel>
+                          <Select
+                            labelId="gender"
+                            label="Gênero"
+                            fullWidth
+                            required
+                            sx={{
+                              backgroundColor: "#F8F8F8",
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                border: "none",
+                              },
+                            }}
+                            {...field}
+                          >
+                            <MenuItem key="gender-female" value="Feminino">
+                              Feminino
+                            </MenuItem>
+                            <MenuItem key="gender-male" value="Masculino">
+                              Masculino
+                            </MenuItem>
+                            <MenuItem key="gender-other" value="Outros">
+                              Outros
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="born_at"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="born_at"
+                          id="born_at"
+                          label="Data de Nascimento"
+                          fullWidth
+                          required
+                          InputProps={{
+                            inputComponent: MaskedInput,
+                            inputProps: {
+                              mask: "00/00/0000",
+                            },
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Controller
+                      name="email"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField
+                          key="email"
+                          id="email"
+                          label="E-Mail"
+                          fullWidth
+                          required
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              backgroundColor: "#F8F8F8",
+                              "& fieldset": { border: "none" },
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-            <button
-              disabled={disabled}
-              onClick={handleSubmit(onSubmit)}
-              className={
-                disabled
-                  ? "h-12 w-full mt-10 flex justify-between bg-slate-500 items-center rounded-lg shadow px-5 "
-                  : "h-12 w-full mt-10 flex justify-between bg-gradient-to-r from-volks-blue-900 to-volks-blue-800 items-center rounded-lg shadow px-5 hover:scale-105"
-              }
-            >
-              <div className="text-white font-semibold">
-                Atualizar dados pessoais
-              </div>
-              <EastIcon className="text-white" />
-            </button>
-          </form>
-        </Box>
-      </Container>
+              </Box>
+              <button
+                disabled={disabled}
+                onClick={handleSubmit(onSubmit)}
+                className={
+                  disabled
+                    ? "h-12 w-full mt-10 flex justify-between bg-slate-500 items-center rounded-lg shadow px-5 "
+                    : "h-12 w-full mt-10 flex justify-between bg-gradient-to-r from-volks-blue-900 to-volks-blue-800 items-center rounded-lg shadow px-5 hover:scale-105"
+                }
+              >
+                <div className="text-white font-semibold">
+                  Atualizar dados pessoais
+                </div>
+                <EastIcon className="text-white" />
+              </button>
+            </form>
+          </Box>
+        </Container>
+      </Layout>
     </ThemeProvider>
   );
 }

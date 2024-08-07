@@ -127,7 +127,7 @@ export default function Dashboard() {
           <Image src="https://uploads.vw-mms.de/system/production/images/vwn/038/119/images/5033f6c0e75acc3c07fb42c1aae6e6caeb698d69/DB2022AL00009_web_1160.jpg?1649158021" width={100} height={100} className="aspect-square rounded-2xl" />
         </Box>
         <Box className="grow">
-          <Typography variant="h6" className="text-sky-400">1º Treinamento</Typography>
+          <Typography variant="h6" className="text-sky-400">Treinamento</Typography>
           <Typography className="font-bold text-neutral-600">{title}</Typography>
           <Typography variant="caption" className="text-volks-blue-900">{moment(date).format("DD/MM/YYYY")}</Typography>
         </Box>
@@ -164,7 +164,6 @@ export default function Dashboard() {
       ) : (
         <Typography variant="h6">{subscribedTrainings}</Typography>
       )}
-      
     </Layout>
   );
 }
