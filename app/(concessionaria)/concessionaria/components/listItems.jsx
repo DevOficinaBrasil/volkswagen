@@ -7,6 +7,7 @@ import CarRentalIcon from '@mui/icons-material/CarRental';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import Link from 'next/link';
 import { Button } from '@mui/material';
+import { LocalLibrary } from '@mui/icons-material';
 
 export const mainListItems = (
     <React.Fragment>
@@ -21,7 +22,7 @@ export const mainListItems = (
         <Link href="/concessionaria/kits">
             <ListItemButton sx={{ padding: "5px 16px", border: "2px solid transparent", transition: "0.3s", ":hover": { backgroundColor: "transparent", border: "2px solid #00B1FF", borderRadius: "5px" } }}>
                 <ListItemIcon>
-                    <ModelTrainingIcon />
+                    <LocalLibrary />
                 </ListItemIcon>
                 <ListItemText primary="Kit Divulgação" />
             </ListItemButton>
