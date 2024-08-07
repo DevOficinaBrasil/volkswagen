@@ -77,6 +77,7 @@ export default function Hero(props) {
                             </Link>
                             ))}
                         </AutoPlaySwipeableViews>
+                        {/**
                         <MobileStepper
                             steps={maxSteps}
                             position="static"
@@ -104,6 +105,7 @@ export default function Hero(props) {
                             </Button>
                             }
                         />
+                         */}
                     </Box>
                 </Grid>
                 {props.mobile ||
