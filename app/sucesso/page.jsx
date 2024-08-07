@@ -40,7 +40,7 @@ export default function RedirectPage(){
             <ToastContainer />
             <Box className="relative flex flex-col justify-center items-center lg:pb-10">
                 <Typography variant="h3" className="text-blue-900 font-bold" gutterBottom>Seja bem vindo!</Typography>
-                <Typography variant="subtitle" className="text-blue-900">Se inscreva no nosso proximo treinamento</Typography>
+                <Typography variant="subtitle" className="text-blue-900">Inscreva-se no nosso proximo treinamento</Typography>
             </Box>
             <Box className="lg:px-40">
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>

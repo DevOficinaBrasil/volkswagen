@@ -54,7 +54,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 03 de Setembro
                         </Typography>
-                        <Button variant="contained" href="/treinamento">Se inscreva!</Button>
+                        <Button variant="contained" href="/treinamento">Inscreva-se!</Button>
                     </Box>
                 </Grid>
                 <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>

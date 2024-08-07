@@ -45,7 +45,7 @@ export default function SucessPage() {
           Seja bem vindo!
         </Typography>
         <Typography variant="subtitle" className="text-blue-900">
-          Se inscreva no nosso proximo treinamento
+          Inscreva-se no nosso proximo treinamento
         </Typography>
       </Box>
 
