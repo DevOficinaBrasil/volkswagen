@@ -56,7 +56,7 @@ export default function Trainings(){
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {trainings.sort((a, b) => a.training_id - b.training_id).map((row, index) => (
+                        {trainings.sort((a, b) => b.training_id - a.training_id).map((row, index) => (
                             <TableRow key={index}>
                                 <TableCell className="text-sky-400 font-bold">#{row.trainings.id}</TableCell>
                                 <TableCell>{row.trainings.name}</TableCell>
