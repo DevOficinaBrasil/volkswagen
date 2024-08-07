@@ -15,6 +15,7 @@ import Image from 'next/image';
 import VolksButton from '@/app/components/defaultButton';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Layout from '@/app/layout/Layout';
 
 const defaultTheme = createTheme();
 
@@ -52,50 +53,52 @@ export default function SignIn(){
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <ToastContainer />
-        <CssBaseline />
+      <Layout>
+        <Container component="main" maxWidth="xs">
+          <ToastContainer />
+          <CssBaseline />
 
-        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+          <Box sx={{ marginY: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <Image src='https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png' width={150} height={150} alt='' />
-          </Avatar>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <Image src='https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png' width={150} height={150} alt='' />
+            </Avatar>
 
-          <Typography component="h1" variant="h5">
-            Recuperar Senha
-          </Typography>
+            <Typography component="h1" variant="h5">
+              Recuperar Senha
+            </Typography>
 
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
-            />
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+              />
 
-            { alert && <Alert severity="error">{alert}</Alert> }
+              { alert && <Alert severity="error">{alert}</Alert> }
 
-            <VolksButton type="submit" fullWidth>
-              Enviar link
-            </VolksButton>
+              <VolksButton type="submit" fullWidth>
+                Enviar link
+              </VolksButton>
 
-            <Grid container>
-              <Grid item>
-                <Link href="/cadastro" variant="body2">
-                  {"Ainda não tem uma conta? Cadastre-se"}
-                </Link>
+              <Grid container>
+                <Grid item>
+                  <Link href="/cadastro" variant="body2">
+                    {"Ainda não tem uma conta? Cadastre-se"}
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
+            </Box>
 
-        </Box>
-      </Container>
+          </Box>
+        </Container>
+      </Layout>
     </ThemeProvider>
   )
 }
