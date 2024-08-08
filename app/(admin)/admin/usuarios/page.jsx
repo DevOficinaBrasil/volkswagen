@@ -16,7 +16,7 @@ export default function Page() {
             const response = await request.json()
 
             if (request.ok) {
-                setUsers(response)
+                setUsers(response.data)
             }
         }
 
@@ -41,7 +41,7 @@ export default function Page() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {users.data.map((user, index) => (
+                                            {users.map((user, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell>{user.name}</TableCell>
                                                     <TableCell>{user.document}</TableCell>
