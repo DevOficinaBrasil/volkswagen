@@ -45,7 +45,7 @@ export default function Page() {
                                         </TableHead>
                                         <TableBody>
                                             {users.data.map((user, index) => (
-                                                <TableRow>
+                                                <TableRow key={index}>
                                                     <TableCell>{user.name}</TableCell>
                                                     <TableCell>{user.document}</TableCell>
                                                     <TableCell align="right">{user.email}</TableCell>
