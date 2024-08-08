@@ -8,7 +8,7 @@ export async function GET(req) {
   if (jwt) {
     const { searchParams } =  new URL(req.url)
 
-    const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users?page=${searchParams.get('currentPage')}`, {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/search/users?document=${searchParams.get('document')}`, {
         method: "GET",
         headers: {
           'Authorization': 'Bearer ' + jwt.value
