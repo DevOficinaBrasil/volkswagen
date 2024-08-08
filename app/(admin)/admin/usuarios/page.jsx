@@ -1,10 +1,7 @@
 "use client"
 
 import { Box, Button, Container, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import Layout from '../components/Layout';
 
 export default function Page() {
@@ -25,7 +22,7 @@ export default function Page() {
 
         getUsers()
     }, [])
-    console.log(users)
+    
     return(
         <Layout>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
