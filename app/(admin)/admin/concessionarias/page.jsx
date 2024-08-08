@@ -178,7 +178,7 @@ export default function Page() {
                                                                 InputProps={{
                                                                     inputComponent: MaskedInput,
                                                                     inputProps: {
-                                                                        mask: "000.000.000-00",
+                                                                        mask: "00.000.000/0000-00",
                                                                     },
                                                                 }}
                                                                 {...field}
