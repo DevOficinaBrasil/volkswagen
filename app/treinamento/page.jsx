@@ -9,6 +9,7 @@ import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
 import Layout from "../layout/Layout";
 import UserContext from "@/src/contexts/UserContext";
+import { Check } from "@mui/icons-material";
 
 export default function Training() {
   const [trainings, setTrainings] = React.useState([]);
