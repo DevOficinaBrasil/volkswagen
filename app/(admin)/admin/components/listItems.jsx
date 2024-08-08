@@ -6,6 +6,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import CarRentalIcon from '@mui/icons-material/CarRental';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import Link from 'next/link';
+import { Person } from '@mui/icons-material';
 
 export const mainListItems = (
     <React.Fragment>
@@ -24,6 +25,15 @@ export const mainListItems = (
                     <CarRentalIcon />
                 </ListItemIcon>
                 <ListItemText primary="Concessionárias" />
+            </ListItemButton>
+        </Link>
+
+        <Link href="/admin/usuarios">
+            <ListItemButton>
+                <ListItemIcon>
+                    <Person />
+                </ListItemIcon>
+                <ListItemText primary="Usuários" />
             </ListItemButton>
         </Link>
     </React.Fragment>

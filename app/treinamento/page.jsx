@@ -8,10 +8,41 @@ import moment from "moment";
 import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
 import Layout from "../layout/Layout";
+import UserContext from "@/src/contexts/UserContext";
 
 export default function Training() {
   const [trainings, setTrainings] = React.useState([]);
   const [training, setTraining] = React.useState([]);
+  const [subscribed, setSubscribed] = React.useState(false);
+  const [isNotUser, setIsNotUser] = React.useState(false);
+  const { userData } = React.useContext(UserContext)
+
+  React.useEffect(() => {
+    const getTrainings = async () => {
+      const request = await fetch("/api/getSubscribedTrainings", {
+        method: "GET",
+        cache: "no-cache",
+      });
+
+      const response = await request.json();
+
+        if (request.ok) {
+            response.forEach(element => {
+                if(element.active = 1 && element.Inscrito == 1){
+                    if(userData.role == 'common'){
+                        setSubscribed(true)
+                    }else{
+                        setIsNotUser(true)
+                    }
+                }
+            });
+        }else{
+            setSubscribed(false)
+        }
+    };
+
+    getTrainings();
+  }, []);
 
   React.useEffect(() => {
     const getTrainings = async () => {
@@ -62,7 +93,14 @@ export default function Training() {
                 <Typography variant="subtitle2" gutterBottom>
                   {moment(training.date).format("DD/MM/YYYY")}
                 </Typography>
-                <SubscribeModal content={training} type="insert" fullWidth>Inscreva-se</SubscribeModal>
+                {subscribed ? 
+                  <Button variant="contained" className="bg-green-500 hover:bg-green-600" endIcon={<Check />} href="/users/dashboard">Inscrito!</Button>
+                : 
+                  isNotUser ?
+                    <Button variant="contained" href="/concessionaria/trainings" fullWidth>Acompanhe!</Button>
+                  :
+                    <SubscribeModal content={training} type="insert" fullWidth>Inscreva-se</SubscribeModal>
+                }
               </Box>
             </CardContent>
           </Card>

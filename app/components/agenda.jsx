@@ -4,12 +4,45 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import useWindowSize from "../hooks/useWindowsSize";
 import * as React from 'react';
 import Link from "next/link";
+import { green } from "../getLPTheme";
+import { Check } from "@mui/icons-material";
+import UserContext from "@/src/contexts/UserContext";
 
 export default function Agenda(){
     const [mobile, setMobile] = React.useState(false);
+    const [subscribed, setSubscribed] = React.useState(false);
+    const [isNotUser, setIsNotUser] = React.useState(false);
+    const { userData } = React.useContext(UserContext)
 
     const windowSize = useWindowSize();
-
+    
+    React.useEffect(() => {
+        const getTrainings = async () => {
+          const request = await fetch("/api/getSubscribedTrainings", {
+            method: "GET",
+            cache: "no-cache",
+          });
+    
+          const response = await request.json();
+    
+            if (request.ok) {
+                response.forEach(element => {
+                    if(element.active = 1 && element.Inscrito == 1){
+                        if(userData.role == 'common'){
+                            setSubscribed(true)
+                        }else{
+                            setIsNotUser(true)
+                        }
+                    }
+                });
+            }else{
+                setSubscribed(false)
+            }
+        };
+    
+        getTrainings();
+    }, []);
+    
     React.useEffect(() => {
         if (windowSize.width <= 1080) {
             setMobile(true);
@@ -54,7 +87,14 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 03 de Setembro
                         </Typography>
-                        <Button variant="contained" href="/treinamento">Inscreva-se!</Button>
+                        {subscribed ? 
+                            <Button variant="contained" className="bg-green-500 hover:bg-green-600" endIcon={<Check />} href="/users/dashboard">Inscrito!</Button>
+                        : 
+                            isNotUser ?
+                                <Button variant="contained" href="/concessionaria/trainings">Acompanhe!</Button>
+                            :
+                                <Button variant="contained" href="/treinamento">Inscreva-se!</Button>
+                        }
                     </Box>
                 </Grid>
                 <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
